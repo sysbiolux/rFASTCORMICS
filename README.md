@@ -1,7 +1,12 @@
 # rFASTCORMICS
 
 
-FASTCORMICS RNA-seq (c) Pacheco et al., 2018 02/07/2018
+FASTCORMICS RNA-seq (c) was published in "Identifying and targeting cancer-specific metabolism with network-based drug target prediction".
+
+Pacheco, M. P., Bintener, T., Ternes, D., Kulms, D., Haan, S., Letellier, E., & Sauter, T. (2019). Identifying and targeting cancer-specific metabolism with network-based drug target prediction. EBioMedicine, 43, 98-106.
+
+https://doi.org/10.1016/j.ebiom.2019.04.046
+https://www.sciencedirect.com/science/article/pii/S2352396419302853
 
 INTRODUCTION
 ==========================
@@ -9,6 +14,7 @@ INTRODUCTION
 FASTCORMICS RNA-seq is an automated workflow to create a context specific model from the input data and a genome scale reconstruction.
 
 For more details on the FASTCORE algorithm family see:
+
 	- FASTCORE (Vlassis et al., 2014, PloS Computational Biology)
 	- FASTCORMICS (Pacheco et al., 2015, BMC Genomics)
 	- Benchmarking (Pacheco et al., 2016, Frontiers in Physiology)
@@ -17,6 +23,7 @@ PREREQUISITES
 ==========================
 
 SOFTWARE
+
 	- Matlab 2013 or higher
 		- compatible IBM CPLEX installation, (please use this link to check which version to use https://www.ibm.com/software/reports/compatibility/clarity/softwarePrereqsMatrix.html )
 		- Statistics and Machine Learning Toolbox
@@ -24,6 +31,7 @@ SOFTWARE
 		- COBRA Toolbox (https://opencobra.github.io/cobratoolbox/latest/installation.html )
 		
 DATA
+
 	- RNA-seq data (FPKM transformed)
 		- colnames:		1xC cell with the sample names (size C)
 		- rownames:		Rx1 cell with the gene identifiers (size R)
@@ -51,11 +59,14 @@ The figure flag (figflag) can be set to 1 (show figures) or 0(do not show figure
 Then, the fpkm data is log2-transformed and discretized (for details, see Material and Methods from Pacheco et al., 2018).
 
 Finally, the context-specific models are reconstructed taking into consideration the optional_settings such as 
+
 	- unpenalized systems
 	- function to be forced into the model (biomass_reraction and DM_atp_c)
 	- not_medium_constrained
 	- medium constraints
+	
 and the mandatory settings:
+
 	- epsilon
 	- consensus proportion
 	- dico
