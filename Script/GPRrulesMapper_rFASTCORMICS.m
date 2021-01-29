@@ -1,7 +1,7 @@
 function [res] = GPRrulesMapper (exp, x)
     if (~( strcmp (exp , '') ) & ~isempty(exp))% verifies if there is an association rule for the each gene of the gene ID association list (no association is displayed with '' and if there is an expression value 
        
-        res = eval(exp); % the association rules are stored like ‘x(25)’ meaning that the object res will take the expression value in the 25th row
+        res = eval(exp); % the association rules are stored like â€˜x(25)â€™ meaning that the object res will take the expression value in the 25th row
        
        
     else
