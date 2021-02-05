@@ -203,11 +203,11 @@ initCobraToolbox % initialize the COBRA toolbox
 % single models:
 
 for i = 1:numel(colnames) %for each sample
-    [model_out{i}, A_keep{i}] = fastcormics_2018(Cmodel, discretized(:,i), ...
+    [model_out{i}, A_keep{i}] = fastcormics_RNAseq(Cmodel, discretized(:,i), ...
         rownames, dico , 0, consensus_proportion, epsilon, optional_settings);
 end
 %% 
 % generic models:
 
-[model_out_generic, A_keep_generic] = fastcormics_2018(Cmodel, discretized, ...
+[model_out_generic, A_keep_generic] = fastcormics_RNAseq(Cmodel, discretized, ...
     rownames, dico , 0, consensus_proportion, epsilon, optional_settings);
