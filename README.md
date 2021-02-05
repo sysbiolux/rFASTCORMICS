@@ -52,7 +52,7 @@ For the latter, a consensus proportion needs to be decided.
 The default consensus is 0.9, meaning a reaction is only considered present in the final model, if it can be derived from at least 90% from the input data.
 
 
-SCRIPT	
+SCRIPT	fastcormicsRNAseq_example
 ==========================
 First, the RNA-seq data is loaded.
 The figure flag (figflag) can be set to 1 (show figures) or 0(do not show figures). If set to 1, the density plot with hybrid curves will be saved for each sample in the Figures folder.
@@ -71,7 +71,10 @@ and the mandatory settings:
 	- consensus proportion
 	- dico
 	
-	
+SCRIPT	fastcormicsRNAseq_example_2
+==========================	
+Similar to the previous example but with more samples as well as some visualizations and drug target prediction.
+
 	
 Tamara Bintener
 
