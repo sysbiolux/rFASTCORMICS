@@ -1,6 +1,6 @@
 function [grRatio, grRateKO, grRateWT, hasEffect, delRxns, fluxSolution] = DrugDeletion(model, method, DrugList)
 
-load GxD.mat
+load GeneDrugRelations.mat
 
 if (nargin < 2)
     method = 'FBA';
@@ -69,24 +69,3 @@ end
 
 grRatio = grRateKO/grRateWT;
 
-
-% load('P:\PhD Project\Resources\DrugBank\v5.1.3\gene_drug_interactions.mat','dico_final_recon')
-%
-% GxD = dico_final_recon;
-%
-% GxD.ProbeID = [];
-% % GxD.ENTREZ = [];
-% GxD.HGNC = [];
-% GxD.ENSG = [];
-% GxD.UniProt = [];
-% GxD.UniProt_f = [];
-% GxD.GenBankProteinID = [];
-% GxD.GenBankGeneID = [];
-% GxD.UniprotTitle = [];
-% GxD.PDBID = [];
-% GxD.GeneCardID = [];
-% GxD.GenAtlasID = [];
-% GxD.DrugsDB_f = [];
-%
-% GxD = unique(GxD);
-% GxD(cellfun(@isempty, strfind(GxD.Action, 'inhib')),:)=[];
