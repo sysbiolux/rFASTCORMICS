@@ -41,8 +41,8 @@ for i = 1:numel(DrugList)
     % delete all alternate transcripts
     %             delGenes = model.genes(strmatch(geneList{i},model.genes));
     
-    idx = find(ismember(GxD.DrugName, DrugList(i)));
-    geneList = GxD.ENTREZ(idx);
+    idx = find(ismember(GeneDrugRelations.DrugName, DrugList(i)));
+    geneList = GeneDrugRelations.ENTREZ(idx);
     [modelDel,hasEffect(i),constrRxnNames] = deleteModelGenes(model,geneList);
 
     delRxns{i} = constrRxnNames;
