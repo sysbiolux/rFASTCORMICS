@@ -5,60 +5,58 @@ function [mapping] = map_expression_2_data(model, data, dico, rownames)
 if istable(dico)
     dico = table2array(dico);
 end
-% dico = lower(dico);
-% rownames = lower(rownames);
 
-col = find(sum(ismember(dico,rownames)));
-[~,idico,irownames] = intersect(dico(:,col(1)),rownames);
+rownames(cellfun(@isempty, rownames)) = cellstr('not found');
+
+col = find(sum(ismember(dico,rownames)) == max(sum(ismember(dico,rownames)))); % find matching column, usually the one with the highest number of matches
+[~,idico,irownames] = intersect(dico(:,col),rownames); % get indices
 
 if isempty(irownames);
     'the dico does match the dataIds';
     return
 end
 
-mapped2(:,1) = rownames(irownames,1); %data input
-mapped2(:,2) = dico(idico,1); %Probe ID
-mapped2(:,3) = dico(idico,2); %ENTREZ
-try;mapped2(:,4) = dico(idico,3);end %HGNC
-mapped = data(irownames,:);
 
+
+
+
+mapped = data(irownames,:); %get data for matching rownames
+
+
+mapped2(:,1) = rownames(irownames,1); %create dico with same order than input
+for i = 1:size(dico,2)
+    mapped2(:,i+1) = dico(idico,i);
+end
+
+
+if any(contains(model.genes,'.')) && ~contains(model.description, 'recon','IgnoreCase',true)
+    warning('Does your input model contain transcripts? If not, please remove any dots . in the model.genes field')
+    disp('Temporarily removing transcripts...')
+    model.genes = regexprep(model.genes, '\.[0-9]*','');
+end
 
 
 mapped_to_genes = zeros(numel(model.genes), size(mapped,2)); %initialise variable
 
 genes_matched = 0;
 
-% maps the expression data to the genes
+% maps the discretized expression data to the genes
+
 for i=1:numel(model.genes);
-    match = find(strcmp(mapped2(:,2),model.genes(i))); %probe ID
+    [match,~] = find(ismember(mapped2,model.genes(i))); %find row of match
     if numel(match)==1;
-        mapped_to_genes(i,:)=mapped(match,:);
+        mapped_to_genes(i,:) = mapped(match,:);
     elseif isempty(match);
-        try; match = find(strcmp(mapped2(:,3),model.genes(i))); %ENTREZ
-            if numel(match)==1;
-                mapped_to_genes(i,:)=mapped(match,:);
-            elseif isempty(match);
-                match = find(strcmp(mapped2(:,4),model.genes(i))); %HGNC
-                if numel(match)==1;
-                    mapped_to_genes(i,:)=mapped(match,:);
-                elseif isempty(match);
-                else
-                    mapped_to_genes(i,:)=max(mapped(match,:),[],1); % take the highest value if
-                    %more probeIDs correspond to one modelID
-                end
-            else
-                mapped_to_genes(i,:)=max(mapped(match,:),[],1); % take the highest value if
-                %more probeIDs correspond to one modelID
-            end
-        end
     else
-        mapped_to_genes(i,:)=max(mapped(match,:),[],1); % take the highest value if
+        mapped_to_genes(i,:) = max(mapped(match,:),[],1); % take the highest value if
         %more probeIDs correspond to one modelID
     end
     if ~isempty(match)
         genes_matched =  genes_matched + 1;
     end
 end
+
+
 fprintf('%i of %i genes matched\n', genes_matched, numel(model.genes))
 
 % maps the expression data to the reactions

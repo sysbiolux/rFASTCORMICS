@@ -42,7 +42,10 @@ if nargin<8
     end
 end
 
-model.genes = regexprep(model.genes,'\..*','');
+% if any(contains(model.genes,'.')) %detect possible transcripts and remove
+%     model.genes = regexprep(model.genes,'\..*','');
+%     warning('possible transcripts detected ')
+% end
 
 %% map expression data to the model
 number_of_array_per_model=size(data,2);
@@ -80,11 +83,14 @@ if ~isempty(optional_settings) && isfield(optional_settings, 'medium');
     end
     medium_mets = optional_settings.medium;
     [model] =  constrain_model_rFASTCORMICS(model, medium_mets,not_medium_constrained,optional_settings.func);
+else
+    warning('No optional settings detected')
 end
 
-%% Identifications that are under the control of expressed genes
-C =  find(sum(mapping,2)>=(consensus_proportion*number_of_array_per_model)); 
-% Additions of the reactions needed for a given function to carry a flux
+%% Identify reactions that are under the control of expressed genes
+C =  find(sum(mapping,2)>= (consensus_proportion*number_of_array_per_model)); 
+
+%% Additions of the reactions needed for a given function to carry a flux
 % to the core set
 if ~isempty(optional_settings)&& isfield(optional_settings, 'func') ;
     B = find(ismember(model.rxns,optional_settings.func));
@@ -93,11 +99,13 @@ if ~isempty(optional_settings)&& isfield(optional_settings, 'func') ;
     end
     A = fastcore_4_rfastcormics(B, model, epsilon, C);
     C = union(C,A);% add the ATP and biomass reactions to the core set
+else
+    A = [];
 end
 %% Identification of the inactive reactions set (medium composition and 
 %reactions under control of unexpressed genes the or  and removing of
 %inactive branches
-not_expressed = find(sum(mapping,2)<=(-consensus_proportion*number_of_array_per_model));
+not_expressed = find(sum(mapping,2) <= (-consensus_proportion*number_of_array_per_model));
 not_expressed = setdiff(not_expressed,A);
 model.lb(not_expressed) = 0;
 model.ub(not_expressed) = 0;
