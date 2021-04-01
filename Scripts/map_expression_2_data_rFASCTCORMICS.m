@@ -6,7 +6,13 @@ if istable(dico)
     dico = table2array(dico);
 end
 
-rownames(cellfun(@isempty, rownames)) = cellstr('not found');
+
+if any(cellfun(@isempty, rownames))
+    disp('rownames contains empty entries, please check')
+    return
+%     rownames(cellfun(@isempty, rownames)) = cellstr('not found');
+end
+
 
 col = find(sum(ismember(dico,rownames)) == max(sum(ismember(dico,rownames)))); % find matching column, usually the one with the highest number of matches
 [~,idico,irownames] = intersect(dico(:,col),rownames); % get indices
@@ -16,12 +22,7 @@ if isempty(irownames);
     return
 end
 
-
-
-
-
 mapped = data(irownames,:); %get data for matching rownames
-
 
 mapped2(:,1) = rownames(irownames,1); %create dico with same order than input
 for i = 1:size(dico,2)
@@ -29,9 +30,11 @@ for i = 1:size(dico,2)
 end
 
 
-if any(contains(model.genes,'.')) && ~contains(model.description, 'recon','IgnoreCase',true)
+if any(contains(model.genes,'.')) && ~contains(model.description, 'recon','IgnoreCase',true) % if possible transcripts but not recon
     warning('Does your input model contain transcripts? If not, please remove any dots . in the model.genes field')
     disp('Temporarily removing transcripts...')
+    model.genes = regexprep(model.genes, '\.[0-9]*','');
+elseif contains(model.description, 'recon','IgnoreCase',true) %if Recon model
     model.genes = regexprep(model.genes, '\.[0-9]*','');
 end
 

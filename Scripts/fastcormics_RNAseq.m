@@ -96,6 +96,8 @@ if ~isempty(optional_settings)&& isfield(optional_settings, 'func') ;
     B = find(ismember(model.rxns,optional_settings.func));
     if isempty(B)
         warning('no functions set to be kept')
+    elseif numel(B) ~= numel(optional_settings.func)
+        warning('Not all functions set to be kept were found in the model')
     end
     A = fastcore_4_rfastcormics(B, model, epsilon, C);
     C = union(C,A);% add the ATP and biomass reactions to the core set
