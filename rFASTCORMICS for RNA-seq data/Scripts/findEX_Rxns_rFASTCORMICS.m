@@ -1,11 +1,17 @@
-function [exRxns, Ex_orgaInd] = findEX_Rxns(model, function_keep)
+function [exRxns, Ex_orgaInd] = findEX_Rxns(model, biomass_rxn, function_keep)
 exRxnsInd       = [];
 exchange_mets   = [];
 exRxnsInd       = find(sum(abs(model.S),1)==1);
-biomass_id      = find(ismember(model.rxns, function_keep));
-if ~isempty(biomass_id)
-   exRxnsInd = setdiff(exRxnsInd,biomass_id);
+biomass_id      = find(ismember(model.rxns, biomass_rxn));
+
+if isempty(biomass_id)
+    error('biomass reaction not found, please check if the reaction is found in the model')
+else
+    function_id = find(ismember(model.rxns, function_keep));
+    function_id = unique([biomass_id, function_id]);
+    exRxnsInd = setdiff(exRxnsInd, function_id);
 end
+
 for i=1:numel(exRxnsInd);
     exmets  = find(model.S(:,exRxnsInd(i)));
     exchange_mets(end+1) = exmets;

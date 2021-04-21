@@ -26,10 +26,11 @@ mapped = data(irownames,:); %get data for matching rownames
 
 mapped2(:,1) = rownames(irownames,1); %create dico with same order than input
 for i = 1:size(dico,2)
-    mapped2(:,i+1) = dico(idico,i);
+    try;mapped2(:,i+1) = dico(idico,i);end
+    try;mapped2(:,i+1) = cellstr(dico(idico,i));end %might need conversion to cell
 end
 
-
+% deal with transcripts (if any)
 if any(contains(model.genes,'.')) && ~contains(model.description, 'recon','IgnoreCase',true) % if possible transcripts but not recon
     warning('Does your input model contain transcripts? If not, please remove any dots . in the model.genes field')
     disp('Temporarily removing transcripts...')

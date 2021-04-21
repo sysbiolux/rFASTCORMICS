@@ -64,6 +64,7 @@ and the mandatory settings:
 	- epsilon
 	- consensus proportion
 	- dico
+	- biomass_rxn
 	
 	
 	

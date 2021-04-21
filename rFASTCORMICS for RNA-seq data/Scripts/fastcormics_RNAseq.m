@@ -1,4 +1,4 @@
-function [model, A_final] = fastcormics_RNAseq(model, data, rownames, dico, already_mapped_tag, consensus_proportion, epsilon, optional_settings)
+function [model, A_final] = fastcormics_RNAseq(model, data, rownames, dico, biomass_rxn, already_mapped_tag, consensus_proportion, epsilon, optional_settings)
 %(c) Maria Pires Pacheco & Thomas Sauter sep.2015 - System biology group,
 % LSRU, University of Luxembourg
 %Inputs
@@ -24,37 +24,64 @@ function [model, A_final] = fastcormics_RNAseq(model, data, rownames, dico, alre
 %                               if it is supported by 90% of the arrays)
 %   dico                        t x 2 cell array use to convert dataIDs to the modelIDs
 %                               %1st column contains the dataIDs (i.e.data_IDsS)
-                                %2nd column contains the modelID
-                                % TRICK if the model.gene constains a ".1"
-                                %run this command
-                                %model.genes=regexprep(model.genes,'\.[0-9]+$','');
-                                % before runing FASTCORMICS to get rid of the
-                                % "dots"
+%2nd column contains the modelID
+% TRICK if the model.gene constains a ".1"
+%run this command
+%model.genes=regexprep(model.genes,'\.[0-9]+$','');
+% before runing FASTCORMICS to get rid of the
+% "dots"
 %% Default options
 model_input = model;
-if nargin<8
+if nargin<9
     optional_settings = '';
-    if (nargin < 7);
+    if (nargin <8)
         epsilon = 1e-4;
-        if nargin <6
+        if nargin <7
             consensus_proportion = 0.9;
+            if nargin < 6
+                already_mapped_tag = 0;
+                if nargin <5
+                    error('Missing inputs - no biomass function?')
+                    return
+                end
+            end
         end
     end
 end
 
-% if any(contains(model.genes,'.')) %detect possible transcripts and remove
-%     model.genes = regexprep(model.genes,'\..*','');
-%     warning('possible transcripts detected ')
-% end
+%% Check input model
+
+%model.rev field
+if ~isfield(model,'rev')
+    disp('creating model.rev')
+    model.rev = zeros(numel(model.lb),1);
+    model.rev(model.lb<0) = 1;
+end
+
+
+% unnest subsystems
+if length(model.subSystems{1}) == 1
+    disp('unnesting subsystems')
+    model.subSystems = vertcat(model.subSystems{:});
+end
+
+%fix irreversible reactions
+model = fixIrr_rFASTCORMICS(model);
+
+%fix rules
+if ~isfield(model, 'rules')
+    disp('creating model.rules')
+    model = generateRules_rFASTCORMICS(model);
+end
 
 %% map expression data to the model
-number_of_array_per_model=size(data,2);
-%if already_mapped_tag equals to 1,the function map_expression_2_data 
-%mappes the probeIDs/gene expression levels  to the reactions via the GPR
+number_of_array_per_model = size(data,2);
+%if already_mapped_tag equals to 1,the function map_expression_2_data
+%maps the probeIDs/gene expression levels  to the reactions via the GPR
 %rules
 if already_mapped_tag~=1
     mapping = map_expression_2_data_rFASCTCORMICS(model, data, dico, rownames);
-    mapping = sparse(mapping);    
+    mapping = sparse(mapping);
 else
     mapping = data;
 end
@@ -75,28 +102,38 @@ end
 
 %% Optionally the model can be constrained in function of the medium
 %composition
-if ~isempty(optional_settings) && isfield(optional_settings, 'medium');
-    if isfield(optional_settings, 'not_medium_constrained');
+if ~isempty(optional_settings) && isfield(optional_settings, 'medium')
+    if isfield(optional_settings, 'not_medium_constrained')
         not_medium_constrained = optional_settings.not_medium_constrained;
     else
         not_medium_constrained = [];
     end
     medium_mets = optional_settings.medium;
-    [model] =  constrain_model_rFASTCORMICS(model, medium_mets,not_medium_constrained,optional_settings.func);
+    if ~isfield(optional_settings,'func')
+        optional_settings.func = '';
+    end
+    model =  constrain_model_rFASTCORMICS(model, medium_mets, not_medium_constrained, biomass_rxn, optional_settings.func);
 else
     warning('No optional settings detected')
 end
 
 %% Identify reactions that are under the control of expressed genes
-C =  find(sum(mapping,2)>= (consensus_proportion*number_of_array_per_model)); 
+C =  find(sum(mapping,2)>= (consensus_proportion*number_of_array_per_model));
 
 %% Additions of the reactions needed for a given function to carry a flux
 % to the core set
-if ~isempty(optional_settings)&& isfield(optional_settings, 'func') ;
-    B = find(ismember(model.rxns,optional_settings.func));
+
+if isfield(optional_settings, 'func')
+function_keep = [biomass_rxn; optional_settings.func];
+else
+    function_keep = biomass_rxn;
+end
+
+if ~isempty(function_keep)
+    B = find(ismember(model.rxns,function_keep));
     if isempty(B)
         warning('no functions set to be kept')
-    elseif numel(B) ~= numel(optional_settings.func)
+    elseif numel(B) ~= numel(function_keep)
         warning('Not all functions set to be kept were found in the model')
     end
     A = fastcore_4_rfastcormics(B, model, epsilon, C);
@@ -104,7 +141,8 @@ if ~isempty(optional_settings)&& isfield(optional_settings, 'func') ;
 else
     A = [];
 end
-%% Identification of the inactive reactions set (medium composition and 
+
+%% Identification of the inactive reactions set (medium composition and
 %reactions under control of unexpressed genes the or  and removing of
 %inactive branches
 not_expressed = find(sum(mapping,2) <= (-consensus_proportion*number_of_array_per_model));
@@ -116,7 +154,7 @@ model.ub(not_expressed) = 0;
 [A] = fastcc_4_rfastcormics(model,epsilon,0);
 model_output = removeRxns(model,model.rxns(setdiff(1:numel(model.rxns),A)));
 
-%% Establishment of the reactions in the core set 
+%% Establishment of the reactions in the core set
 
 [~, ~, IB] = intersect(model_input.rxns(C), model_output.rxns);
 C = IB;
