@@ -66,7 +66,7 @@ if length(model.subSystems{1}) == 1
 end
 
 %fix irreversible reactions
-% model = fixIrr_rFASTCORMICS(model);
+model = fixIrr_rFASTCORMICS(model);
 
 %fix rules
 if ~isfield(model, 'rules')

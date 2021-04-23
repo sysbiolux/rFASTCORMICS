@@ -1,0 +1,15 @@
+The FASTCORMICS workflow uses as input z-scored transformed data obtained by the barcode workflow. 
+The bacode package was implemented in R and is regularly updated. 
+It is highly advisable to use the latest version of the frma package and the corresponding vector package. 
+For more information, read the fastcormics paper (Integrated metabolic modelling reveals cell-type specific epigenetic control points of the macrophage metabolic network)
+and the barcode paper (The Gene Expression Barcode: leveraging public data repositories to begin cataloging the human and murine transcriptomes). 
+An example of the discretization script is given in this folder. 
+Note that you will have to change the vector in function of the platform . 
+The vector contains the median and the standard deviation of the unexpressed mode for each gene for a given platform. 
+The available vectors as well as the frma can be downloaded from the bioconductor webpage. 
+
+The function removeRxns of the Cobra toolbox and a working IBM cplex installation is required to run this version.
+
+
+Maria Pires Pacheco
+
