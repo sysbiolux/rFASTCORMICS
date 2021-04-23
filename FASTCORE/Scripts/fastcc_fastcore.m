@@ -1,4 +1,4 @@
-function A = fastcc( model, epsilon ) 
+function A = fastcc_fastcore( model, epsilon ) 
 %
 % A = fastcc( model, epsilon )
 %
@@ -18,7 +18,7 @@ A = [];
 
 % start with I
 J = intersect( N, I ); fprintf('|J|=%d  ', numel(J));
-V = LP7( J, model, epsilon ); 
+V = LP7_fastcore( J, model, epsilon ); 
 Supp = find( abs(V) >= 0.99*epsilon );  
 A = Supp;  fprintf('|A|=%d\n', numel(A));
 incI = setdiff( J, A );    
@@ -33,10 +33,10 @@ singleton = false;
 while ~isempty( J )
     if singleton
         Ji = J(1);
-        V = LP3( Ji, model ) ; 
+        V = LP3_fastcore( Ji, model ) ; 
     else
         Ji = J;
-        V = LP7( Ji, model, epsilon ) ; 
+        V = LP7_fastcore( Ji, model, epsilon ) ; 
     end    
     Supp = find( abs(V) >= 0.99*epsilon );  
     A = union( A, Supp);  fprintf('|A|=%d\n', numel(A)); 

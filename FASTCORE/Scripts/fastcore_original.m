@@ -23,7 +23,7 @@ singleton = false;
 % start with I
 J = intersect( C, I ); fprintf('|J|=%d  ', length(J));
 P = setdiff( N, C);
-Supp = findSparseMode( J, P, singleton, model, epsilon );
+Supp = findSparseMode_fastcore( J, P, singleton, model, epsilon );
 if ~isempty( setdiff( J, Supp ) ) 
   fprintf ('Error: Inconsistent irreversible core reactions.\n');
   return;
@@ -34,7 +34,7 @@ J = setdiff( C, A ); fprintf('|J|=%d  ', length(J));
 % main loop     
 while ~isempty( J )
     P = setdiff( P, A);
-    Supp = findSparseMode( J, P, singleton, model, epsilon );
+    Supp = findSparseMode_fastcore( J, P, singleton, model, epsilon );
     A = union( A, Supp );   fprintf('|A|=%d\n', length(A)); 
     if ~isempty( intersect( J, A ))
         J = setdiff( J, A );     fprintf('|J|=%d  ', length(J));

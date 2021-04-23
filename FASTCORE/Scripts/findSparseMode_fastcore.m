@@ -14,9 +14,9 @@ if isempty( J )
 end
 
 if singleton
-  V = LP7( J(1), model, epsilon );
+  V = LP7_fastcore( J(1), model, epsilon );
 else
-  V = LP7( J, model, epsilon );
+  V = LP7_fastcore( J, model, epsilon );
 end
 
 K = intersect( J, find(V >= 0.99*epsilon) );   
@@ -25,6 +25,6 @@ if isempty( K )
   return;
 end
 
-V = LP9( K, P, model, epsilon );
+V = LP9_fastcore( K, P, model, epsilon );
 
 Supp = find( abs(V) >= 0.99*epsilon );
