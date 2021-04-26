@@ -4,11 +4,15 @@ exchange_mets   = [];
 exRxnsInd       = find(sum(abs(model.S),1)==1);
 biomass_id      = find(ismember(model.rxns, biomass_rxn));
 
-if isempty(biomass_id)
-    error('biomass reaction not found, please check if the reaction is found in the model')
+if isempty(biomass_id) & isempty(function_keep)
+    warning('No biomass set for the model, please verify if the medium constraints do not affect the biomass production')
+elseif isempty(biomass_id) & ~isempty(function_keep)
+    warning('No biomass set for the model, please verify if the medium constraints do not affect the biomass production')
+    function_id = find(ismember(model.rxns, function_keep));
+    exRxnsInd = setdiff(exRxnsInd, function_id);
 else
     function_id = find(ismember(model.rxns, function_keep));
-    function_id = unique([biomass_id, function_id]);
+    function_id = unique([biomass_id; function_id]);
     exRxnsInd = setdiff(exRxnsInd, function_id);
 end
 

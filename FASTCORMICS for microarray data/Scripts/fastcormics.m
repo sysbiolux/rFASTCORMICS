@@ -41,8 +41,7 @@ if nargin<9
             if nargin < 6
                 already_mapped_tag = 0;
                 if nargin <5
-                    error('Missing inputs - no biomass function?')
-                    return
+                    biomass_rxn = '';
                 end
             end
         end
@@ -124,9 +123,9 @@ C =  find(sum(mapping,2)>= (consensus_proportion*number_of_array_per_model));
 % to the core set
 
 if isfield(optional_settings, 'func')
-function_keep = [biomass_rxn; optional_settings.func];
+    function_keep = optional_settings.func;
 else
-    function_keep = biomass_rxn;
+    function_keep = '';
 end
 
 if ~isempty(function_keep)
