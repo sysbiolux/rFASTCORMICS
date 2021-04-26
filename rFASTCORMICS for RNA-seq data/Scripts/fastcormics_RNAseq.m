@@ -48,6 +48,9 @@ if nargin<9
     end
 end
 
+if isstruct(epsilon)
+    error('Please check if all inputs are defined, especially biomass_rxn.') % You can omit inputs with []
+end
 %% Check input model
 
 %model.rev field

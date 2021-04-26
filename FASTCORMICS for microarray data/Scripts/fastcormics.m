@@ -23,13 +23,13 @@ function [model, A_final] = fastcormics(model, data, rownames, dico, biomass_rxn
 %                               is consider as expressed/non expressed
 %                               if it is supported by 90% of the arrays)
 %   dico                        t x 2 cell array use to convert dataIDs to the modelIDs
-%                               %1st column contains the dataIDs (i.e.data_IDsS)
-%2nd column contains the modelID
-% TRICK if the model.gene constains a ".1"
-%run this command
-%model.genes=regexprep(model.genes,'\.[0-9]+$','');
-% before runing FASTCORMICS to get rid of the
-% "dots"
+%                               1st column contains the dataIDs (i.e.data_IDsS)
+%                               2nd column contains the modelID
+%                               TRICK if the model.gene constains a ".1"
+%                               run this command
+%                               model.genes=regexprep(model.genes,'\.[0-9]+$','');
+%                               before runing FASTCORMICS to get rid of the
+%                               "dots"
 %% Default options
 model_input = model;
 if nargin<9
@@ -46,6 +46,10 @@ if nargin<9
             end
         end
     end
+end
+
+if isstruct(epsilon)
+    error('Please check if all inputs are defined, especially biomass_rxn.') % You can omit inputs with []
 end
 
 %% Check input model
