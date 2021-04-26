@@ -11,9 +11,10 @@ For more details on the FASTCORE algorithm family see:
 
 
 
+<!------------------------------------------------------------------------------------------------>
 #  for rFASTCORMICS
 
-Similar to FASTCORMICS but takes RNA-seq data as input, preferably FPKM transformed.
+rFASTCORMICS is an algorithm for the reconstruction of context-specific metabolic models based on RNA-seq data. It is similar to FASTCORMICS for microarray data but takes RNA-seq data as input, preferably FPKM transformed.
 
 ## PREREQUISITES
 
@@ -48,17 +49,11 @@ The default consensus is 0.9, meaning a reaction is only considered present in t
 
 An [additional script](https://github.com/sysbiolux/rFASTCORMICS/blob/master/rFASTCORMICS%20for%20RNA-seq%20data/book_example_4_publish_v2.mlx) is also provided that contains more samples as well as some visualization methods and the drug target prediction workflow.
 
-## Troubleshooting
 
-For more information and possible troubleshooting, see the [original publication](https://doi.org/10.1016/j.ebiom.2019.04.046) and below.
-
-
-> "The input was too complicated or too big for MATLAB to parse"
-
-For some newer versions of Matlab you might encounter this error. Please use *feature astheightlimit 2000* in the beginning of your script.
-
-
+<!------------------------------------------------------------------------------------------------>
 #  for FASTCORMICS
+
+FASTCORMICS was designed to reconstruct context-specific metabolic models based on microarray data.
 
 ## PREREQUISITES
 
@@ -73,6 +68,8 @@ SOFTWARE
 		- frma
 		- corresponding BARCODE vectors
 			- hugene.1.0.st.v1frmavecs or hgu133afrmavecs or hgu133plus2frmavecs or hgu133a2frmavecs
+
+For R, the [example script](https://github.com/sysbiolux/rFASTCORMICS/blob/master/FASTCORMICS%20for%20microarray%20data/Barcode%20for%20FASTCORMICS.R) will automatically download and install the required packages.
 		
 DATA (provided in the [exampleData folder](https://github.com/sysbiolux/rFASTCORMICS/tree/master/rFASTCORMICS%20for%20RNA-seq%20data/exampleData)
 
@@ -93,19 +90,67 @@ The script for FASTCORMICS is divided into two parts:
 
 In the provided [example script](https://github.com/sysbiolux/rFASTCORMICS/blob/master/FASTCORMICS%20for%20microarray%20data/Barcode%20for%20FASTCORMICS.R), the .CEL files from a microarray experiment are read using the affy package. Then the data is fRMA-normalized followed by the BARCODE transformation of retrieving z-scores. BARCODE 3 has been [published](https://doi.org/10.1093/nar/gkt1204).
 
+When using different data, make sure to use the correct BARCODE vectors for your platform/GeneChip:
+
+GeneChip | Platform | BARCODE vector
+------------ | ------------- | -------------
+U133A	| GPL96	| hgu133a2frmavecs
+U133 plus 2.0	| GPL570	| hgu133plus2frmavecs
+U133A 2.0	| GPL571	| hgu133afrmavecs
+Human Gene 1.0 ST	| GPL6244	| hugene.1.0.st.v1frmavecs
+
+
 ### Discretiation and model building in Matlab
 
 The z-scores obtained from BARCODE are read into Matlab and discretized as follows
 
-## Troubleshooting
+	- not expressed: 	z-score <= 0
+	- unknown expression: 	0 < z-score < 5
+	- expressed: 		5 < z-score
 
-> my models reconstructed with FASTCORMICS are very small
-
-Please check the number of expressed genes after the discretization. If the number is low < 30 %, you can try changing the expression threshold to 3 instead of 5.
+The discretized values are then used to find active reactions in the model based on the GPR-rules, see [original publication](https://doi.org/10.1186/s12864-015-1984-4) for a full explanation.
 
 
+
+
+<!------------------------------------------------------------------------------------------------>
 #  for FASTCORE
-under construction
+
+FASTCORE can be used to reconstruct a context-specific metabolic model based on a list of reactions, called core reactions, that are known to take place in the context of interest.
+
+In the [short provided example](https://github.com/sysbiolux/rFASTCORMICS/blob/master/FASTCORE/FASTCORE_example.mlx), we use Recon 1 and a previously compiled list of liver reactions to reconstruct a liver core model.
+
+
+<!------------------------------------------------------------------------------------------------>
+
+# Troubleshooting
+
+For more information and possible troubleshooting, see the [original publication](https://doi.org/10.1016/j.ebiom.2019.04.046) and below.
+
+> My FPKM density plots look very different and are not processed correctly during the discretization step, i.e. the peaks are not correctly determined.
+
+If you observe 2 peaks in your FPKM density plot and the left peak is higher than the rightmost peak, you can try to use the discretize_FPKM_skewed function instead. Otherwise, make sure that no altering pre-filtering steps of unexpressed genes has been performed.
+
+> "The input was too complicated or too big for MATLAB to parse"
+
+For some newer versions of Matlab you might encounter this error. Please use *feature astheightlimit 2000* in the beginning of your script.
+
+> I do not have a biomass reaction in my model. What can I do?
+
+You can use [], to omit any input for fastcormics_RNAseq, or define biomass_rxns = {''}.
+
+> I get the warning that optional settings are not set even though I did. I also get errors.
+
+Please note that the inputs of fastcormics_RNAseq have changed recently. Please re-check the inputs, you might have forgotten to define the biomass_rxns input.
+
+> My models reconstructed with FASTCORMICS are very small
+
+Please check the number of expressed genes after the discretization. If the number is low < 20 %, you can try changing the expression threshold to 3 instead of 5.
+
+
+
+<!------------------------------------------------------------------------------------------------>
+
 
 # ABOUT
 	
@@ -138,8 +183,3 @@ Vlassis, N., Pacheco, M. P., & Sauter, T. (2014). Fast reconstruction of compact
 https://doi.org/10.1371/journal.pcbi.1003424
 https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003424	
 	
-	
-	
-	
-Tamara Bintener
-
