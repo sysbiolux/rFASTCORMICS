@@ -8,10 +8,33 @@ function A = fastcore( C, model, epsilon )
 % (c) Nikos Vlassis, Maria Pires Pacheco, Thomas Sauter, 2013
 %     LCSB / LSRU, University of Luxembourg
 
-
 tic
-
 model_org = model;
+
+%% Check input model
+%model.rev field
+if ~isfield(model,'rev')
+    disp('creating model.rev')
+    model.rev = zeros(numel(model.lb),1);
+    model.rev(model.lb<0) = 1;
+end
+
+% unnest subsystems
+if length(model.subSystems{1}) == 1
+    disp('unnesting subsystems')
+    model.subSystems = vertcat(model.subSystems{:});
+end
+
+%fix irreversible reactions
+model = fixIrr_FASTCORE(model);
+
+%fix rules
+if ~isfield(model, 'rules')
+    disp('creating model.rules')
+    model = generateRules_FASTCORE(model);
+end
+
+%% FASTCORE
 
 N = 1:numel(model.rxns);
 I = find(model.rev==0);

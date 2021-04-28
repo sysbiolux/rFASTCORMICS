@@ -12,11 +12,6 @@ if istable(fpkm)
     fpkm = table2array(fpkm);
 end
 
-%create folder to save Figures if doesnt exist
-if ~exist('Figures\Discretization\', 'dir')
-    mkdir('Figures\Discretization\')
-end
-
 %% log2-transform the data
 signal = log2(fpkm);
 signal(isinf(signal)) = -10000;
@@ -28,10 +23,15 @@ for j=1:size(fpkm,2) %for each sample
     % signal_sample = signal_sample(signal_sample > -10000);
     % signal_sample = signal_sample(exp(signal_sample) > 0);
     signal_sample = signal_sample(exp(signal_sample) > 1e-6);
-        
+    
     %     j
     % Histogram
     if figflag; figure
+        %create folder to save Figures if doesnt exist
+        if ~exist('Figures\Discretization\', 'dir')
+            mkdir('Figures\Discretization\')
+        end
+        
         hist((signal_sample),100);
         ylabel('abundance');xlabel('log2(FPKM)');title({'Histogram of abundance',['Sample: ', colnames{j}]},'Interpreter','none');
         saveas(gcf,['Figures\Discretization\histogram_', colnames{j},'.png'])
@@ -172,7 +172,7 @@ if figflag;figure; hold on
     %     line_col = {'k','k','k','r','r','r','r','g','g','g'};
     for j=1:length(colnames) %for each sample
         signal_sample = signal(:,j);
-    signal_sample = signal_sample(exp(signal_sample) > 1e-6);
+        signal_sample = signal_sample(exp(signal_sample) > 1e-6);
         
         % Density plot
         [probability_estimate,xi] = ksdensity((signal_sample));
@@ -188,7 +188,7 @@ end
 if figflag;figure; hold on
     for j=1:length(colnames) %for each sample
         signal_sample = signal(:,j);
-    signal_sample = signal_sample(exp(signal_sample) > 1e-6);
+        signal_sample = signal_sample(exp(signal_sample) > 1e-6);
         
         % Density plot
         [probability_estimate,xi] = ksdensity((signal_sample));

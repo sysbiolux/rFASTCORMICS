@@ -4,7 +4,7 @@
 
 # First, set the path to the folder containing the .CEL files
 
-setwd("PATH TO .CEL FILES")
+setwd("PATH TO .CEL FILES") # FASTCORMICS for microarray data/ExampleData/CEL example files (from GSE49910)
 
 
 #------------------#
