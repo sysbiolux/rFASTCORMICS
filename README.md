@@ -21,14 +21,14 @@ rFASTCORMICS is an algorithm for the reconstruction of context-specific metaboli
 SOFTWARE
 
 	- Matlab 2013 or higher
-		- compatible IBM CPLEX installation
+		- compatible IBM ILOG CPLEX installation
 		- Statistics and Machine Learning Toolbox
 		- Curve Fitting Toolbox 
 		- COBRA Toolbox (https://opencobra.github.io/cobratoolbox/latest/installation.html )
 		
 DATA (provided in the [exampleData folder](https://github.com/sysbiolux/rFASTCORMICS/tree/master/rFASTCORMICS%20for%20RNA-seq%20data/exampleData)
 
-	- RNA-seq data (FPKM transformed)
+	- RNA-seq data (FPKM or TPM transformed)
 		- colnames:		1xC cell with the sample names (size C)
 		- rownames:		Rx1 cell with the gene identifiers (size R)
 		- fpkm: 		RxC double matrix or table containing the fpkm values
@@ -48,6 +48,41 @@ For the latter, a consensus proportion needs to be decided.
 The default consensus is 0.9, meaning a reaction is only considered present in the final model, if it can be derived from at least 90% from the input data.
 
 An [additional script](https://github.com/sysbiolux/rFASTCORMICS/blob/master/rFASTCORMICS%20for%20RNA-seq%20data/book_example_4_publish_v2.mlx) is also provided that contains more samples as well as some visualization methods and the drug target prediction workflow.
+
+## INPUTS
+
+The code to run rFASTCORMICS looks as follows:
+
+``` Matlab
+[model, A_final] = fastcormics_RNAseq(model, data, rownames, dico, biomass_rxn, ...
+			already_mapped_tag, consensus_proportion, epsilon, optional_settings)
+```
+
+
+**Required inputs:**
+Input | Explanation
+------------ | -------------
+model | (consistent) genome-scale metabolic reconstruction in the COBRA format, i.e. [Recon 2.04](https://vmh.uni.lu/#downloadview)
+data | discretized experimental data (1 for expressed, -1 for not expressed, and 0 for unknown expression genes)
+rownames | cell aray with the gene IDs from the experiment
+dico | table that contains corresponding gene identifier information. Can also be a matrix. Needed to map the rownames to the genes in the model. Can be manually assembled in [Biomart](https://www.ensembl.org/biomart/martview) and imported into Matlab as a text-only table.
+
+
+**Optional inputs:**
+Input | Explanation | Default
+------------ | -------------| ------------- 
+biomass_rxn | name of the biomass reaction in the model if present (check model.rxns). Setting this variable will always enable the biomass to carry a flux. Some examples are: biomass_reaction, biomass_components, biomass_human,... | ''
+already_mapped_tag | 1, if the data was already to the model.rxns in this case data p = n  and  0, if the data has to be mapped  using the GPR rules of the model	|	0
+consensus_proportion |	gene has to be expressed in 90% of the cases in order to be included. Only relevant if you want to create one generic model from different samples |	0.9
+epsilon | to avoid small number errors	|	1e-4
+optional_settings | a structure with the following variables:	|	''
+/ | unpenalizedSystems: 	|	
+/ | medium: medium composition, defines metabolites in the growth medium of cells to constrain the model |	
+/ | not_medium_constrained: 	|	
+/ | func: reaction(s) forced to be present in the model	|	
+
+
+
 
 
 <!------------------------------------------------------------------------------------------------>
