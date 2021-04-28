@@ -104,7 +104,13 @@ SOFTWARE
 		- corresponding BARCODE vectors
 			- hugene.1.0.st.v1frmavecs or hgu133afrmavecs or hgu133plus2frmavecs or hgu133a2frmavecs
 
-For R, the [example script](https://github.com/sysbiolux/rFASTCORMICS/blob/master/FASTCORMICS%20for%20microarray%20data/Barcode%20for%20FASTCORMICS.R) will automatically download and install the required packages.
+For R, the [example script](https://github.com/sysbiolux/rFASTCORMICS/blob/master/FASTCORMICS%20for%20microarray%20data/Barcode%20for%20FASTCORMICS.R) will automatically download and install the required packages as well as perform the BARCODE transformation of the data. 
+This output of the examples script will be saved in 4 separate files in your working directory and will be used for the reconstruction of context specific models in the ['FASTCORMICS example script](https://github.com/sysbiolux/rFASTCORMICS/blob/master/FASTCORMICS%20for%20microarray%20data/FASTCORMICS_Example.mlx):
+
+	- barcode.txt		BARCODE transofrmed data, based on the .CEL input
+	- colnames.txt		sample names of the .CEL input
+	- frma.txt		fRMA-normalized data
+	- rownames.txt		probe IDs from the .CEL files
 		
 DATA (provided in the [exampleData folder](https://github.com/sysbiolux/rFASTCORMICS/tree/master/rFASTCORMICS%20for%20RNA-seq%20data/exampleData)
 
