@@ -9,7 +9,7 @@ For more details on the FASTCORE algorithm family see:
 	- Benchmarking (Pacheco et al., 2016, Frontiers in Physiology)
 	- rFASTCORMICS (Pacheco et al., 2019, EBioMedicine)
 
-
+Last major update was on April 26, 2021.
 
 <!------------------------------------------------------------------------------------------------>
 #  for rFASTCORMICS
