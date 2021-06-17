@@ -37,12 +37,14 @@ delRxns = cell(numel(DrugList),1);
 
 showprogress(0,'Single gene deletion analysis in progress ...');
 for i = 1:numel(DrugList)
+
     showprogress(i/numel(DrugList));
     % delete all alternate transcripts
     %             delGenes = model.genes(strmatch(geneList{i},model.genes));
     
     idx = find(ismember(GeneDrugRelations.DrugName, DrugList(i)));
     geneList = GeneDrugRelations.ENTREZ(idx);
+    geneList = geneList(ismember(geneList, model.genes)); %if one gene is not found in model, remove it from genelist
     [modelDel,hasEffect(i),constrRxnNames] = deleteModelGenes(model,geneList);
 
     delRxns{i} = constrRxnNames;

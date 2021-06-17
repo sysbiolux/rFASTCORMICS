@@ -20,6 +20,9 @@ function A = fastcc_4_fastcormics(model, epsilon, printLevel)
 % (c) Nikos Vlassis, Maria Pires Pacheco, Thomas Sauter, 2013
 
 tic
+%fix irreversible reactions
+model = fixIrr_rFASTCORMICS(model);
+
 %number of reactions
 N = (1:numel(model.rxns));
 %reactions assumed to be irreversible in forward direction
