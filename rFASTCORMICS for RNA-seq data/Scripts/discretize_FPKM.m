@@ -28,8 +28,8 @@ for j=1:size(fpkm,2) %for each sample
     % Histogram
     if figflag; figure
         %create folder to save Figures if doesnt exist
-        if ~exist('Figures\Discretization\', 'dir')
-            mkdir('Figures\Discretization\')
+        if ~exist('Figures/Discretization/', 'dir')
+            mkdir('Figures/Discretization/')
         end
         
         hist((signal_sample),100);
