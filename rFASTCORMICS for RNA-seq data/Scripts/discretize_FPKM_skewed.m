@@ -4,8 +4,6 @@ function [discretized] = discretize_FPKM(fpkm,colnames,figflag)
 
 if nargin <3
     figflag = 0;
-else
-    figflag = 1;
 end
 
 if istable(fpkm)
@@ -30,8 +28,8 @@ for j=1:size(fpkm,2) %for each sample
     if figflag; figure
         
         %create folder to save Figures if doesnt exist
-        if ~exist('Figures\Discretization\', 'dir')
-            mkdir('Figures\Discretization\')
+        if ~exist('Figures/Discretization/', 'dir')
+            mkdir('Figures/Discretization/')
         end
         
         hist((signal_sample),100);

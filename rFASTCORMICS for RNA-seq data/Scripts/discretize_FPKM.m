@@ -4,8 +4,6 @@ function [discretized] = discretize_FPKM(fpkm,colnames,figflag)
 
 if nargin <3
     figflag = 0;
-else
-    figflag = 1;
 end
 
 if istable(fpkm)
