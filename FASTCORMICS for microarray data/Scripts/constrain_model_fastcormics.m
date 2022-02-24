@@ -12,7 +12,14 @@ not_constrained = intersect(findRxnsFromMets(model,medium_mets),exRxns);
 not_constrained = find(ismember(model.rxns,not_constrained));
 lb2 = model.lb(not_constrained);
 ub2 = model.ub(not_constrained);
-model.lb(Ex_orgaInd) = 0; % close all the carbon sources
+match= model.S(:,Ex_orgaInd)<0
+if ~isempty(match)
+model.lb(Ex_orgaInd(match)) = 0; % close all the carbon sources
+end
+match= model.S(:,Ex_orgaInd)>0
+if ~isempty(match)
+model.ub(Ex_orgaInd(match)) = 0; % close all the carbon sources
+end
 if ~isempty(not_medium_constrained)
     model.lb(not_medium_constrained) = lb;
     model.ub(not_medium_constrained) = ub;
