@@ -112,7 +112,7 @@ while ~isempty(J)
     P = setdiff(P, A);
     
     %reuse the basis from the previous solve if it exists
-    [Supp, basis] = findSparseMode(J, P, singleton, model, LPproblem, epsilon, t,basis);
+    [Supp, basis] = findSparseMode_cobra(J, P, singleton, model, LPproblem, epsilon, t,basis);
     
     A = union(A, Supp);
     if printLevel > 0
