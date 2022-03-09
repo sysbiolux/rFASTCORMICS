@@ -1,4 +1,4 @@
-function [tissueModel,coreRxnBool,coreMetBool,coreCtrsBool] = fastcore_cobra_non_pen(model, coreRxnInd, epsilon, printLevel, t)
+function [A] = fastcore_cobra_non_pen(model, coreRxnInd, epsilon, printLevel, t)
 % Use the FASTCORE algorithm ('Vlassis et al, 2014') to extract a context
 % specific model. FASTCORE algorithm defines one set of core
 % reactions that is guaranteed to be active in the extracted model and find
