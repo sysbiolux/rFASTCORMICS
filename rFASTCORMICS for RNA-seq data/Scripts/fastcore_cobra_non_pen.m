@@ -112,7 +112,7 @@ while ~isempty(J)
     P = setdiff(P, A);
     
     %reuse the basis from the previous solve if it exists
-    [Supp, basis] = findSparseMode(J, P, singleton, model, LPproblem, epsilon, basis);
+    [Supp, basis] = findSparseMode(J, P, singleton, model, LPproblem, epsilon, t,basis);
     
     A = union(A, Supp);
     if printLevel > 0
@@ -154,32 +154,4 @@ end
 if printLevel > 0
     fprintf('|A|=%d\n', length(A)); % A : indices of reactions in the new model
 end
-
-if printLevel > 1
-    toc
 end
-
-coreRxnBool=false(size(model.S,2),1);
-coreRxnBool(A)=1;
-
-rxnRemoveList = setdiff(model.rxns,model.rxns(A));
-
-dummyMetBool = contains(model.mets,'dummy_Met_');
-dummyRxnBool = contains(model.rxns,'dummy_Rxn_');
-if any(dummyMetBool) || any(dummyRxnBool)
-    model = destroyDummyModel(model,dummyMetBool,dummyRxnBool);
-    rxnRemoveList = rxnRemoveList(~dummyRxnBool);
-end
-        
-%removes any infeasible coupling constraints also
-[tissueModel, metRemoveList, ctrsRemoveList] = removeRxns(model_orig, rxnRemoveList,'metRemoveMethod','exclusive','ctrsRemoveMethod','infeasible');
-
-coreMetBool=~ismember(model_orig.mets,metRemoveList);
-if isfield(model,'ctrs')
-    coreCtrsBool = ~ismember(model_orig.ctrs,ctrsRemoveList);
-else
-    coreCtrsBool = ctrsRemoveList;
-end
-
-%coreGeneBool
-tissueModel = removeUnusedGenes(tissueModel);
