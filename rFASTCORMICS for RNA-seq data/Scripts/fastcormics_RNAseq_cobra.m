@@ -171,7 +171,7 @@ if ~isempty(optional_settings)&& isfield(optional_settings, 'unpenalized');
 end
 C = setdiff(C,t_keep);
 %% building of the context-specific model
-A2      = fastcore_cobra_non_pen(model_output, C, epsilon, 0, t);
+A2      = fastcore_cobra_non_pen(model_output, C, epsilon, 0, t_keep);
 model   = removeRxns(model_output,model_output.rxns(setdiff(1:numel(model_output.rxns),A2)));
 A_final = find(ismember(model_input.rxns,model_output.rxns(A2)));
 end
