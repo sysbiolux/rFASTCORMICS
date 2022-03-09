@@ -1,4 +1,4 @@
-function [Supp, basis] = findSparseMode_cobra(J, P, singleton, model, LPproblem, epsilon, basis)
+function [Supp, basis] = findSparseMode_cobra(J, P, singleton, model, LPproblem, epsilon,t, basis)
 % Finds a mode that contains as many reactions from J and as few from P.
 % Returns its support, or [] if no reaction from J can get flux above epsilon
 %
