@@ -12,15 +12,14 @@ end
 
 %% log2-transform the data
 signal = log2(fpkm);
-signal(isinf(signal)) = -10000;
+signal(isinf(signal)) = -1e6;
 
 %% Discretize the data by creating half-gaussians
 for j=1:size(fpkm,2) %for each sample
     signal_sample = signal(:,j);
     data_keep = fpkm(:,j);
-    % signal_sample = signal_sample(signal_sample > -10000);
-    % signal_sample = signal_sample(exp(signal_sample) > 0);
-    signal_sample = signal_sample(exp(signal_sample) > 1e-6);
+    signal_sample = signal_sample(signal_sample > -1e6);
+    
     
     %     j
     % Histogram
