@@ -1,4 +1,4 @@
-function [mapping] = map_expression_2_data(model, data, dico, rownames)
+function [mapping] = map_expression_2_data_rFASTCORMICS(model, data, dico, rownames)
 %% Maria Pires Pacheco & Thomas Sauter 25.03.2014 - System biology group % University of Luxembourg
 % slighty adapted for dico as table input
 %% search the dataIds in the dictionnary
