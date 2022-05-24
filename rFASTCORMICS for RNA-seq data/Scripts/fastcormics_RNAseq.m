@@ -82,7 +82,7 @@ number_of_array_per_model = size(data,2);
 %maps the probeIDs/gene expression levels  to the reactions via the GPR
 %rules
 if already_mapped_tag~=1
-    mapping = map_expression_2_data_rFASCTCORMICS(model, data, dico, rownames);
+    mapping = map_expression_2_data_rFASTCORMICS(model, data, dico, rownames);
     mapping = sparse(mapping);
 else
     mapping = data;
