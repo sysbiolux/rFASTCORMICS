@@ -91,9 +91,9 @@ if (uniqueGene == 1)
             % delete all alternate transcripts
 %             delGenes = model.genes(strmatch(geneList{i},model.genes));
             delGenes = model.genes(ismember(regexprep(model.genes,'\.[0-9]+$',''),geneList{i}));
-            [modelDel,hasEffect(i),constrRxnNames] = deleteModelGenes(model,delGenes);
+            [modelDel,hasEffect(i),constrRxnNames] = deleteModelGenes_rFASTCORMICS(model,delGenes);
         else
-            [modelDel,hasEffect(i),constrRxnNames] = deleteModelGenes(model,geneList{i});
+            [modelDel,hasEffect(i),constrRxnNames] = deleteModelGenes_rFASTCORMICS(model,geneList{i});
         end
         delRxns{i} = constrRxnNames;
         if (hasEffect(i))
@@ -140,7 +140,7 @@ else
     showprogress(0,'Single gene deletion analysis in progress ...');
     for i = 1:nDelGenes
         showprogress(i/nDelGenes);
-        [modelDel,hasEffect(i),constrRxnNames] = deleteModelGenes(model,geneList{i});
+        [modelDel,hasEffect(i),constrRxnNames] = deleteModelGenes_rFASTCORMICS(model,geneList{i});
         delRxns{i} = constrRxnNames;
         % If all the reactions being deleted carried no flux in WT,
 	    % deleting them cannot affect the flux solution. 
