@@ -8,7 +8,7 @@ function A = fastcore_4_fastcormics(C, model, epsilon, t)
 % (c) Nikos Vlassis, Maria Pires Pacheco, Thomas Sauter, 2013
 %     LCSB / LSRU, University of Luxembourg
 
-
+model = fixIrr_rFASTCORMICS(model);
 N = 1:numel(model.rxns);
 I = find(model.rev==0);
 
