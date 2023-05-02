@@ -236,7 +236,7 @@ end
 genelist(ia, 2) =   dico.SYMBOL(ib)
 
 
-essential_cancer_genes = genelist(sum(grRatio_biomass(:,1:10) < 0.5,2) > 5,2)
+essential_cancer_genes = genelist(sum(grRatio_biomass(:,1:10) < 0.5,2) > 1,2)
 essential_control_genes = genelist(sum(grRatio_ATP(:,11:20) < 0.9,2) > 1,2)
 
 
