@@ -15,6 +15,7 @@ end
 
 
 col = find(sum(ismember(dico,rownames)) == max(sum(ismember(dico,rownames)))); % find matching column, usually the one with the highest number of matches
+col=col(1);
 [~,idico,irownames] = intersect(dico(:,col),rownames); % get indices
 
 if isempty(irownames);
