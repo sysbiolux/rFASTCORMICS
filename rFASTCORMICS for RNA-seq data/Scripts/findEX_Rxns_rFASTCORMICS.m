@@ -1,4 +1,4 @@
-function [exRxns, Ex_orgaInd] = findEX_Rxns(model, biomass_rxn, function_keep)
+function [exRxns, Ex_orgaInd] = findEX_Rxns_rFASTCORMICS(model, biomass_rxn, function_keep)
 exRxnsInd       = [];
 exchange_mets   = [];
 exRxnsInd       = find(sum(abs(model.S),1)==1);
@@ -25,7 +25,7 @@ for i=1:numel(exRxnsInd);
 end
 exRxns  = model.rxns(exRxnsInd);
 model.mets(exchange_mets);
-ex_mets_carbon  = (regexp(model.metFormulas(exchange_mets),'C'));
+ex_mets_carbon  = (regexp(model.metFormulas(exchange_mets),'C')) | (regexp(model.metFormulas(exchange_mets),'R')) ;
 is_organic      = ~cellfun('isempty', ex_mets_carbon);
 mets_ex_orga    = exchange_mets(is_organic);
 mets_ex_inorga  = setdiff(exchange_mets,mets_ex_orga);
