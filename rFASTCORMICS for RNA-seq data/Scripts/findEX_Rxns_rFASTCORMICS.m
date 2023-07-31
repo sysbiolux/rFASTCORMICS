@@ -38,7 +38,7 @@ end
 ex_mets_carbon  = (regexp(model.metFormulas(exchange_mets),'C')) ;
 ex_mets_R  = (regexp(model.metFormulas(exchange_mets),'R')) ;
 ex_know_inorganic=(ismember(model.metFormulas(exchange_mets),'Ca') |ismember(model.metFormulas(exchange_mets),'Cl')  |ismember(model.metFormulas(exchange_mets),'Co')  | ismember(model.metFormulas(exchange_mets),'Cu')) ; 
-model.mets(exchange_mets(ex_know_inorganic))
+model.mets(exchange_mets(ex_know_inorganic));
 
 is_organic      = ~cellfun('isempty', ex_mets_carbon)| ~cellfun('isempty', ex_mets_R)& ~ex_know_inorganic;
 
