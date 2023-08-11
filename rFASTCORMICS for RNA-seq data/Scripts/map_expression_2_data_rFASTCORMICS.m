@@ -31,12 +31,17 @@ for i = 1:size(dico,2)
     try;mapped2(:,i+1) = cellstr(dico(idico,i));end %might need conversion to cell
 end
 
-% deal with transcripts (if any)
+if isfield(model,'description')
 if any(contains(model.genes,'.')) && ~contains(model.description, 'recon','IgnoreCase',true) % if possible transcripts but not recon
     warning('Does your input model contain transcripts? If not, please remove any dots . in the model.genes field')
     disp('Temporarily removing transcripts...')
     model.genes = regexprep(model.genes, '\.[0-9]*','');
 elseif contains(model.description, 'recon','IgnoreCase',true) %if Recon model
+    model.genes = regexprep(model.genes, '\.[0-9]*','');
+end
+else
+     warning('Does your input model contain transcripts? If not, please remove any dots . in the model.genes field')
+    disp('Temporarily removing transcripts...')
     model.genes = regexprep(model.genes, '\.[0-9]*','');
 end
 
