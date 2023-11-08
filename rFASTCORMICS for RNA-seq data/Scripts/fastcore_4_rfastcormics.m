@@ -22,6 +22,7 @@ P = setdiff(N, C);
 P = setdiff(P, t);
 Supp = findSparseMode_4_rfastcormics( J, P, singleton, model, epsilon,t );
 if ~isempty( setdiff( J, Supp ) ) ;
+    save
   fprintf ('Error: Inconsistent irreversible core reactions.\n');
   A=[];
   return;

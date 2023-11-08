@@ -30,17 +30,17 @@ ex_mets_X  = (regexp(model.metFormulas(exchange_mets),'X')) ;
 ex_mets_Y  = (regexp(model.metFormulas(exchange_mets),'Y')) ;
 
 if ~isempty(model.metFormulas(exchange_mets(~cellfun('isempty', ex_mets_X))))
-    disp('Warning metaboltes with X in their Formulas these inputs are close if no carbon is present')
+    disp('Warning metaboltes with X in their Formulas these inputs are closed')
 end
 if ~isempty(model.metFormulas(exchange_mets(~cellfun('isempty', ex_mets_Y))))
-    disp('Warning metaboltes with Y in their Formulas these inputs are close if no carbon is present')
+    disp('Warning metaboltes with Y in their Formulas these inputs are closed')
 end
 ex_mets_carbon  = (regexp(model.metFormulas(exchange_mets),'C')) ;
 ex_mets_R  = (regexp(model.metFormulas(exchange_mets),'R')) ;
 ex_know_inorganic=(ismember(model.metFormulas(exchange_mets),'Ca') |ismember(model.metFormulas(exchange_mets),'Cl')  |ismember(model.metFormulas(exchange_mets),'Co')  | ismember(model.metFormulas(exchange_mets),'Cu')) ; 
 model.mets(exchange_mets(ex_know_inorganic));
 
-is_organic      = ~cellfun('isempty', ex_mets_carbon)| ~cellfun('isempty', ex_mets_R)& ~ex_know_inorganic;
+is_organic      = (~cellfun('isempty', ex_mets_carbon)| ~cellfun('isempty', ex_mets_X) |  ~cellfun('isempty', ex_mets_Y))& ~cellfun('isempty', ex_mets_R)& ~ex_know_inorganic ;
 
 mets_ex_orga    = exchange_mets(is_organic);
 mets_ex_inorga  = setdiff(exchange_mets,mets_ex_orga);

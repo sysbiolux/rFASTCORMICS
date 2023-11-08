@@ -1,0 +1,14 @@
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Sifting_Display                         0
+CPXPARAM_Output_CloneLog                         1
+CPXPARAM_Barrier_Display                         0
+CPXPARAM_Simplex_Tolerances_Feasibility          1.0000000000000001e-09
+CPXPARAM_Barrier_ConvergeTol                     1.0000000000000001e-09
+CPXPARAM_Network_Tolerances_Feasibility          1.0000000000000001e-09
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Sifting_Display                         0
+CPXPARAM_Output_CloneLog                         1
+CPXPARAM_Barrier_Display                         0
+CPXPARAM_Simplex_Tolerances_Feasibility          1.0000000000000001e-09
+CPXPARAM_Barrier_ConvergeTol                     1.0000000000000001e-09
+CPXPARAM_Network_Tolerances_Feasibility          1.0000000000000001e-09

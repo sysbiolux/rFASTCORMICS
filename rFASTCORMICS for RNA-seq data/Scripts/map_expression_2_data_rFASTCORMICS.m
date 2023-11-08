@@ -27,21 +27,20 @@ mapped = data(irownames,:); %get data for matching rownames
 
 mapped2(:,1) = rownames(irownames,1); %create dico with same order than input
 for i = 1:size(dico,2)
-    try;mapped2(:,i+1) = dico(idico,i);end
-    try;mapped2(:,i+1) = cellstr(dico(idico,i));end %might need conversion to cell
+    try
+        mapped2(:,i+1) = dico(idico,i);
+    end
+    try;
+        mapped2(:,i+1) = cellstr(dico(idico,i));
+    end %might need conversion to cell
 end
 
-if isfield(model,'description')
+% deal with transcripts (if any)
 if any(contains(model.genes,'.')) && ~contains(model.description, 'recon','IgnoreCase',true) % if possible transcripts but not recon
     warning('Does your input model contain transcripts? If not, please remove any dots . in the model.genes field')
     disp('Temporarily removing transcripts...')
     model.genes = regexprep(model.genes, '\.[0-9]*','');
 elseif contains(model.description, 'recon','IgnoreCase',true) %if Recon model
-    model.genes = regexprep(model.genes, '\.[0-9]*','');
-end
-else
-     warning('Does your input model contain transcripts? If not, please remove any dots . in the model.genes field')
-    disp('Temporarily removing transcripts...')
     model.genes = regexprep(model.genes, '\.[0-9]*','');
 end
 
@@ -52,11 +51,11 @@ genes_matched = 0;
 
 % maps the discretized expression data to the genes
 
-for i=1:numel(model.genes);
+for i=1:numel(model.genes)
     [match,~] = find(ismember(mapped2,model.genes(i))); %find row of match
-    if numel(match)==1;
+    if numel(match)==1
         mapped_to_genes(i,:) = mapped(match,:);
-    elseif isempty(match);
+    elseif isempty(match)
     else
         mapped_to_genes(i,:) = max(mapped(match,:),[],1); % take the highest value if
         %more probeIDs correspond to one modelID
@@ -73,7 +72,8 @@ fprintf('%i of %i genes matched\n', genes_matched, numel(model.genes))
 mapping = zeros(numel(model.rxns), size(mapped,2));
 for j= 1:size(mapped_to_genes,2)
     x=mapped_to_genes(:,j);
-    for k=1:numel(model.rxns);
+    for k=1:numel(model.rxns)
+       
         mapping(k,j)= GPRrulesMapper_rFASTCORMICS(cell2mat(model.rules(k)),x);
     end
 end
