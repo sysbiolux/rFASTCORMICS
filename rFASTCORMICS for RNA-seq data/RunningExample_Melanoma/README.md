@@ -4,7 +4,7 @@
 Paper: [Bintener et al, 2021](https://pubmed.ncbi.nlm.nih.gov/37495601/)
 
 Data: [EGAS00001006463](https://ega-archive.org/datasets/EGAD00001009089)
-The consensus models can be downloaded from [Consensus models](https://github.com/sysbiolux/MelanomaPaper).
+The consensus models can be downloaded from [consensus models](https://github.com/sysbiolux/MelanomaPaper).
 The FPKM can be obtained from the authors on request.
 
 In this example we reconstruct Metabolic Networks Models of A375 and Mold consensus models, as well as a sample specific model for A375 sample1.
