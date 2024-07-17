@@ -18,10 +18,15 @@ model.lb(find(ismember(model.rxns,'sink_band[c]')))=0;
 model.ub(find(ismember(model.rxns,'sink_band[c]')))=0;
 
 A = fastcc_4_rfastcormics(model, 1e-4, 1);
+% or with COBRA fastcc:
+% [A, ~, ~] = fastcc(model, 1e-4, 1, 0, 'original');
+
 model=removeRxns(model, model.rxns(setdiff(1:numel(model.rxns),A)));
 model.rxns(find(contains(model.rxns,'biomass')))
 model_orig=model;
 A = fastcc_4_rfastcormics(model, 1e-4, 1);
+% or with COBRA fastcc:
+% [A, ~, ~] = fastcc(model, 1e-4, 1, 0, 'original');
 clear model
 
 %% load medium example and data
