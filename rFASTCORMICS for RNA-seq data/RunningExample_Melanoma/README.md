@@ -3,7 +3,7 @@
 
 Paper: [Bintener et al, 2021](https://pubmed.ncbi.nlm.nih.gov/37495601/)
 
-Data: [EGAS00001006463](https://ega-archive.org/datasets/EGAD00001009089)
+Data: [EGAS00001006463](https://ega-archive.org/datasets/EGAD00001009089). 
 The consensus models can be downloaded from [consensus models](https://github.com/sysbiolux/MelanomaPaper).
 The FPKM can be obtained from the authors on request.
 
