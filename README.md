@@ -11,7 +11,7 @@ For more details on the FASTCORE algorithm family see:
 
 Last major update was on April 26, 2021.
 
-Last minor update was on June 17, 2021
+Last minor update was in March 2025
 
 <!------------------------------------------------------------------------------------------------>
 #  for rFASTCORMICS
