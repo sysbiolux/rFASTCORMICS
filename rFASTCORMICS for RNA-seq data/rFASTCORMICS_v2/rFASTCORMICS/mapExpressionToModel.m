@@ -38,7 +38,7 @@ function [mapping] = mapExpressionToModel(model, data, dico, rownames, processTr
 %       - Maria Pires Pacheco, Thomas Sauter, 2022, adaptation of the code to the Cobra toolbox
 %       - Leonie Thomas, 2024, upgrade of the mapping loop to make it faster
 %       - Vanille Lejal, 2024, addition of documentation and comments,
-%       cleaning the code, addition of the optional parameter for handling
+%       cleaning of the code, addition of the optional parameter for handling
 %       transcripts
                          
 %% 

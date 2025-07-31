@@ -43,6 +43,7 @@ function [model, Afinal] = rFastcormics4cobra(model, discretized, rownames, dico
 %       - Maria Pires Pacheco, Thomas Sauter, 2016, University of Luxembourg
 %       - Maria Pires Pacheco, Thomas Sauter, 2023, adaptation of the code to the Cobra toolbox
 
+%% Initializing the arguments
 if nargin < 9
     adaptiveScalingFlag = 0;
 end
@@ -55,57 +56,39 @@ end
 if nargin < 6 || isempty(epsilon)
     epsilon = getCobraSolverParams('LP', 'feasTol')*100;
 end
-if nargin<5
+if nargin < 5
     consensusProportion = 0.9;
 end
 
-origModel = model;
-
-% checking model.subSystems format 
-if ischar(model.subSystems{1})
+if isfield(optionalSettings, 'func')
+    functionKeep = optionalSettings.func;
 else
+    functionKeep = '';
+end
+%% à corriger
+requiredToolboxes = {'curve_fitting_toolbox', 'optimization_toolbox'};
+if sum(isstruct(prepareTest('requiredToolboxes', requiredToolboxes))) % else ???
+end
+%% Correcting the format of the model
+% checking model.subSystems format 
+if ~ischar(model.subSystems{1})
     model.subSystems = vertcat(model.subSystems{:});
 end
 
-% fix reversibilities
-model = fixIrrRFASTCORMICS(model);
-
-[A, ~, ~] = fastcc(model, epsilon, 0, 0, 'original');
-
-%fix rules
+% fixing rules
 if ~isfield(model, 'rules')
-    disp('creating model.rules')
+    disp('Creating model.rules as it was missing')
     model = generateRules(model);
 end
 
-% create a consistent model
-consistentModel = removeRxns(model, model.rxns(setdiff(1:numel(model.rxns),A)));
+% fixing reversibilities
+model = fixIrrRFASTCORMICS(model);
 
-% Data discretization
-% The discretized values will be discretized into expressed, not expressed, and unknown
-% expression status.
-mapping = mapExpressionToModel(consistentModel, discretized, dico, rownames, 1);
-mapping = sparse(mapping);
-%disp(mapping);
+% creating a consistent model
+[A, ~, ~] = fastcc(model, epsilon, 0, 0, 'original'); %indexes of the consistent reactions
+consistentModel = removeRxns(model, model.rxns(setdiff(1:numel(model.rxns), A))); %removing the non consistent reactions
 
-if sum(mapping) == 0
-    disp('no genes were mapped, check again') %no gene expressed according to the RNAseq data
-    return
-end
-
-if numel(rownames) ~= size(discretized, 1)
-    disp('data and iDs do not correspond')
-    return
-end
-if size(mapping,1)~= numel(consistentModel.rxns)
-    disp('when the option already_mapped is used the size of the data has to correpond to the number of reaction of the model')
-    return
-end
-
-requiredToolboxes = {'curve_fitting_toolbox', 'optimization_toolbox'};
-if sum(isstruct(prepareTest('requiredToolboxes', requiredToolboxes)))
 %% Optionally the model can be constrained in function of the medium
-%composition
 if ~isempty(optionalSettings) && isfield(optionalSettings, 'medium')
     if isfield(optionalSettings, 'notMediumConstrained')
         notMediumConstrained = optionalSettings.notMediumConstrained;
@@ -116,71 +99,76 @@ if ~isempty(optionalSettings) && isfield(optionalSettings, 'medium')
     if ~isfield(optionalSettings,'func')
         optionalSettings.func = '';
     end
-    
+
     mediumConstrainedmodel =  constrainModelRFASTCORMICS(consistentModel, mediumMets, notMediumConstrained, biomassReactionName, optionalSettings.func);
-    
-    % Is the medium sufficient?
-    % conditions for a medium to be sufficient : contains obj
-    % function/model is consistent/FBA result is OK
-    
+
 elseif isempty(optionalSettings)
     mediumConstrainedmodel = consistentModel; 
     warning('No optional settings detected')
 else
     mediumConstrainedmodel = consistentModel;
-    warning('No medium set')
+    warning('No given medium')
 end
 
-%% Identify reactions that are under the control of expressed genes
-numberOfArrayPerModel = size(discretized,2);
-C =  find(sum(mapping,2) >= (consensusProportion * numberOfArrayPerModel)); % find(sum(mapping == 1,2)?
-%% Removing transporters from the core
-%finding transporters in the Core
+%% Mapping the reactions to the model
+mapping = mapExpressionToModel(mediumConstrainedmodel, discretized, dico, rownames, 1);
+mapping = sparse(mapping);
+%disp(mapping);
+
+if sum(mapping) == 0
+    disp('No genes were mapped, check again') %no gene expressed according to the RNAseq data
+    return
+end
+
+if numel(rownames) ~= size(discretized, 1)
+    disp('The number of gene IDs between the discretized data and the given IDs do not correspond')
+    return
+end
+if size(mapping,1)~= numel(consistentModel.rxns) % à checker, je suis pas sure de ce que ça veut dire
+    disp('When the option already_mapped is used the size of the data has to correpond to the number of reaction of the model')
+    return
+end
+
+%% Discretization
+% The discretized values will be discretized into expressed, not expressed, and unknown
+% expression status.
+%Identify reactions that are under the control of expressed genes
+numberOfSamples = size(discretized,2);
+initialCore =  find(sum(mapping,2) >= (consensusProportion * numberOfSamples)); % find(sum(mapping == 1,2)? A checker avec le format de mapping
+
+% Finding transporters in the Core
 ModelTransRxns = findTransRxns(mediumConstrainedmodel);
 [~, TransIDs] = ismember(ModelTransRxns, mediumConstrainedmodel.rxns);
-C = setdiff(C, TransIDs); % we remove transporters from the core
-%% Additions of the reactions needed for a given function to carry a flux
-% to the core set
+% Removing transporters from the core
+CoreWithoutTrans = setdiff(initialCore, TransIDs); % we remove transporters from the core
 
-if isfield(optionalSettings, 'func')
-    functionKeep = optionalSettings.func;
-else
-    functionKeep = '';
-end
-
-if ~isempty(functionKeep)
-   
-    B = find(ismember(mediumConstrainedmodel.rxns,functionKeep)); %reactions to keep
-    if isempty(B)
-        warning('no functions set to be kept')
-    elseif numel(B) ~= numel(functionKeep)
-        warning('Not all functions set to be kept were found in the model')
-    end
-    
-    %disp("first fastcore");
-    BiomassRelatedRxns = fastcore(mediumConstrainedmodel, B, epsilon, 0, adaptiveScalingFlag, C); % on ne pénalise pas le core mais on pénalise le reste
-    %disp("end of the first fastcore");
-    BiomassRelatedRxnsID = find(ismember(consistentModel.rxns,BiomassRelatedRxns.rxns));
-    C = union(C,BiomassRelatedRxnsID); % add reactions that support the ATP and biomass reactions to the core set
-    
-else
-    BiomassRelatedRxnsID = []; 
-end
-
-%% Identification of the inactive reactions set (medium composition and
-% reactions under control of unexpressed genes the or  and removing of
-% inactive branches 
-
-% Pourquoi on fait pas cette étape dès le départ ? --> faut que ça soit
-% là au départ pour éventuellement compléter le core ?
-notexpressed = find(sum(mapping,2) <= (- consensusProportion * numberOfArrayPerModel)); % find(sum(mapping == -1,2)>= (consensusProportion * numberOfArrayPerModel)
-notexpressed = setdiff(notexpressed, BiomassRelatedRxnsID); % est-ce qu'on ne devrait pas laisser ouvertes les reactions qui sont dans le core ? même si pas expressed ?
-mediumConstrainedmodel.lb(notexpressed) = 0;
-mediumConstrainedmodel.ub(notexpressed) = 0;
+notExpressed = find(sum(mapping,2) <= (- consensusProportion * numberOfSamples)); % find(sum(mapping == -1,2)>= (consensusProportion * numberOfArrayPerModel)
+%notExpressed = setdiff(notExpressed, BiomassRelatedRxnsID); % si ça sert pour le core, on laisse même si c'est pas exprimé
+mediumConstrainedmodel.lb(notExpressed) = 0;
+mediumConstrainedmodel.ub(notExpressed) = 0;
 
 % Building of a consistent model
 [A, ~, ~] = fastcc(mediumConstrainedmodel, epsilon, 0, 0, 'original');
-ConsistentmediumConstrainedmodel = removeRxns(mediumConstrainedmodel,mediumConstrainedmodel.rxns(setdiff(1:numel(mediumConstrainedmodel.rxns), A)));
+consistentMediumConstrainedmodel = removeRxns(mediumConstrainedmodel, mediumConstrainedmodel.rxns(setdiff(1:numel(mediumConstrainedmodel.rxns), A)));
+
+%% Additions of the reactions needed for a given function to carry a flux to the core set
+if ~isempty(functionKeep)
+    B = find(ismember(consistentMediumConstrainedmodel.rxns, functionKeep)); %reactions to keep
+    if isempty(B)
+        warning('No functions set to be kept')
+    elseif numel(B) ~= numel(functionKeep)
+        warning('Not all functions set to be kept were found in the model')
+    end
+
+    %disp("first fastcore");
+    modelWithCompletedCore = fastcore(consistentMediumConstrainedmodel, B, epsilon, 0, adaptiveScalingFlag, CoreWithoutTrans); % on ne pénalise pas le core mais on pénalise le reste
+    %disp("end of the first fastcore");
+    BiomassRelatedRxnsID = find(ismember(consistentMediumConstrainedmodel.rxns, modelWithCompletedCore.rxns));
+    completedCore = union(CoreWithoutTrans, BiomassRelatedRxnsID); % add reactions that support the ATP and biomass reactions to the core set 
+else
+    completedCore = CoreWithoutTrans;
+end
+
 
 %% Establishment of the reactions in the core set
 
@@ -196,4 +184,3 @@ keep_rxn = indices(A2 == 1); % pourquoi on prend pas direct Consistentmediumcons
 model = removeRxns(ConsistentmediumConstrainedmodel, ...
     ConsistentmediumConstrainedmodel.rxns(setdiff(1:numel(ConsistentmediumConstrainedmodel.rxns), keep_rxn))); % rename context-specific model ?
 Afinal = find(ismember(origModel.rxns, ConsistentmediumConstrainedmodel.rxns(keep_rxn)));
-end
