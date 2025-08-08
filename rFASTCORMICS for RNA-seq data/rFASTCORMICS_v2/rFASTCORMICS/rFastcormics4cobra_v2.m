@@ -147,7 +147,7 @@ mediumConstrainedModel.ub(notExpressed) = 0;
 
 % Building of a consistent model
 [A, ~, ~] = fastcc(mediumConstrainedModel, epsilon, 0, 0, 'original');
-consistentMediumConstrainedModel = removeRxns(mediumConstrainedModel, mediumConstrainedmodel.rxns(setdiff(1:numel(mediumConstrainedmodel.rxns), A)));
+consistentMediumConstrainedModel = removeRxns(mediumConstrainedModel, mediumConstrainedModel.rxns(setdiff(1:numel(mediumConstrainedModel.rxns), A)));
 
 %%
 if ~isempty(functionKeep)
