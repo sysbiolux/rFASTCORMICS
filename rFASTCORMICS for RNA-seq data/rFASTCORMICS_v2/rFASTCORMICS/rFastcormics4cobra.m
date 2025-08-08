@@ -1,4 +1,4 @@
-function [model, Afinal] = rFastcormics4cobra(model, discretized, rownames, dico, consensusProportion, epsilon, optionalSettings, biomassReactionName, adaptiveScalingFlag)
+function [finalModel, Afinal] = rFastcormics4cobra(model, discretized, rownames, dico, consensusProportion, epsilon, optionalSettings, biomassReactionName, adaptiveScalingFlag)
 % The rFASTCORMICS is a context-specific building algorithm for
 % reconstructing a tissue, a cell-specific, or any context-specific model from RNAseq data
 % and a generic reconstruction (Pacheco et al. 2019)
@@ -84,9 +84,11 @@ consistentModel = removeRxns(model, model.rxns(setdiff(1:numel(model.rxns),A)));
 % Data discretization
 % The discretized values will be discretized into expressed, not expressed, and unknown
 % expression status.
+%disp(size(discretized))
 mapping = mapExpressionToModel(consistentModel, discretized, dico, rownames, 1);
-mapping = sparse(mapping);
 %disp(mapping);
+mapping = sparse(mapping);
+disp(size(mapping))
 
 if sum(mapping) == 0
     disp('no genes were mapped, check again') %no gene expressed according to the RNAseq data
@@ -160,7 +162,7 @@ if ~isempty(functionKeep)
     %disp("first fastcore");
     BiomassRelatedRxns = fastcore(mediumConstrainedmodel, B, epsilon, 0, adaptiveScalingFlag, C); % on ne pénalise pas le core mais on pénalise le reste
     %disp("end of the first fastcore");
-    BiomassRelatedRxnsID = find(ismember(consistentModel.rxns,BiomassRelatedRxns.rxns));
+    BiomassRelatedRxnsID = find(ismember(consistentModel.rxns,BiomassRelatedRxns.rxns)); % why consistentModel and not mediumConstrainedmodel?
     C = union(C,BiomassRelatedRxnsID); % add reactions that support the ATP and biomass reactions to the core set
     
 else
@@ -174,6 +176,8 @@ end
 % Pourquoi on fait pas cette étape dès le départ ? --> faut que ça soit
 % là au départ pour éventuellement compléter le core ?
 notexpressed = find(sum(mapping,2) <= (- consensusProportion * numberOfArrayPerModel)); % find(sum(mapping == -1,2)>= (consensusProportion * numberOfArrayPerModel)
+% on garde les reactions qui sont not expressed si elles sont associées à la
+% biomass
 notexpressed = setdiff(notexpressed, BiomassRelatedRxnsID); % est-ce qu'on ne devrait pas laisser ouvertes les reactions qui sont dans le core ? même si pas expressed ?
 mediumConstrainedmodel.lb(notexpressed) = 0;
 mediumConstrainedmodel.ub(notexpressed) = 0;
@@ -188,12 +192,18 @@ ConsistentmediumConstrainedmodel = removeRxns(mediumConstrainedmodel,mediumConst
 C = IB; % indices des rxns
 
 %% building of the context-specific model
-[~, A2] = fastcore(ConsistentmediumConstrainedmodel, C, 1e-4, 0, adaptiveScalingFlag);
+[output_model_fastcore, A2] = fastcore(ConsistentmediumConstrainedmodel, C, 1e-4, 0, adaptiveScalingFlag);
+%disp(A2);
+%disp(size(A2));
 indices = 1:numel(ConsistentmediumConstrainedmodel.rxns);
+%disp(indices);
 keep_rxn = indices(A2 == 1); % pourquoi on prend pas direct Consistentmediumconstrainedmodel.rxns(A2) ?
+%disp(keep_rxn);
 
+%
 %% building of the context-specific model
-model = removeRxns(ConsistentmediumConstrainedmodel, ...
+finalModel = removeRxns(ConsistentmediumConstrainedmodel, ...
     ConsistentmediumConstrainedmodel.rxns(setdiff(1:numel(ConsistentmediumConstrainedmodel.rxns), keep_rxn))); % rename context-specific model ?
 Afinal = find(ismember(origModel.rxns, ConsistentmediumConstrainedmodel.rxns(keep_rxn)));
+
 end
