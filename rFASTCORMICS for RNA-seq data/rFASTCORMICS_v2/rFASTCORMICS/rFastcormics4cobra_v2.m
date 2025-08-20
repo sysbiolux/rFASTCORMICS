@@ -107,7 +107,7 @@ if ~isempty(optionalSettings) && isfield(optionalSettings, 'medium')
     mediumMets = optionalSettings.medium;
 
     mediumConstrainedModel =  constrainModelRFASTCORMICS(consistentModel, mediumMets, notMediumConstrained, biomassReactionName, functionKeep);
-    %watch out, the model here could be unconsistent
+    % watch out, the model here could be unconsistent
     
     % fillingMedium shoud be added here
     
@@ -127,7 +127,7 @@ if sum(mapping) == 0
     return
 end
 
-%% Discretization
+%% Defining the core
 % The discretized values will be discretized into expressed, not expressed, and unknown
 % expression status.
 %Core is defined as the reactions that are under the control of expressed genes
@@ -140,7 +140,24 @@ ModelTransRxns = findTransRxns(mediumConstrainedModel);
 % Removing transporters from the core
 CoreWithoutTrans = setdiff(initialCore, TransIDs); % we remove transporters from the core
 
-notExpressed = find(sum(mapping == -1, 2) <= (consensusProportion * numberOfSamples)); % find(sum(mapping == -1,2)>= (consensusProportion * numberOfArrayPerModel)
+if ~isempty(functionKeep)
+    B = find(ismember(mediumConstrainedModel.rxns, functionKeep)); %reactions to keep
+    %problem: model has lost function keep
+    if isempty(B)
+        warning('No reactions to retain were found in the (medium) constrained model')
+    elseif numel(B) ~= numel(functionKeep)
+        warning('Not all functions set to be kept were found in the (medium) constrained model')
+    end
+    completedCore = union(CoreWithoutTrans, B);
+else
+    completedCore = CoreWithoutTrans;
+end
+
+% Get the names of the core reactions
+rxnNamesCompletedCore = mediumConstrainedModel.rxns(completedCore);
+
+%% Removing the reactions under the control of unexpressed genes
+notExpressed = find(sum(mapping == -1, 2) >= (consensusProportion * numberOfSamples));
 %notExpressed = setdiff(notExpressed, BiomassRelatedRxnsID); % si ça sert pour le core, on laisse même si c'est pas exprimé
 mediumConstrainedModel.lb(notExpressed) = 0;
 mediumConstrainedModel.ub(notExpressed) = 0;
@@ -149,20 +166,11 @@ mediumConstrainedModel.ub(notExpressed) = 0;
 [A, ~, ~] = fastcc(mediumConstrainedModel, epsilon, 0, 0, 'original');
 consistentMediumConstrainedModel = removeRxns(mediumConstrainedModel, mediumConstrainedModel.rxns(setdiff(1:numel(mediumConstrainedModel.rxns), A)));
 
-%%
-if ~isempty(functionKeep)
-    B = find(ismember(consistentMediumConstrainedModel.rxns, functionKeep)); %reactions to keep
-    if isempty(B)
-        warning('No functions set to be kept')
-    elseif numel(B) ~= numel(functionKeep)
-        warning('Not all functions set to be kept were found in the model')
-    end
-    completedCore = union(CoreWithoutTrans, B);
-else
-    completedCore = CoreWithoutTrans;
-end
+%Get the indices of the core reactions in the consistent constrained model
+correctIndicesCompletedCore = find(ismember(consistentMediumConstrainedModel.rxns, rxnNamesCompletedCore));
+
 %% building of the context-specific model
-[contextSpecificModel, A2] = fastcore(consistentMediumConstrainedModel, completedCore, 1e-4, 0, adaptiveScalingFlag);
+[contextSpecificModel, A2] = fastcore(consistentMediumConstrainedModel, correctIndicesCompletedCore, 1e-4, 0, adaptiveScalingFlag);
 indices = 1:numel(consistentMediumConstrainedModel.rxns);
 keepRxns = indices(A2 == 1);
 
