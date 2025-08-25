@@ -14,4 +14,26 @@ On this repository, you will find:
 
 ## How to use rFastcormics_v2?
 Here is the workflow of rFastcormics_v2:
-<img src="WorkflowrFastcormics_v2.png">
+
+<img src="WorkflowrFastcormics_v2.png" width="500">
+
+**Usage**
+
+`[contextSpecificModel, retainedRxns] = rFastcormics4cobra_v2(model, discretized, rownames, dico, consensusProportion, epsilon, optionalSettings, biomassReactionName, adaptiveScalingFlag)`
+
+| **Inputs** | **Description** |
+|--------------|-----------------|
+| `model`      | metabolic model (following fields are required: S, lb, ub, rxns, metFormulas) |
+| `discretized` | matrix with the discretized value (1, 0, or -1) for each gene and sample (as many rows as the number of genes, as many columns as the number of samples) |
+| `rownames` | cell array with the gene IDs (as many rows as the number of genes in `discretized`) |
+| `dico` | table with two columns, first for gene IDs in the `model` format, second for gene IDs in the `discretized` format |
+| **Optional inputs** | 
+| `consensusProportion` | the rate of samples that have to express or not to express a gene for the gene to be considered expressed or not (default 0.9) |
+| `epsilon` | smallest flux that is considered nonzero (default getCobraSolverParams('LP', 'feasTol')*100 = 1e-4) |
+| `optionalSettings.func` | cell array of reaction abbreviations that should carry a flux <br> It is recommended to put the objective function of your model to ensure its preservation in the context-specific model |
+| `optionalSettings.medium` | cell array of metabolite abbreviations that are present in the growth medium of the cells and that will be used to constrain the model |
+| `optionalSettings.notMediumConstrained` | ??? |
+| `biomassReactionName` | ??? |
+| `adaptiveScalingFlag` | adaptive scaling of the flux values (see LP10)<br>0 for inactive (default), 1 for active |
+| **Outputs** |
+
