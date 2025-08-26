@@ -5,7 +5,7 @@ function V = LP10(K, P, v, LPproblem, epsilon, adaptiveScalingFlag)
 %
 % USAGE:
 %
-%    V = LP10(K, P, v, epsilon, adaptiveScalingFlag, nonPen)
+%    V = LP10(K, P, v, epsilon, adaptiveScalingFlag)
 %
 
 % .. Authors: -  Nikos Vlassis, Maria Pires Pacheco, Thomas Sauter, 2013
