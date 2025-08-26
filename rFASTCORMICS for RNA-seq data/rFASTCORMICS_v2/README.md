@@ -18,7 +18,7 @@ rFASTCORMICS_v2 requires MATLAB 2019 or a later version and works with the IBM C
 ## How to use rFastcormics_v2?
 Here is the workflow of rFastcormics_v2:
 
-<img src="WorkflowrFastcormics_v2.png" width="500">
+<img src="WorkflowrFastcormics_v2.png" width="550">
 
 **Usage**
 
