@@ -34,14 +34,18 @@ function [contextSpecificModel, Afinal] = rFastcormics4cobra_v2(model, discretiz
 %                          in the growth medium of cells to constrain the model, see example medium_example.mat
 %                        * notMediumConstrained - react ????
 % biomassReactionName:   cell array or all other functions that might require some exchange reactions to ??? (default '')
-% adaptiveScalingFlag:   0 for inactive(default), 1 for active
+% adaptiveScalingFlag:   0 for inactive (default), 1 for active
 
 % OUTPUT:
-% A:                     indices of the active reactions
+% contextSpecificModel        context-specific model, reduced to the retained reactions 
+% Afinal:                     indices of the active reactions
 
 % .. Authors:
 %       - Maria Pires Pacheco, Thomas Sauter, 2016, University of Luxembourg
 %       - Maria Pires Pacheco, Thomas Sauter, 2023, adaptation of the code to the Cobra toolbox
+%       - Vanille Lejal, 2025, removing the transporters from the core,
+%       removing the nonPen argument, switching to one fastcore, cleaning
+%       of the code
 
 %% Initializing the arguments
 if nargin < 9
@@ -135,8 +139,8 @@ numberOfSamples = size(discretized,2);
 initialCore = find(sum(mapping == 1, 2) >= (consensusProportion * numberOfSamples)); 
 
 % Finding transporters in the Core
-ModelTransRxns = findTransRxns(mediumConstrainedModel);
-[~, TransIDs] = ismember(ModelTransRxns, mediumConstrainedModel.rxns);
+modelTransRxns = findTransRxns(mediumConstrainedModel);
+[~, TransIDs] = ismember(modelTransRxns, mediumConstrainedModel.rxns);
 % Removing transporters from the core
 CoreWithoutTrans = setdiff(initialCore, TransIDs); % we remove transporters from the core
 
