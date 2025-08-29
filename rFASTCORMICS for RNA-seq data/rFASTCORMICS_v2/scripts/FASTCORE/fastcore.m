@@ -1,4 +1,4 @@
-function [tissueModel,coreRxnBool,coreMetBool,coreCtrsBool] = fastcore(model, coreRxnInd, epsilon, printLevel, adaptiveScalingFlag)
+function [tissueModel,coreRxnBool,coreMetBool,coreCtrsBool] = fastcore(model, coreRxnInd, epsilon, printLevel, adaptiveScalingFlag, nonPen)
 % Use the FASTCORE algorithm ('Vlassis et al, 2014') to extract a context
 % specific model. FASTCORE algorithm defines one set of core
 % reactions that is guaranteed to be active in the extracted model and find
@@ -25,6 +25,7 @@ function [tissueModel,coreRxnBool,coreMetBool,coreCtrsBool] = fastcore(model, co
 %   printLevel:          0 = silent, 1 = summary, 2 = debug (default - 0)
 %   adaptiveScalingFlag  0 = adaptive scaling is off (default), 1 = adaptive scaling
 %                        is on (recommended for ill scaled models)
+%   nonPen               list of reactions whose addition to the model is not be penalized
 %
 %
 % OUTPUT:
@@ -42,6 +43,9 @@ function [tissueModel,coreRxnBool,coreMetBool,coreCtrsBool] = fastcore(model, co
 %       - Ronan Fleming, commenting of code and inputs/outputs
 %       - Anne Richelle, code adaptation to fit with createTissueSpecificModel
 
+if nargin < 6 || ~exist('nonPen','var')
+    nonPen = [];
+end
 if nargin < 5 || ~exist('adaptiveScalingFlag','var')
     adaptiveScalingFlag = 0;
 end
@@ -91,7 +95,7 @@ P = setdiff(nbRxns, coreRxnInd);
 
 % Find the minimum of set reactions from P that need to be included to
 % support the irreversible core set of reactions
-[Supp, basis] = findSparseMode(J, P, singleton, model, LPproblem, epsilon, adaptiveScalingFlag, []);
+[Supp, basis] = findSparseMode(J, P, singleton, model, LPproblem, epsilon, adaptiveScalingFlag, [], nonPen);
 
 if ~isempty(setdiff(J, Supp))
     warning('fastcore.m Error: Global network is not flux consistent, ignoring the following irreversible core reactions:\n');
@@ -118,7 +122,7 @@ while ~isempty(J)
     P = setdiff(P, A);
     
     %reuse the basis from the previous solve if it exists
-    [Supp, basis] = findSparseMode(J, P, singleton, model, LPproblem, epsilon, adaptiveScalingFlag, basis);
+    [Supp, basis] = findSparseMode(J, P, singleton, model, LPproblem, epsilon, adaptiveScalingFlag, basis, nonPen);
     
     A = union(A, Supp);
     if printLevel > 0

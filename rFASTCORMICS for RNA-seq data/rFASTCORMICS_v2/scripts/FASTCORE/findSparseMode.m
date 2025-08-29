@@ -1,4 +1,4 @@
-function [Supp, basis] = findSparseMode(J, P, singleton, model, LPproblem, epsilon, adaptiveScalingFlag, basis)
+function [Supp, basis] = findSparseMode(J, P, singleton, model, LPproblem, epsilon, adaptiveScalingFlag, basis, nonPen)
 % Finds a mode that contains as many reactions from J and as few from P.
 % Returns its support, or [] if no reaction from J can get flux above epsilon
 %
@@ -17,6 +17,7 @@ function [Supp, basis] = findSparseMode(J, P, singleton, model, LPproblem, epsil
 % OPTIONAL INPUT:
 %    adaptiveScalingFlag: scaling choice for LP10
 %    basis:       Basis
+%    nonPen:      indexes of unpenalized reactions
 %
 % OUTPUTS:
 %    Supp:        Support or [] if no reaction from `J` can get flux above epsilon
@@ -44,6 +45,10 @@ else
     assert(ismember(adaptiveScalingFlag, [0, 1]), 'adaptiveScalingFlag must be 0 or 1');
 end
 
+if isempty(nonPen)
+    nonPen = [];
+end
+
 %find a flux vector of maximum cardinality
 if singleton
     [v, basis] = LP7(J(1), model, LPproblem, epsilon, basis);
@@ -60,6 +65,6 @@ end
 
 %find a flux vector that maintains the activity of any active irreversible core reaction
 %(K) yet minimises the activity of any non-core reaction(P).
-v = LP10(K, P, v, LPproblem, epsilon, adaptiveScalingFlag);
+v = LP10(K, P, v, LPproblem, epsilon, adaptiveScalingFlag, nonPen);
 Supp = find(abs(v) >= 0.99*epsilon);
 
