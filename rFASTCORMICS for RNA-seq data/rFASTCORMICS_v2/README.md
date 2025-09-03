@@ -22,7 +22,7 @@ Here is the workflow of rFastcormics_v2:
 
 **Usage**
 
-`[contextSpecificModel, retainedRxns] = rFastcormics4cobra_v2(model, discretized, rownames, dico, consensusProportion, epsilon, optionalSettings, biomassReactionName, adaptiveScalingFlag)`
+`[contextSpecificModel, retainedRxns] = rFastcormics4cobra_v2(model, discretized, rownames, dico, consensusProportion, epsilon, optionalSettings, biomassReactionName, fillingMediumFlag, adaptiveScalingFlag)`
 
 | **Inputs** | **Description** |
 |--------------|-----------------|
