@@ -37,6 +37,7 @@ Here is the workflow of rFastcormics_v2:
 | `optionalSettings.medium` | cell array of metabolite abbreviations that are present in the growth medium of the cells and that will be used to constrain the model |
 | `optionalSettings.notMediumConstrained` | ??? |
 | `biomassReactionName` | ??? |
+| `fillingMediumFlag` | fill the medium with supplementary reactions in case the provided medium is not sufficient to fulfill the objective function<br> 1 for active (default), 0 for inactive |
 | `adaptiveScalingFlag` | adaptive scaling of the flux values (see LP10)<br>0 for inactive (default), 1 for active |
 | **Outputs** |
 | contextSpecificModel | context-specific model, reduced to the retained reactions and associated genes |
