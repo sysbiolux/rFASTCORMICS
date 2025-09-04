@@ -42,3 +42,7 @@ Here is the workflow of rFastcormics_v2:
 | **Outputs** |
 | contextSpecificModel | context-specific model, reduced to the retained reactions and associated genes |
 | Afinal | indices in `model` of the retained reactions |
+
+## Option to supplement an insufficient medium
+
+When a model is constrained by a medium, it can sometimes be insufficient to allow flux through the model’s objective function (often biomass) or, in some cases, to even retain this reaction within the model. We have included a medium sufficiency check in the rFastcormics_v2 workflow. <br>When the medium is insufficient, an optional argument (`missingMediumFlag`, enabled by default) allows the medium to be supplemented by running the fastcore algorithm a second time. The core set of reactions is updated to include all reactions selected to be part of the context-specific model, as well as any reactions that may have been excluded during the medium-constraining step, such as the model’s objective function, certain exchange reactions associated with medium metabolites (`optionalSettings.medium`), and reactions provided in `optionalSettings.func`.
