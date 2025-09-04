@@ -41,7 +41,7 @@ Here is the workflow of rFastcormics_v2:
 | `adaptiveScalingFlag` | adaptive scaling of the flux values (see LP10)<br>0 for inactive (default), 1 for active |
 | **Outputs** |
 | contextSpecificModel | context-specific model, reduced to the retained reactions and associated genes |
-| Afinal | indices in `model` of the retained reactions |
+| retainedRxns | indices in `model` of the retained reactions |
 
 ## Option to supplement an insufficient medium
 
