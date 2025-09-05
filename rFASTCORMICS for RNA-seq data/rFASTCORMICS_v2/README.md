@@ -33,7 +33,7 @@ Here is the workflow of rFastcormics_v2:
 | **Optional inputs** | 
 | `consensusProportion` | the rate of samples that have to express or not to express a gene for the gene to be considered expressed or not (default 0.9) |
 | `epsilon` | smallest flux that is considered nonzero (default getCobraSolverParams('LP', 'feasTol')*100 = 1e-4) |
-| `optionalSettings.func` | cell array of reaction abbreviations that should carry a flux <br> It is recommended to put the objective function of your model to ensure its preservation in the context-specific model |
+| `optionalSettings.func` | cell array of reaction abbreviations that should carry a flux <br> It is recommended to put the objective function of your model to ensure its preservation in the context-specific model.<br>Any reaction included in the .func will necessarily appear in the final model.|
 | `optionalSettings.medium` | cell array of metabolite abbreviations that are present in the growth medium of the cells and that will be used to constrain the model |
 | `optionalSettings.notMediumConstrained` | ??? |
 | `biomassReactionName` | ??? |
@@ -45,4 +45,13 @@ Here is the workflow of rFastcormics_v2:
 
 ## Option to supplement an insufficient medium
 
-When a model is constrained by a medium, it can sometimes be insufficient to allow flux through the model’s objective function (often biomass) or, in some cases, to even retain this reaction within the model. We have included a medium sufficiency check in the rFastcormics_v2 workflow. <br>When the medium is insufficient, an optional argument (`missingMediumFlag`, enabled by default) allows the medium to be supplemented by running the fastcore algorithm a second time. The core set of reactions is updated to include all reactions selected to be part of the context-specific model, as well as any reactions that may have been excluded during the medium-constraining step, such as the model’s objective function, certain exchange reactions associated with medium metabolites (`optionalSettings.medium`), and reactions provided in `optionalSettings.func`.
+When a model is constrained by a medium, it can sometimes be insufficient to allow flux through the model’s objective function (often biomass) or, in some cases, to even retain this reaction within the model. We have included a medium sufficiency check in the rFastcormics_v2 workflow. <br>When the medium is insufficient, an optional argument (`missingMediumFlag`, enabled by default) allows the medium to be supplemented by running the fastcore algorithm a second time. The core set of reactions is updated to include all reactions selected to be part of the context-specific model, as well as the exchange reactions associated with the medium metabolites that may have been excluded during the medium-constraining step (`optionalSettings.medium`).
+<br><br><b>Note</b>: If the context-specific model can fulfill the objective function using only a subset of the provided medium, some of the exchange reactions associated with the medium metabolites may not be included in the context-specific model.<br>
+If you want <b>all</b> exchange reactions associated with the medium metabolites to be included in the context-specific model, not just the necessary ones, you need to add these exchange reactions to the `optionalSettings.func` argument as well. Be careful: this argument expects a list of reactions as input, whereas `optionalSettings.medium` expects metabolites.<br>
+To identify the exchange reactions associated with the medium metabolites, you can use the following lines of code:<br>
+`mediumMets = optionalSettings.medium;
+% finding the exchange reactions associated with the medium
+[excRxnsBool, ~] = findExcRxns(model);
+excRxns = consistentModel.rxns(excRxnsBool);
+[mediumRxns, ~] = findRxnsFromMets(model, mediumMets);
+excMediumRxns = intersect(excRxns, mediumRxns);`
