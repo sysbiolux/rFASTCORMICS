@@ -49,9 +49,9 @@ When a model is constrained by a medium, it can sometimes be insufficient to all
 <br><br><b>Note</b>: If the context-specific model can fulfill the objective function using only a subset of the provided medium, some of the exchange reactions associated with the medium metabolites may not be included in the context-specific model.<br>
 If you want <b>all</b> exchange reactions associated with the medium metabolites to be included in the context-specific model, not just the necessary ones, you need to add these exchange reactions to the `optionalSettings.func` argument as well. Be careful: this argument expects a list of reactions as input, whereas `optionalSettings.medium` expects metabolites.<br>
 To identify the exchange reactions associated with the medium metabolites, you can use the following lines of code:<br>
-`mediumMets = optionalSettings.medium;
-% finding the exchange reactions associated with the medium
-[excRxnsBool, ~] = findExcRxns(model);
-excRxns = consistentModel.rxns(excRxnsBool);
-[mediumRxns, ~] = findRxnsFromMets(model, mediumMets);
-excMediumRxns = intersect(excRxns, mediumRxns);`
+`mediumMets = optionalSettings.medium;`<br>
+`% finding the exchange reactions associated with the medium`<br>
+`[excRxnsBool, ~] = findExcRxns(model);`<br>
+`excRxns = consistentModel.rxns(excRxnsBool);`<br>
+`[mediumRxns, ~] = findRxnsFromMets(model, mediumMets);`<br>
+`excMediumRxns = intersect(excRxns, mediumRxns);`
