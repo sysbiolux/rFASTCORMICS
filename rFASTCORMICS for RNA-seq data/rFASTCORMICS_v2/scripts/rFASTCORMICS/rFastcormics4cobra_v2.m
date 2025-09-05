@@ -44,9 +44,11 @@ function [contextSpecificModel, retainedRxns] = rFastcormics4cobra_v2(model, dis
 % .. Authors:
 %       - Maria Pires Pacheco, Thomas Sauter, 2016, University of Luxembourg
 %       - Maria Pires Pacheco, Thomas Sauter, 2023, adaptation of the code to the Cobra toolbox
-%       - Vanille Lejal, 2025, removing the transporters from the core,
-%       removing the nonPen argument, switching to one fastcore, cleaning
-%       of the code
+%       - Vanille Lejal, 2025, University of Luxembourg, removing the transporters from the core,
+%       removing the nonPen argument, switching to one fastcore,
+%       integration of an option to fill a missing medium, cleaning
+%       of the code, adaptation of the code for a use with gurobi and
+%       Matlab 2024
 
 %% Initializing the arguments
 if nargin < 10
@@ -214,40 +216,59 @@ end
 %% Get the indices of the core reactions in the consistent constrained model
 correctIndicesCompletedCore = find(ismember(consistentMediumConstrainedModel.rxns, rxnNamesCompletedCore));
 
-%% building of the context-specific model
+%% Building of the context-specific model
 [contextSpecificModel, retainedRxnsBool] = fastcore(consistentMediumConstrainedModel, correctIndicesCompletedCore, 1e-4, 0, adaptiveScalingFlag);
 indices = 1:numel(consistentMediumConstrainedModel.rxns);
 keepRxns = indices(retainedRxnsBool == 1);
 retainedRxns = find(ismember(origModel.rxns, consistentMediumConstrainedModel.rxns(keepRxns)));
 
+%% Check if all the .func reactions are included in the model
+missingFunctionKeep = functionKeep(~ismember(functionKeep, contextSpecificModel.rxns));
+if ~isempty(missingFunctionKeep)
+    disp(['The following .func reactions are missing:' newline strjoin(missingFunctionKeep, newline) newline ' and will be added to the context-specific model through a second fastcore.']);
+    functionKeepFlag = true;
+else
+    functionKeepFlag = false;
+end
+
 %% Proceed to medium filling if needed and required
-if fillingMediumFlag == 1 && needMediumFilling
-    disp('Proceeding to medium filling.');
+if fillingMediumFlag == 1 && needMediumFilling || functionKeepFlag
     
+    % we will use the consistent model as input as it still contains all the
+    % reactions of the original model
     % copying the bounds of rxns in the context specific model in the consistent model to preserve the medium constraints
     [~, idxConsistentModel, idxContextSpecificModel] = intersect(consistentModel.rxns, contextSpecificModel.rxns);
     consistentModel.lb(idxConsistentModel) = contextSpecificModel.lb(idxContextSpecificModel);
     consistentModel.ub(idxConsistentModel) = contextSpecificModel.ub(idxContextSpecificModel);
     
-    % finding the exchange reactions associated with the medium
-    [excRxnsCtxtSpeModelBool, ~] = findExcRxns(contextSpecificModel);
-    excRxnsCtxtSpeModel = contextSpecificModel.rxns(excRxnsCtxtSpeModelBool);
-    notPresentExcMediumRxnsSpe = setdiff(excMediumRxns, excRxnsCtxtSpeModel);
-    disp(['The following exchange reactions: ' newline strjoin(notPresentExcMediumRxnsSpe, newline) newline 'will first be used to fill the medium the model as they are initially associated with the medium metabolites.']);
+    % Initializing a new core for a second fastcore
+    fillingCoreRxns = unique([contextSpecificModel.rxns; biomassReactionName]);
     
-    % creating a new core with all the rxns of the contextSpecificModel,
-    % the biomass, the .func rxns, and the missing medium exchange rxns
-    mediumFillingCore = unique([contextSpecificModel.rxns; biomassReactionName; functionKeep; notPresentExcMediumRxnsSpe]);
-    indicesMediumFillingCore = find(ismember(consistentModel.rxns, mediumFillingCore));
+    if fillingMediumFlag == 1 && needMediumFilling
+        disp('Proceeding to medium filling.');
+        % finding the exchange reactions associated with the medium
+        [excRxnsCtxtSpeModelBool, ~] = findExcRxns(contextSpecificModel);
+        excRxnsCtxtSpeModel = contextSpecificModel.rxns(excRxnsCtxtSpeModelBool);
+        notPresentExcMediumRxnsSpe = setdiff(excMediumRxns, excRxnsCtxtSpeModel);
+        disp(['The following exchange reactions: ' newline strjoin(notPresentExcMediumRxnsSpe, newline) newline 'will first be used to fill the medium the model as they are initially associated with the medium metabolites.']);
+        fillingCoreRxns = unique([fillingCoreRxns; notPresentExcMediumRxnsSpe]);
+    end 
     
-    % completing the medium and the model 
-    [contextSpecificModel, retainedRxnsMediumFilledBool] = fastcore(consistentModel, indicesMediumFillingCore, 1e-4, 0, adaptiveScalingFlag);
+    if functionKeepFlag
+        disp('Proceeding to .func filling.');
+        fillingCoreRxns = unique([fillingCoreRxns; missingFunctionKeep]);
+    end
+
+    indicesFillingCore = find(ismember(consistentModel.rxns, fillingCoreRxns));
+    
+    % completing the model 
+    [contextSpecificModel, retainedRxnsFilledModelBool] = fastcore(consistentModel, indicesFillingCore, 1e-4, 0, adaptiveScalingFlag);
     indices = 1:numel(consistentModel.rxns);
-    keepRxns = indices(retainedRxnsMediumFilledBool == 1);
-    retainedRxnsMediumFilling = find(ismember(origModel.rxns, consistentModel.rxns(keepRxns)));
-    supplementaryRxns = setdiff(retainedRxnsMediumFilling, retainedRxns);
-    disp(['Here are the final reactions that have been added to the model in order to fill the medium: ' newline strjoin(origModel.rxns(supplementaryRxns), newline) newline]);
-    retainedRxns = retainedRxnsMediumFilling;
+    keepRxns = indices(retainedRxnsFilledModelBool == 1);
+    retainedRxnsFilledModel = find(ismember(origModel.rxns, consistentModel.rxns(keepRxns)));
+    supplementaryRxns = setdiff(retainedRxnsFilledModel, retainedRxns);
+    disp(['Here are the final reactions that have been added to the model in order to fill it: ' newline strjoin(origModel.rxns(supplementaryRxns), newline) newline]);
+    retainedRxns = retainedRxnsFilledModel;
 end
 
 %%
