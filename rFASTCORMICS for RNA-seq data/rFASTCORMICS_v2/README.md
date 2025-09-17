@@ -4,7 +4,7 @@ Here, we provide an updated version of rFASTCORMICS, called rFASTCORMICS_v2.
 
 ## What will you find on this repository?
 On this repository, you will find:
-- A `README.md` file, containing a description of this repository, and some tutorials.
+- A `README.md` file, containing a description of this repository, documentation of the tool, and some tutorials.
 - A *scripts* folder, containing the scripts of rFASTCORMICS_v2, and the ones of FASTCORE. It is important to use the functions from this FASTCORE folder instead of the one included in the COBRA Toolbox, as some changes were also made on these functions and that they are called in rFASTCORMICS_v2. The two folders can directly be associated with to the COBRA Toolbox.
 - A *BRCA_example* folder, containing materials and a script to run an example using rFASTCORMICS_v2. The `test_script.m` file can be run directly. It will load the `workspace_example` and the `optionalSettings` files. The `finalWorkspace` file contains all the variables after the script has finished running.
 
@@ -36,7 +36,7 @@ Here is the workflow of rFastcormics_v2:
 | `optionalSettings.func` | cell array of reaction abbreviations that should carry a flux <br> It is recommended to put the objective function of your model to ensure its preservation in the context-specific model.<br>Any reaction included in the .func will necessarily appear in the final model.|
 | `optionalSettings.medium` | cell array of metabolite abbreviations that are present in the growth medium of the cells and that will be used to constrain the model |
 | `optionalSettings.notMediumConstrained` | ??? |
-| `biomassReactionName` | ??? |
+| `biomassReactionName` | string or character array with the name of the objective/biomass reaction |
 | `fillingMediumFlag` | fill the medium with supplementary reactions in case the provided medium is not sufficient to fulfill the objective function<br> 1 for active (default), 0 for inactive |
 | `adaptiveScalingFlag` | adaptive scaling of the flux values (see LP10)<br>0 for inactive (default), 1 for active |
 | **Outputs** |
@@ -55,3 +55,17 @@ To identify the exchange reactions associated with the medium metabolites, you c
 `excRxns = consistentModel.rxns(excRxnsBool);`<br>
 `[mediumRxns, ~] = findRxnsFromMets(model, mediumMets);`<br>
 `excMediumRxns = intersect(excRxns, mediumRxns);`
+
+## Common issue
+In case you face this error:<br>
+"`Error using GPRrulesMapperRFASTCORMICS (line 17)`<br>
+`Error: The input was too complicated or too big for MATLAB to parse.`<br>
+<br>
+`Error in mapExpressionToModel (line 126)`<br>
+`mapping(match(k),:)= GPRrulesMapperRFASTCORMICS(cell2mat(rules(match(k))), mappedToGenes);`<br>
+<br>
+`Error in rFastcormics4cobra_v2 (line ...)`<br>
+`mapping = mapExpressionToModel(mediumConstrainedModel, discretized, dico, rownames, 1);`"<br>
+ <br>
+ You need to run this line of code at the beginning of your script or before running rfastcormics_v2: `feature astheightlimit 2000;`
+
