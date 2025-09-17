@@ -65,7 +65,7 @@ In case you face this error:<br>
 `mapping(match(k),:)= GPRrulesMapperRFASTCORMICS(cell2mat(rules(match(k))), mappedToGenes);`<br>
 <br>
 `Error in rFastcormics4cobra_v2 (line ...)`<br>
-`mapping = mapExpressionToModel(mediumConstrainedModel, discretized, dico, rownames, 1);`"<br>
+`mapping = mapExpressionToModel(mediumConstrainedModel, discretized, dico, rownames, 1);`",<br>
  <br>
- You need to run this line of code at the beginning of your script or before running rfastcormics_v2: `feature astheightlimit 2000;`
+ you need to run this line of code at the beginning of your script or before running rfastcormics_v2: `feature astheightlimit 2000;`
 
