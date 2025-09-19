@@ -1,4 +1,4 @@
-function [contextSpecificModel, retainedRxns] = rFastcormics4cobra_v2(model, discretized, rownames, dico, consensusProportion, epsilon, optionalSettings, biomassReactionName, fillingMediumFlag, adaptiveScalingFlag)
+function [contextSpecificModel, retainedRxns, indicesCompletedCoreOrig] = rFastcormics4cobra_v2(model, discretized, rownames, dico, consensusProportion, epsilon, optionalSettings, biomassReactionName, fillingMediumFlag, adaptiveScalingFlag)
 % The rFASTCORMICS is a context-specific building algorithm for
 % reconstructing a tissue, a cell-specific, or any context-specific model from RNAseq data
 % and a generic reconstruction (Pacheco et al. 2019)
@@ -39,13 +39,13 @@ function [contextSpecificModel, retainedRxns] = rFastcormics4cobra_v2(model, dis
 
 % OUTPUT:
 % contextSpecificModel        context-specific model, reduced to the retained reactions 
-% Afinal:                     indices of the active reactions
+% retainedRxns:               indices of the retained reactions in the input model
+% rxnNamesCompletedCore       names of the 
 
 % .. Authors:
 %       - Maria Pires Pacheco, Thomas Sauter, 2016, University of Luxembourg
 %       - Maria Pires Pacheco, Thomas Sauter, 2023, adaptation of the code to the Cobra toolbox
-%       - Vanille Lejal, 2025, University of Luxembourg, removing the transporters from the core,
-%       removing the nonPen argument, switching to one fastcore,
+%       - Vanille Lejal, 2025, University of Luxembourg, reorganization of the code, removing the transporters from the core, switching to one fastcore,
 %       integration of an option to fill a missing medium, cleaning
 %       of the code, adaptation of the code for a use with gurobi and
 %       Matlab 2024
@@ -125,16 +125,17 @@ if ~isempty(optionalSettings) && isfield(optionalSettings, 'medium')
     excRxns = consistentModel.rxns(excRxnsBool);
     [mediumRxns, ~] = findRxnsFromMets(consistentModel, mediumMets);
     excMediumRxns = intersect(excRxns, mediumRxns);
+    fprintf("Number of exchange reactions associated with the medium metabolites: %d.\n", numel(excMediumRxns));
 
     mediumConstrainedModel =  constrainModelRFASTCORMICS(consistentModel, mediumMets, notMediumConstrained, biomassReactionName, functionKeep);
     % watch out, the model here could be unconsistent
     
 elseif isempty(optionalSettings)
     mediumConstrainedModel = consistentModel; 
-    warning('No optional settings detected')
+    warning('No optional settings detected.')
 else
     mediumConstrainedModel = consistentModel;
-    warning('No given medium')
+    warning('No given medium.')
 end
 
 %% Mapping the reactions to the model
@@ -142,7 +143,7 @@ mapping = mapExpressionToModel(mediumConstrainedModel, discretized, dico, rownam
 mapping = sparse(mapping);
 
 if sum(mapping) == 0
-    disp('No expressed genes were mapped, check again') %no gene expressed according to the RNAseq data
+    disp('No expressed genes were mapped, check again.') %no gene expressed according to the RNAseq data
     return
 end
 
@@ -157,27 +158,29 @@ initialCore = find(sum(mapping == 1, 2) >= (consensusProportion * numberOfSample
 modelTransRxns = findTransRxns(mediumConstrainedModel);
 [~, TransIDs] = ismember(modelTransRxns, mediumConstrainedModel.rxns);
 % Removing transporters from the core
-CoreWithoutTrans = setdiff(initialCore, TransIDs); % we remove transporters from the core
+coreWithoutTrans = setdiff(initialCore, TransIDs); % we remove transporters from the core
+fprintf("Number of core reactions (after mapping, transporters removed, without .func reactions): %d\n", numel(coreWithoutTrans));
 
 if ~isempty(functionKeep)
-    B = find(ismember(mediumConstrainedModel.rxns, functionKeep)); %reactions to keep
-    %problem: model has lost function keep
-    if isempty(B)
-        warning('No reactions to retain were found in the (medium) constrained model')
-    elseif numel(B) ~= numel(functionKeep)
-        warning('Not all functions set to be kept were found in the (medium) constrained model')
+    foundFunctionKeep = find(ismember(mediumConstrainedModel.rxns, functionKeep)); %reactions to keep
+    if isempty(foundFunctionKeep)
+        warning('No reactions from the .func set were found in the model.')
+    elseif numel(foundFunctionKeep) ~= numel(functionKeep)
+        warning('Part of the reactions from the .func set were not found in the model.')
     end
-    completedCore = union(CoreWithoutTrans, B);
+    completedCore = union(coreWithoutTrans, foundFunctionKeep);
 else
-    completedCore = CoreWithoutTrans;
+    completedCore = coreWithoutTrans;
 end
 
 % Get the names of the core reactions
 rxnNamesCompletedCore = mediumConstrainedModel.rxns(completedCore);
+% Get the indices of the core reactions in the original model
+indicesCompletedCoreOrig = find(ismember(origModel.rxns, rxnNamesCompletedCore));
 
 %% Removing the reactions under the control of unexpressed genes
 notExpressed = find(sum(mapping == -1, 2) >= (consensusProportion * numberOfSamples));
-%notExpressed = setdiff(notExpressed, BiomassRelatedRxnsID); % si ça sert pour le core, on laisse même si c'est pas exprimé
+fprintf("Number of non expressed reactions (after mapping): %d.\n", numel(notExpressed));
 mediumConstrainedModel.lb(notExpressed) = 0;
 mediumConstrainedModel.ub(notExpressed) = 0;
 
@@ -198,7 +201,7 @@ if any(strcmp(consistentMediumConstrainedModel.rxns, biomassReactionName))
         needMediumFilling = true;
     end
 else
-    disp(['The model lost ' biomassReactionName ' after the application of medium constraints.']);
+    disp(['The model lost ' biomassReactionName ' after the application of medium constraints.']); % pb of display, check
     needMediumFilling = true;
 end
 
@@ -208,8 +211,9 @@ if needMediumFilling
     [excRxnsAfterMediumBool, ~] = findExcRxns(consistentMediumConstrainedModel);
     excRxnsAfterMedium = consistentMediumConstrainedModel.rxns(excRxnsAfterMediumBool);
     notPresentExcMediumRxns = setdiff(excMediumRxns, excRxnsAfterMedium);
+    disp(notPresentExcMediumRxns);
     if ~isempty(notPresentExcMediumRxns)
-        disp(['The following exchange reactions: ' newline strjoin(notPresentExcMediumRxns, newline) newline 'were initially not included in the consistent medium constraint model, even though ther were associated with the medium metabolites.' newline 'In the case of medium filling, they will be forced to be included in the model.']);
+        disp(['The following exchange reactions: ' newline strjoin(notPresentExcMediumRxns, newline) newline 'were initially not included in the consistent medium constraint model, even though ther were associated with the medium metabolites.' newline 'In the case of medium filling, their inclusion in the model will not be penalized.']);
     end
 end
 
@@ -225,7 +229,7 @@ retainedRxns = find(ismember(origModel.rxns, consistentMediumConstrainedModel.rx
 %% Check if all the .func reactions are included in the model
 missingFunctionKeep = functionKeep(~ismember(functionKeep, contextSpecificModel.rxns));
 if ~isempty(missingFunctionKeep)
-    disp(['The following .func reactions are missing:' newline strjoin(missingFunctionKeep, newline) newline ' and will be added to the context-specific model through a second fastcore.']);
+    disp(['The following .func reactions are missing:' newline strjoin(missingFunctionKeep, newline) newline ' and will be added to the context-specific model through a second fastcore run.']);
     functionKeepFlag = true;
 else
     functionKeepFlag = false;
@@ -250,8 +254,11 @@ if fillingMediumFlag == 1 && needMediumFilling || functionKeepFlag
         [excRxnsCtxtSpeModelBool, ~] = findExcRxns(contextSpecificModel);
         excRxnsCtxtSpeModel = contextSpecificModel.rxns(excRxnsCtxtSpeModelBool);
         notPresentExcMediumRxnsSpe = setdiff(excMediumRxns, excRxnsCtxtSpeModel);
-        disp(['The following exchange reactions: ' newline strjoin(notPresentExcMediumRxnsSpe, newline) newline 'will first be used to fill the medium the model as they are initially associated with the medium metabolites.']);
-        fillingCoreRxns = unique([fillingCoreRxns; notPresentExcMediumRxnsSpe]);
+        if ~isempty(notPresentExcMediumRxnsSpe)
+            disp(['The inclusion of the following exchange reactions: ' newline strjoin(notPresentExcMediumRxnsSpe, newline) newline 'will not be penalized to fill the model as they are initially associated with the medium metabolites.']);
+        end
+    else
+       notPresentExcMediumRxnsSpe = ''; 
     end 
     
     if functionKeepFlag
@@ -260,17 +267,25 @@ if fillingMediumFlag == 1 && needMediumFilling || functionKeepFlag
     end
 
     indicesFillingCore = find(ismember(consistentModel.rxns, fillingCoreRxns));
+    indicesNonPenMediumExcRxns = find(ismember(consistentModel.rxns, notPresentExcMediumRxnsSpe));
     
     % completing the model 
-    [contextSpecificModel, retainedRxnsFilledModelBool] = fastcore(consistentModel, indicesFillingCore, 1e-4, 0, adaptiveScalingFlag);
+    [contextSpecificModel, retainedRxnsFilledModelBool] = fastcore(consistentModel, indicesFillingCore, 1e-4, 0, adaptiveScalingFlag, indicesNonPenMediumExcRxns);
     indices = 1:numel(consistentModel.rxns);
     keepRxns = indices(retainedRxnsFilledModelBool == 1);
     retainedRxnsFilledModel = find(ismember(origModel.rxns, consistentModel.rxns(keepRxns)));
     supplementaryRxns = setdiff(retainedRxnsFilledModel, retainedRxns);
-    disp(['Here are the final reactions that have been added to the model in order to fill it: ' newline strjoin(origModel.rxns(supplementaryRxns), newline) newline]);
+    disp(['Here are the reactions that have been added to the model during the second fastcore run in order to fill it: ' newline strjoin(origModel.rxns(supplementaryRxns), newline) newline]);
     retainedRxns = retainedRxnsFilledModel;
 end
 
+%% Uptakes that do not come from the medium
+if isfield(optionalSettings, 'medium')
+    [~, uptRxnsBool] = findExcRxns(contextSpecificModel);
+    uptRxns = contextSpecificModel.rxns(uptRxnsBool);
+    additionalMedium = setdiff(uptRxns,excMediumRxns);
+    disp(['Model additional uptakes (not provided by the medium): ' newline strjoin(additionalMedium, newline) newline]);
+end
 %%
 disp('rFastcormics is done.');    
 end
