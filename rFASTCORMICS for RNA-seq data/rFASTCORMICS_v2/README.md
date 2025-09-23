@@ -42,6 +42,7 @@ Here is the workflow of rFastcormics_v2:
 | **Outputs** |
 | contextSpecificModel | context-specific model, reduced to the retained reactions and associated genes |
 | retainedRxns | indices in `model` of the retained reactions |
+| indicesCompletedCoreOrig | indices of the core reactions in the input model |
 
 ## Option to supplement an insufficient medium
 
