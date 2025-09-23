@@ -40,7 +40,7 @@ function [contextSpecificModel, retainedRxns, indicesCompletedCoreOrig] = rFastc
 % OUTPUT:
 % contextSpecificModel        context-specific model, reduced to the retained reactions 
 % retainedRxns:               indices of the retained reactions in the input model
-% rxnNamesCompletedCore       names of the 
+% indicesCompletedCoreOrig    indices of the core reactions in the input model
 
 % .. Authors:
 %       - Maria Pires Pacheco, Thomas Sauter, 2016, University of Luxembourg
@@ -120,12 +120,11 @@ if ~isempty(optionalSettings) && isfield(optionalSettings, 'medium')
         notMediumConstrained = [];
     end
     mediumMets = optionalSettings.medium;
-    % finding the exchange reactions associated with the medium
-    [excRxnsBool, ~] = findExcRxns(consistentModel);
-    excRxns = consistentModel.rxns(excRxnsBool);
+    [~, uptRxnsBool] = findExcRxns(consistentModel);
+    uptRxns = consistentModel.rxns(uptRxnsBool);
     [mediumRxns, ~] = findRxnsFromMets(consistentModel, mediumMets);
-    excMediumRxns = intersect(excRxns, mediumRxns);
-    fprintf("Number of exchange reactions associated with the medium metabolites: %d.\n", numel(excMediumRxns));
+    uptMediumRxns = intersect(uptRxns, mediumRxns);
+    fprintf("Number of uptake reactions associated with the medium metabolites: %d.\n", numel(uptMediumRxns));
 
     mediumConstrainedModel =  constrainModelRFASTCORMICS(consistentModel, mediumMets, notMediumConstrained, biomassReactionName, functionKeep);
     % watch out, the model here could be unconsistent
@@ -206,14 +205,14 @@ else
 end
 
 %% In case medium if not sufficient
-%Checking if all the exc rxns associated with the medium are in. If not, force them to be in the core
+%Checking if all the uptake rxns associated with the medium are in.
 if needMediumFilling
-    [excRxnsAfterMediumBool, ~] = findExcRxns(consistentMediumConstrainedModel);
-    excRxnsAfterMedium = consistentMediumConstrainedModel.rxns(excRxnsAfterMediumBool);
-    notPresentExcMediumRxns = setdiff(excMediumRxns, excRxnsAfterMedium);
-    disp(notPresentExcMediumRxns);
-    if ~isempty(notPresentExcMediumRxns)
-        disp(['The following exchange reactions: ' newline strjoin(notPresentExcMediumRxns, newline) newline 'were initially not included in the consistent medium constraint model, even though ther were associated with the medium metabolites.' newline 'In the case of medium filling, their inclusion in the model will not be penalized.']);
+    [~, uptRxnsAfterMediumBool] = findExcRxns(consistentMediumConstrainedModel);
+    uptRxnsAfterMedium = consistentMediumConstrainedModel.rxns(uptRxnsAfterMediumBool);
+    notPresentUptMediumRxns = setdiff(uptMediumRxns, uptRxnsAfterMedium);
+    disp(notPresentUptMediumRxns);
+    if ~isempty(notPresentUptMediumRxns)
+        disp(['The following uptake reactions: ' newline strjoin(notPresentUptMediumRxns, newline) newline 'were initially not included in the consistent medium constraint model, even though ther were associated with the medium metabolites.' newline 'In the case of medium filling, their inclusion in the model will not be penalized.']);
     end
 end
 
@@ -248,17 +247,17 @@ if fillingMediumFlag == 1 && needMediumFilling || functionKeepFlag
     % Initializing a new core for a second fastcore
     fillingCoreRxns = unique([contextSpecificModel.rxns; biomassReactionName]);
     
-    if fillingMediumFlag == 1 && needMediumFilling
+    if fillingMediumFlag == 1 && needMediumFilling 
         disp('Proceeding to medium filling.');
-        % finding the exchange reactions associated with the medium
-        [excRxnsCtxtSpeModelBool, ~] = findExcRxns(contextSpecificModel);
-        excRxnsCtxtSpeModel = contextSpecificModel.rxns(excRxnsCtxtSpeModelBool);
-        notPresentExcMediumRxnsSpe = setdiff(excMediumRxns, excRxnsCtxtSpeModel);
-        if ~isempty(notPresentExcMediumRxnsSpe)
-            disp(['The inclusion of the following exchange reactions: ' newline strjoin(notPresentExcMediumRxnsSpe, newline) newline 'will not be penalized to fill the model as they are initially associated with the medium metabolites.']);
+        % finding the uptake reactions associated with the medium
+        [~, uptRxnsCtxtSpeModelBool] = findExcRxns(contextSpecificModel);
+        uptRxnsCtxtSpeModel = contextSpecificModel.rxns(uptRxnsCtxtSpeModelBool);
+        notPresentUptMediumRxnsSpe = setdiff(uptMediumRxns, uptRxnsCtxtSpeModel);
+        if ~isempty(notPresentUptMediumRxnsSpe)
+            disp(['The inclusion of the following uptake reactions: ' newline strjoin(notPresentUptMediumRxnsSpe, newline) newline 'will not be penalized to fill the model as they are initially associated with the medium metabolites.']);
         end
     else
-       notPresentExcMediumRxnsSpe = ''; 
+       notPresentUptMediumRxnsSpe = ''; 
     end 
     
     if functionKeepFlag
@@ -267,10 +266,10 @@ if fillingMediumFlag == 1 && needMediumFilling || functionKeepFlag
     end
 
     indicesFillingCore = find(ismember(consistentModel.rxns, fillingCoreRxns));
-    indicesNonPenMediumExcRxns = find(ismember(consistentModel.rxns, notPresentExcMediumRxnsSpe));
+    indicesNonPenMediumUptRxns = find(ismember(consistentModel.rxns, notPresentUptMediumRxnsSpe));
     
     % completing the model 
-    [contextSpecificModel, retainedRxnsFilledModelBool] = fastcore(consistentModel, indicesFillingCore, 1e-4, 0, adaptiveScalingFlag, indicesNonPenMediumExcRxns);
+    [contextSpecificModel, retainedRxnsFilledModelBool] = fastcore(consistentModel, indicesFillingCore, 1e-4, 0, adaptiveScalingFlag, indicesNonPenMediumUptRxns);
     indices = 1:numel(consistentModel.rxns);
     keepRxns = indices(retainedRxnsFilledModelBool == 1);
     retainedRxnsFilledModel = find(ismember(origModel.rxns, consistentModel.rxns(keepRxns)));
@@ -281,9 +280,9 @@ end
 
 %% Uptakes that do not come from the medium
 if isfield(optionalSettings, 'medium')
-    [~, uptRxnsBool] = findExcRxns(contextSpecificModel);
-    uptRxns = contextSpecificModel.rxns(uptRxnsBool);
-    additionalMedium = setdiff(uptRxns,excMediumRxns);
+    [~, uptRxnsBoolSpe] = findExcRxns(contextSpecificModel);
+    uptRxnsSpe = contextSpecificModel.rxns(uptRxnsBoolSpe);
+    additionalMedium = setdiff(uptRxnsSpe, uptMediumRxns);
     disp(['Model additional uptakes (not provided by the medium): ' newline strjoin(additionalMedium, newline) newline]);
 end
 %%
