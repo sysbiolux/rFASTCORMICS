@@ -10,10 +10,10 @@ On this repository, you will find:
 
 ## What are the main changes between rFASTCORMICS and rFASTCORMICS_v2?
 1. Instead of not penalizing the addition of transporters in the model, we removed the nonPen argument and rather decided to remove transporters from the core set of reactions. In this way, we make sure only the necessary transporters will be included in the model.
-2. The FASTCORE algorithm is run only once instead of twice, reducing the time of execution of rFASTCORMICS_v2.
+2. The FASTCORE algorithm is run only once instead of twice (except for cases such as insufficient medium, see workflow), reducing the time of execution of rFASTCORMICS_v2.
 
 ## Installation
-rFASTCORMICS_v2 requires MATLAB 2019 or a later version and works with the IBM CPLEX or Gurobi solvers.<br> The user also needs to install the COBRA Toolbox. As mentioned previously, both FASTCORE and rFASTCORMICS_v2 folders in the *scripts* folders sould be downloaded. The FASTCORE folder already included in the COBRA Toolbox should be replaced by the one provided here.
+rFASTCORMICS_v2 requires MATLAB 2019 or a later version and works with the IBM CPLEX or Gurobi solvers.<br> The user also needs to install the COBRA Toolbox. As mentioned previously, both FASTCORE and rFASTCORMICS folders in the *scripts* folders sould be downloaded. The FASTCORE folder already included in the COBRA Toolbox should be replaced by the one provided here.
 
 ## How to use rFastcormics_v2?
 Here is the workflow of rFastcormics_v2:
