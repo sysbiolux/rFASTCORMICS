@@ -48,16 +48,16 @@ Here is the workflow of rFastcormics_v2:
 
 ## Option to supplement an insufficient medium
 
-When a model is constrained by a medium, it can sometimes be insufficient to allow flux through the model’s objective function (often biomass) or, in some cases, to even retain this reaction within the model. We have included a medium sufficiency check in the rFastcormics_v2 workflow. <br>When the medium is insufficient, an optional argument (`missingMediumFlag`, enabled by default) allows the medium to be supplemented by running the fastcore algorithm a second time. The core set of reactions is updated to include all reactions selected to be part of the context-specific model, as well as the exchange reactions associated with the medium metabolites that may have been excluded during the medium-constraining step (`optionalSettings.medium`).
-<br><br><b>Note</b>: If the context-specific model can fulfill the objective function using only a subset of the provided medium, some of the exchange reactions associated with the medium metabolites may not be included in the context-specific model.<br>
-If you want <b>all</b> exchange reactions associated with the medium metabolites to be included in the context-specific model, not just the necessary ones, you need to add these exchange reactions to the `optionalSettings.func` argument as well. Be careful: this argument expects a list of reactions as input, whereas `optionalSettings.medium` expects metabolites.<br>
-To identify the exchange reactions associated with the medium metabolites, you can use the following lines of code:<br>
+When a model is constrained by a medium, it can sometimes be insufficient to allow flux through the model’s objective function (often biomass) or, in some cases, to even retain this reaction within the model. We have included a medium sufficiency check in the rFastcormics_v2 workflow. <br>When the medium is insufficient, an optional argument (`missingMediumFlag`, enabled by default) allows the medium to be supplemented by running the fastcore algorithm a second time. For the second run of fastcore, the core set of reactions is updated to include all reactions selected to be part of the first context-specific model, and the addition of uptake reactions associated with the medium metabolites that may have been excluded during the medium-constraining step (`optionalSettings.medium`) are not penalized, so they are prioritized over others.
+<br><br><b>Note</b>: If the context-specific model can fulfill the objective function using only a subset of the provided medium, some of the uptake reactions associated with the medium metabolites may not be included in the context-specific model.<br>
+If you want <b>all</b> exchange reactions associated with the medium metabolites to be included in the context-specific model, not just the necessary ones, you need to add these uptake reactions to the `optionalSettings.func` argument as well. Be careful: this argument expects a list of reactions as input, whereas `optionalSettings.medium` expects metabolites.<br>
+To identify the uptake reactions associated with the medium metabolites, you can use the following lines of code:<br>
 `mediumMets = optionalSettings.medium;`<br>
 `% finding the exchange reactions associated with the medium`<br>
-`[excRxnsBool, ~] = findExcRxns(model);`<br>
-`excRxns = consistentModel.rxns(excRxnsBool);`<br>
+`[~, uptRxnsBool] = findExcRxns(model);`<br>
+`uptRxns = consistentModel.rxns(uptRxnsBool);`<br>
 `[mediumRxns, ~] = findRxnsFromMets(model, mediumMets);`<br>
-`excMediumRxns = intersect(excRxns, mediumRxns);`
+`uptMediumRxns = intersect(uptRxns, mediumRxns);`
 
 ## Common issue
 In case you face this error:<br>
