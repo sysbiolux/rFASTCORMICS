@@ -210,9 +210,8 @@ if needMediumFilling
     [~, uptRxnsAfterMediumBool] = findExcRxns(consistentMediumConstrainedModel);
     uptRxnsAfterMedium = consistentMediumConstrainedModel.rxns(uptRxnsAfterMediumBool);
     notPresentUptMediumRxns = setdiff(uptMediumRxns, uptRxnsAfterMedium);
-    disp(notPresentUptMediumRxns);
     if ~isempty(notPresentUptMediumRxns)
-        disp(['The following uptake reactions: ' newline strjoin(notPresentUptMediumRxns, newline) newline 'were initially not included in the consistent medium constraint model, even though ther were associated with the medium metabolites.' newline 'In the case of medium filling, their inclusion in the model will not be penalized.']);
+        disp(['The following uptake reactions: ' newline strjoin(notPresentUptMediumRxns, newline) newline 'were initially not included in the consistent medium constraint model, even though they were associated with the medium metabolites.' newline 'In the case of medium filling, their inclusion in the model will not be penalized.']);
     end
 end
 
