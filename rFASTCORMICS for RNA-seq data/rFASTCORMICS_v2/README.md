@@ -42,9 +42,9 @@ Here is the workflow of rFastcormics_v2:
 | `fillingMediumFlag` | fill the medium with supplementary reactions in case the provided medium is not sufficient to fulfill the objective function<br> 1 for active (default), 0 for inactive |
 | `adaptiveScalingFlag` | adaptive scaling of the flux values (see LP10)<br>0 for inactive (default), 1 for active |
 | **Outputs** |
-| contextSpecificModel | context-specific model, reduced to the retained reactions and associated genes |
-| retainedRxns | indices in `model` of the retained reactions |
-| indicesCompletedCoreOrig | indices in `model` of the core reactions |
+| `contextSpecificModel` | context-specific model, reduced to the retained reactions and associated genes |
+| `retainedRxns` | indices in `model` of the retained reactions |
+| `indicesCompletedCoreOrig` | indices in `model` of the core reactions |
 
 ## Option to supplement an insufficient medium
 
