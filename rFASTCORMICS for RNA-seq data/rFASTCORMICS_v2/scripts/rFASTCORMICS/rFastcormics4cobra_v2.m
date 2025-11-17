@@ -261,7 +261,7 @@ if fillingMediumFlag == 1 && needMediumFilling || functionKeepFlag
     
     if functionKeepFlag
         disp('Proceeding to .func filling.');
-        fillingCoreRxns = unique([fillingCoreRxns; missingFunctionKeep]);
+        fillingCoreRxns = unique([fillingCoreRxns; missingFunctionKeep']);
     end
 
     indicesFillingCore = find(ismember(consistentModel.rxns, fillingCoreRxns));
