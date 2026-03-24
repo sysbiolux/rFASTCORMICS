@@ -99,3 +99,16 @@ Basic usage in MATLAB:
 
 ```matlab
 [A, model_consistent] = fasterCC(model, epsilon, printLevel, revopt);
+```
+
+---
+
+## DEMO
+
+A full working example is provided in the `code` folder:
+
+```matlab
+code/run_fasterCC_Recon3D_demo.m
+```
+
+---
