@@ -1,4 +1,4 @@
-function [discretized,zFPKM] = discretizeFPKM(fpkm, colnames, figflag, pathFigures)
+function [discretized,scaled_expression] = discretizeFPKM(fpkm, colnames, figflag, pathFigures)
 %% Discretize_Data
 % script adapted from (c) Dr. Maria Pires Pacheco 2016
 
@@ -15,6 +15,7 @@ end
 %% log2-transform the data
 signal = log2(fpkm);
 signal(isinf(signal)) = -1e6;
+scaled_expression = [];
 
 %% Discretize the data by creating half-gaussians
 for j=1:size(fpkm,2) %for each sample
@@ -159,6 +160,7 @@ for j=1:size(fpkm,2) %for each sample
     
     
     zFPKM = reshape(zFPKM,size(data_keep,1),size(data_keep,2));
+    scaled_expression = [scaled_expression,zFPKM];
     
     exp_threshold   = e;
     unexp_threshold = ue;
