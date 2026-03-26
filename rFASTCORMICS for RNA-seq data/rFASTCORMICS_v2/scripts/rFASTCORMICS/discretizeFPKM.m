@@ -1,4 +1,4 @@
-function [discretized] = discretizeFPKM(fpkm, colnames, figflag, pathFigures)
+function [discretized,zFPKM] = discretizeFPKM(fpkm, colnames, figflag, pathFigures)
 %% Discretize_Data
 % script adapted from (c) Dr. Maria Pires Pacheco 2016
 
