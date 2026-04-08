@@ -37,14 +37,14 @@ Here is the workflow of rFastcormics_v2:
 | `epsilon` | smallest flux that is considered nonzero (default getCobraSolverParams('LP', 'feasTol')*100 = 1e-4) |
 | `optionalSettings.func` | cell array of reaction abbreviations that should carry a flux <br> It is recommended to put the objective function of your model to ensure its preservation in the context-specific model.<br>Any reaction included in the .func will necessarily appear in the final model.|
 | `optionalSettings.medium` | cell array of metabolite abbreviations that are present in the growth medium of the cells and that will be used to constrain the model |
-| `optionalSettings.notMediumConstrained` | ??? |
-| `biomassReactionName` | string or character array with the name of the objective/biomass reaction |
+| `optionalSettings.notMediumConstrained` | reactions not included in the medium that must be retained |
+| `biomassReactionName` | string or character array with the name of the objective/biomass reaction (default 'biomass_reaction') |
 | `fillingMediumFlag` | fill the medium with supplementary reactions in case the provided medium is not sufficient to fulfill the objective function<br> 1 for active (default), 0 for inactive |
 | `adaptiveScalingFlag` | adaptive scaling of the flux values (see LP10)<br>0 for inactive (default), 1 for active |
 | **Outputs** |
-| contextSpecificModel | context-specific model, reduced to the retained reactions and associated genes |
-| retainedRxns | indices in `model` of the retained reactions |
-| indicesCompletedCoreOrig | indices in `model` of the core reactions |
+| `contextSpecificModel` | context-specific model, reduced to the retained reactions and associated genes |
+| `retainedRxns` | indices in `model` of the retained reactions |
+| `indicesCompletedCoreOrig` | indices in `model` of the core reactions |
 
 ## Option to supplement an insufficient medium
 

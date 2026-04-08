@@ -1,11 +1,11 @@
-function [discretized] = discretizeFPKM(fpkm, colnames, figflag, pathFigures)
+function [discretized, scaledExpression] = discretizeFPKM(fpkm, colnames, figflag, pathFigures)
 %   The function discretizes gene expression data (FPKM values) into three categories:
 %   expressed, not expressed, and unknown, based on a zFPKM transformation and
 %   half-Gaussian density fitting.
 %
 % USAGE:
 %
-%   [discretized] = discretizeFPKM(fpkm, colnames, figflag, pathFigures)
+%   [discretized, scaledExpression] = discretizeFPKM(fpkm, colnames, figflag, pathFigures)
 %
 % INPUTS:
 %   fpkm:              m x n matrix or table of FPKM expression values (genes x samples)
@@ -13,14 +13,18 @@ function [discretized] = discretizeFPKM(fpkm, colnames, figflag, pathFigures)
 %   figflag:           optional, flag to plot and save figures (default: 0)
 %   pathFigures:       optional, path to save figures (default: current folder)
 %
-% OUTPUT:
+% OUTPUTS:
 %   discretized:       m x n matrix of discretized values
 %                      *  1 : expressed
 %                      *  0 : unknown
 %                      * -1 : not expressed
+%   scaledExpression:  scaled data after zFPKM transformation
 %
 % .. Authors:
 %       - Maria Pires Pacheco, 2016, University of Luxembourg
+
+%% Discretize_Data
+% script adapted from (c) Dr. Maria Pires Pacheco 2016
 
 if nargin < 3
     figflag = 0;
@@ -37,6 +41,7 @@ end
 %% log2-transform the data
 signal = log2(fpkm);
 signal(isinf(signal)) = -1e6;
+scaledExpression = [];
 
 %% Discretize the data by creating half-gaussians
 for j = 1:size(fpkm, 2) % for each sample
@@ -172,7 +177,10 @@ for j = 1:size(fpkm, 2) % for each sample
         close all;
     end
     
-    exp_threshold = e;
+    zFPKM = reshape(zFPKM, size(data_keep, 1), size(data_keep, 2));
+    scaledExpression = [scaledExpression, zFPKM];
+    
+    exp_threshold   = e;
     unexp_threshold = ue;
     
     expressed = find(discretized >= exp_threshold);
@@ -186,6 +194,7 @@ for j = 1:size(fpkm, 2) % for each sample
     discretized = (reshape(discretized, size(data_keep, 1), size(data_keep, 2)));
     discretized_keep(j, :) = discretized';
 end
+
 % Combine all samples
 discretized = discretized_keep';
 
