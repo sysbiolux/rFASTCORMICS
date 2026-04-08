@@ -6,6 +6,7 @@ function [finalModel, Afinal] = rFastcormics4cobra(model, discretized, rownames,
 % USAGE:
 %
 %    A = rFastcormics4cobra(model, discretized, rownames, dico, consensusProportion, epsilon, optionalSettings, biomassReactionName)
+%
 % REQUIREMENTS:    Matlab
 %                         * Statistics and Machine Learning Toolbox
 %                         * Curve fitting toolbox

@@ -1,4 +1,4 @@
-function [fitresult, gof] = createFitmaria2(xi, rest)
+function [fitresult, gof] = createFitL(xi, rest)
 %CREATEFIT(XI,REST)
 % (c)Maria Pires Pacheco 2016
 %  Create a fit.

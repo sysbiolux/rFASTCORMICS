@@ -31,7 +31,7 @@ for i = 1:numel(exRxnsInd)
 end
 
 exRxns  = model.rxns(exRxnsInd);
-model.mets(exchangeMets); % useless
+model.mets(exchangeMets); % not used
 
 exMetsX  = (regexp(model.metFormulas(exchangeMets),'X')); % why X and Y metabolites?
 exMetsY  = (regexp(model.metFormulas(exchangeMets),'Y')); % used to check whether exchange reactions involving X or Y metabolites are closed or not. Useful? Should be passed as argument?
@@ -50,11 +50,12 @@ model.mets(exchangeMets(exKnowInorganic)); % print exchange reactions that are i
 
 isOrganic = (~cellfun('isempty', exMetsCarbon) | ~cellfun('isempty', exMetsX) | ~cellfun('isempty', exMetsY) | ~cellfun('isempty', exMetsR)) & ~exKnowInorganic; % list of organic exchange reactions
 
+% not used
 metsExOrganic    = exchangeMets(isOrganic);
 metsExInorganic  = setdiff(exchangeMets, metsExOrganic);
-model.mets(metsExOrganic); % useless
-model.mets(metsExInorganic); % useless
+model.mets(metsExOrganic);
+model.mets(metsExInorganic);
 
 ExOrgaInd  = exRxnsInd(isOrganic); % output = indices of organic exchange reactions
-%Ex_orga     = model.rxns(ExOrgaInd); % useless
+%Ex_orga     = model.rxns(ExOrgaInd); % not used
 end

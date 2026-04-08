@@ -2,53 +2,58 @@ function [contextSpecificModel, retainedRxns, indicesCompletedCoreOrig] = rFastc
 % The rFASTCORMICS is a context-specific building algorithm for
 % reconstructing a tissue, a cell-specific, or any context-specific model from RNAseq data
 % and a generic reconstruction (Pacheco et al. 2019)
-
+%
 % USAGE:
 %
-%    A = rFastcormics4cobra(model, discretized, rownames, dico, consensusProportion, epsilon, optionalSettings, biomassReactionName)
-% REQUIREMENTS:    Matlab
-%                         * Statistics and Machine Learning Toolbox
-%                         * Curve fitting toolbox
+%   [contextSpecificModel, retainedRxns, indicesCompletedCoreOrig] = rFastcormics4cobra(model, discretized, rownames, dico, consensusProportion, epsilon, optionalSettings, biomassReactionName, fillingMediumFlag, adaptiveScalingFlag)
+%
+% REQUIREMENTS:
+%                          * Statistics and Machine Learning Toolbox
+%                          * Curve fitting toolbox
 % INPUTS:
-% model:                 object - the following fields are required - (others can be supplied)
-%                         * S  - `m x 1` Stoichiometric matrix
-%                         * lb - `n x 1` Lower bounds
-%                         * ub - `n x 1` Upper bounds
-%                         * rxns   - `n x 1` cell array of reaction abbreviations
-%                         * metFormulas m*1 metabolite Formulas
-% discretized:           discretized values for the samples, size(discretized,1) =
-%                        number of genes, size(discretized,2)= number of
-%                        samples
-% rownames:              cell array with the gene IDs
-% dico:                  table which contains corresponding gene identifier information. Needed
-%                        to map the rownames to the genes in the model.
-
+%   model:                 object - the following fields are required - (others can be supplied)
+%                          * S  - `m x 1` Stoichiometric matrix
+%                          * lb - `n x 1` Lower bounds
+%                          * ub - `n x 1` Upper bounds
+%                          * rxns   - `n x 1` cell array of reaction abbreviations
+%                          * metFormulas m*1 metabolite Formulas
+%   discretized:           discretized values for the samples, size(discretized,1) =
+%                          number of genes, size(discretized,2)= number of
+%                          samples
+%   rownames:              cell array with the gene IDs
+%   dico:                  table which contains corresponding gene identifier information. Needed
+%                          to map the rownames to the genes in the model.
+%
 % OPTIONAL INPUTS:
-% consensusProportion:   the rate of samples that have to express or not to express a gene for the
-%                        gene to be considered expressed or not in the
-%                        context of interest (default 0.9)
-% epsilon:               smallest flux that is considered nonzero (default getCobraSolverParams('LP', 'feasTol')*100 = 1e-4)
-% optionalSettings:      object
-%                        * func - cell array of reaction abbreviations that should carry a flux
-%                        * medium - cell array of metabolites abbreviation that defines metabolites
-%                          in the growth medium of cells to constrain the model, see example medium_example.mat
-%                        * notMediumConstrained - react ????
-% biomassReactionName:   cell array or all other functions that might require some exchange reactions to ??? (default '')/obj function ??
-% fillingMediumFlag      filling the medium in case it's not sufficient for the model to fulfill the objective function. 1 for active (default), 0 for inactive
-% adaptiveScalingFlag:   0 for inactive (default), 1 for active
-
-% OUTPUT:
-% contextSpecificModel        context-specific model, reduced to the retained reactions 
-% retainedRxns:               indices of the retained reactions in the input model
-% indicesCompletedCoreOrig    indices of the core reactions in the input model
-
+%   consensusProportion:   the rate of samples that have to express or not to express a gene for the
+%                          gene to be considered expressed or not in the
+%                          context of interest (default 0.9)
+%   epsilon:               smallest flux that is considered nonzero (default getCobraSolverParams('LP', 'feasTol')*100 = 1e-4)
+%   optionalSettings:      structure
+%                          * .func - cell array of reaction abbreviations that should carry a flux
+%                          * .medium - cell array of metabolites abbreviations that defines metabolites
+%                          in the growth medium of cells to constrain the model
+%                          * .notMediumConstrained - reaction abbreviations not included in the medium that must be retained
+%   biomassReactionName:   string or character array with the name of the objective (default 'biomass_reaction')
+%   fillingMediumFlag:     fill the medium with supplementary reactions in case the provided medium is not sufficient to fulfill the objective function. 
+%                          1 for active (default), 0 for inactive
+%   adaptiveScalingFlag:   adaptive scaling of the flux values (see LP10).
+%                          0 for inactive (default), 1 for active
+%
+% OUTPUTS:
+%   contextSpecificModel:        context-specific model, reduced to the retained reactions and associated genes
+%   retainedRxns:                indices of the retained reactions in the input model
+%   indicesCompletedCoreOrig:    indices of the core reactions in the input model
+%
+% EXAMPLE:
+%
+%   [contextSpecificModel, retainedRxns, indicesCompletedCoreOrig] = rFastcormics4cobra_v2(model, discretized, rownames, dico)
+%   
 % .. Authors:
 %       - Maria Pires Pacheco, Thomas Sauter, 2016, University of Luxembourg
 %       - Maria Pires Pacheco, Thomas Sauter, 2023, adaptation of the code to the Cobra toolbox
-%       - Vanille Lejal, 2025, University of Luxembourg, reorganization of the code, removing the transporters from the core, switching to one fastcore,
-%       integration of an option to fill a missing medium, cleaning
-%       of the code, adaptation of the code for a use with gurobi and
-%       Matlab 2024
+%       - Vanille Lejal, 2025, University of Luxembourg, removing the transporters from the core, switching to one fastcore,
+%       integration of an option to fill a missing medium, adaptation of the code for a use with gurobi and Matlab 2024
 
 %% Initializing the arguments
 if nargin < 10
@@ -79,12 +84,6 @@ end
 %% Saving the original model
 origModel = model;
 
-%% Checking required solver and tooboxes
-% check if it works if one solver/toolbox is missing
-requiredSolvers = {'ibm_cplex', 'gurobi'};
-requiredToolboxes = {'curve_fitting_toolbox', 'optimization_toolbox'};
-solversPkgs = prepareTest('requireOneSolverOf', requiredSolvers, 'requiredToolboxes', requiredToolboxes);
-
 %% Checking the format of the discretized values
 if numel(rownames) ~= size(discretized, 1)
     disp('The number of gene IDs between the discretized data and the given IDs ("rownames") do not correspond')
@@ -105,33 +104,44 @@ if ~isfield(model, 'rules')
 end
 
 % fixing reversibilities
-model = fixIrrRFASTCORMICS(model); %need to check that
+model = fixIrrRFASTCORMICS(model); 
 
 % creating a consistent model
-[consistentRxns, ~, ~] = fastcc(model, epsilon, 0, 0, 'original'); %indexes of the consistent reactions
-consistentModel = removeRxns(model, model.rxns(setdiff(1:numel(model.rxns), consistentRxns))); %removing the non consistent reactions
+[consistentRxns, ~, ~] = fastcc(model, epsilon, 0, 0, 'original'); % indexes of the consistent reactions
+consistentModel = removeRxns(model, model.rxns(setdiff(1:numel(model.rxns), consistentRxns))); % removing the non consistent reactions
 
-%% Optionally the model can be constrained in function of the medium
+%% Optionally constrain the model using a defined medium
+% Check whether optional settings exist and include a 'medium' field
 if ~isempty(optionalSettings) && isfield(optionalSettings, 'medium')
-    %check if the medium constrain works
+    
+    % Retrieve reactions/metabolites that should NOT be constrained by the medium (if provided)
     if isfield(optionalSettings, 'notMediumConstrained')
         notMediumConstrained = optionalSettings.notMediumConstrained;
     else
         notMediumConstrained = [];
     end
+    
+    % Get list of metabolites defining the medium
     mediumMets = optionalSettings.medium;
+    
+    % Identify uptake (exchange) reactions associated with the medium metabolites in the model
     [~, uptRxnsBool] = findExcRxns(consistentModel);
     uptRxns = consistentModel.rxns(uptRxnsBool);
     [mediumRxns, ~] = findRxnsFromMets(consistentModel, mediumMets);
     uptMediumRxns = intersect(uptRxns, mediumRxns);
+    
+    % Display number of uptake reactions affected by the medium
     fprintf("Number of uptake reactions associated with the medium metabolites: %d.\n", numel(uptMediumRxns));
 
-    mediumConstrainedModel =  constrainModelRFASTCORMICS(consistentModel, mediumMets, notMediumConstrained, biomassReactionName, functionKeep);
-    % watch out, the model here could be unconsistent
-    
+    % Apply medium constraints to the model (may lead to inconsistencies)
+    mediumConstrainedModel = constrainModelRFASTCORMICS(consistentModel, mediumMets, notMediumConstrained, biomassReactionName, functionKeep);
+
+% Case where no optional settings are provided
 elseif isempty(optionalSettings)
     mediumConstrainedModel = consistentModel; 
     warning('No optional settings detected.')
+
+% Case where optional settings exist but no medium is defined
 else
     mediumConstrainedModel = consistentModel;
     warning('No given medium.')
@@ -142,14 +152,13 @@ mapping = mapExpressionToModel(mediumConstrainedModel, discretized, dico, rownam
 mapping = sparse(mapping);
 
 if sum(mapping) == 0
-    disp('No expressed genes were mapped, check again.') %no gene expressed according to the RNAseq data
+    disp('No expressed genes were mapped, check again.') % no gene expressed according to the RNAseq data
     return
 end
 
 %% Defining the core
-% The discretized values will be discretized into expressed, not expressed, and unknown
-% expression status.
-%Core is defined as the reactions that are under the control of expressed genes
+% The discretized values will be discretized into expressed, not expressed, and unknown expression status.
+% Core is defined as the reactions that are under the control of expressed genes.
 numberOfSamples = size(discretized,2);
 initialCore = find(sum(mapping == 1, 2) >= (consensusProportion * numberOfSamples)); 
 
@@ -167,6 +176,7 @@ if ~isempty(functionKeep)
     elseif numel(foundFunctionKeep) ~= numel(functionKeep)
         warning('Part of the reactions from the .func set were not found in the model.')
     end
+    % Adding .func reactions to the core
     completedCore = union(coreWithoutTrans, foundFunctionKeep);
 else
     completedCore = coreWithoutTrans;
@@ -187,25 +197,31 @@ mediumConstrainedModel.ub(notExpressed) = 0;
 [consistentRxnsAfterMedium, ~, ~] = fastcc(mediumConstrainedModel, epsilon, 0, 0, 'original');
 consistentMediumConstrainedModel = removeRxns(mediumConstrainedModel, mediumConstrainedModel.rxns(setdiff(1:numel(mediumConstrainedModel.rxns), consistentRxnsAfterMedium)));
 
-%% Checking medium sufficiency + add this loop after fastcore also
+%% Checking medium sufficiency
+% Check if biomass reaction is still present after applying medium constraints
 if any(strcmp(consistentMediumConstrainedModel.rxns, biomassReactionName))
+    
+    % Set biomassReactionName as objective and run FBA
     consistentMediumConstrainedModel = changeObjective(consistentMediumConstrainedModel, biomassReactionName);
     fbaResults = optimizeCbModel(consistentMediumConstrainedModel, 'max', 'zero');
 
+    % If FBA returns a valid value, the medium supports growth
     if ~isempty(fbaResults.f) && ~isnan(fbaResults.f)
         disp(['The model still contains ' biomassReactionName ' after the application of medium constraints, and FBA result is not null.' newline 'Medium is sufficient. Continuing with fastcore.']);
         needMediumFilling = false;
     else
+        % Biomass present but no flux, medium is insufficient
         disp(['The model still contains ' biomassReactionName ' after the application of medium constraints, but FBA result is ' num2str(fbaResults.f) '. Medium is not sufficient.']);
         needMediumFilling = true;
     end
 else
-    disp(['The model lost ' biomassReactionName ' after the application of medium constraints.']); % pb of display, check
+    % Biomass reaction missing, model cannot grow
+    disp(['The model lost ' biomassReactionName ' after the application of medium constraints.']);
     needMediumFilling = true;
 end
 
 %% In case medium if not sufficient
-%Checking if all the uptake rxns associated with the medium are in.
+% Checking if all the uptake rxns associated with the medium are in.
 if needMediumFilling
     [~, uptRxnsAfterMediumBool] = findExcRxns(consistentMediumConstrainedModel);
     uptRxnsAfterMedium = consistentMediumConstrainedModel.rxns(uptRxnsAfterMediumBool);
@@ -228,7 +244,7 @@ retainedRxns = find(ismember(origModel.rxns, consistentMediumConstrainedModel.rx
 missingFunctionKeep = functionKeep(~ismember(functionKeep, contextSpecificModel.rxns));
 if ~isempty(missingFunctionKeep)
     disp(['The following .func reactions are missing:' newline strjoin(missingFunctionKeep, newline) newline ' and will be added to the context-specific model through a second fastcore run.']);
-    functionKeepFlag = true;
+    functionKeepFlag = true; % missing .func reactions will be added later
 else
     functionKeepFlag = false;
 end
@@ -236,22 +252,22 @@ end
 %% Proceed to medium filling if needed and required
 if fillingMediumFlag == 1 && needMediumFilling || functionKeepFlag
     
-    % we will use the consistent model as input as it still contains all the
-    % reactions of the original model
-    % copying the bounds of rxns in the context specific model in the consistent model to preserve the medium constraints
+    % We will use the consistent model as input as it still contains all the reactions of the original model
+    % Copying the bounds of rxns in the context specific model in the consistent model to preserve the medium constraints
     [~, idxConsistentModel, idxContextSpecificModel] = intersect(consistentModel.rxns, contextSpecificModel.rxns);
     consistentModel.lb(idxConsistentModel) = contextSpecificModel.lb(idxContextSpecificModel);
     consistentModel.ub(idxConsistentModel) = contextSpecificModel.ub(idxContextSpecificModel);
     
-    % Initializing a new core for a second fastcore
-    fillingCoreRxns = unique([contextSpecificModel.rxns; biomassReactionName]);
+    % Initializing a new core for a second fastcore run
+    fillingCoreRxns = unique([contextSpecificModel.rxns; biomassReactionName]); % contains the reactions of the first contextSpecificModel and the biomassReactionName
     
+    % Filling the medium if asked and necessary
     if fillingMediumFlag == 1 && needMediumFilling 
         disp('Proceeding to medium filling.');
         % finding the uptake reactions associated with the medium
         [~, uptRxnsCtxtSpeModelBool] = findExcRxns(contextSpecificModel);
         uptRxnsCtxtSpeModel = contextSpecificModel.rxns(uptRxnsCtxtSpeModelBool);
-        notPresentUptMediumRxnsSpe = setdiff(uptMediumRxns, uptRxnsCtxtSpeModel);
+        notPresentUptMediumRxnsSpe = setdiff(uptMediumRxns, uptRxnsCtxtSpeModel); % missing uptake reactions associated with the medium
         if ~isempty(notPresentUptMediumRxnsSpe)
             disp(['The inclusion of the following uptake reactions: ' newline strjoin(notPresentUptMediumRxnsSpe, newline) newline 'will not be penalized to fill the model as they are initially associated with the medium metabolites.']);
         end
@@ -261,19 +277,19 @@ if fillingMediumFlag == 1 && needMediumFilling || functionKeepFlag
     
     if functionKeepFlag
         disp('Proceeding to .func filling.');
-        fillingCoreRxns = unique([fillingCoreRxns; missingFunctionKeep]);
+        fillingCoreRxns = unique([fillingCoreRxns; missingFunctionKeep]); % completing the core with the missing .func reactions
     end
 
     indicesFillingCore = find(ismember(consistentModel.rxns, fillingCoreRxns));
-    indicesNonPenMediumUptRxns = find(ismember(consistentModel.rxns, notPresentUptMediumRxnsSpe));
+    indicesNonPenMediumUptRxns = find(ismember(consistentModel.rxns, notPresentUptMediumRxnsSpe)); % completing the new core with the missing uptake reactions associated with the medium
     
-    % completing the model 
+    % Completing the model 
     [contextSpecificModel, retainedRxnsFilledModelBool] = fastcore(consistentModel, indicesFillingCore, 1e-4, 0, adaptiveScalingFlag, indicesNonPenMediumUptRxns);
     indices = 1:numel(consistentModel.rxns);
     keepRxns = indices(retainedRxnsFilledModelBool == 1);
     retainedRxnsFilledModel = find(ismember(origModel.rxns, consistentModel.rxns(keepRxns)));
-    supplementaryRxns = setdiff(retainedRxnsFilledModel, retainedRxns);
-    disp(['Here are the reactions that have been added to the model during the second fastcore run in order to fill it: ' newline strjoin(origModel.rxns(supplementaryRxns), newline) newline]);
+    supplementaryRxns = setdiff(retainedRxnsFilledModel, retainedRxns); % reactions added during the second fastcore
+    disp(['The following reactions have been added to the model during the second fastcore run in order to fill it: ' newline strjoin(origModel.rxns(supplementaryRxns), newline) newline]);
     retainedRxns = retainedRxnsFilledModel;
 end
 
@@ -281,7 +297,7 @@ end
 if isfield(optionalSettings, 'medium')
     [~, uptRxnsBoolSpe] = findExcRxns(contextSpecificModel);
     uptRxnsSpe = contextSpecificModel.rxns(uptRxnsBoolSpe);
-    additionalMedium = setdiff(uptRxnsSpe, uptMediumRxns);
+    additionalMedium = setdiff(uptRxnsSpe, uptMediumRxns); % uptake reactions added to complete the medium
     disp(['Model additional uptakes (not provided by the medium): ' newline strjoin(additionalMedium, newline) newline]);
 end
 %%

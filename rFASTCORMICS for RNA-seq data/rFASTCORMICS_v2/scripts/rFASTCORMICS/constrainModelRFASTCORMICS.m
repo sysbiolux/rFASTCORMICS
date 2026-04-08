@@ -1,35 +1,68 @@
 function [model] = constrainModelRFASTCORMICS(model, mediumMets, notMediumConstrained, biomassReaction, functionToKeep)
-% (c) Maria Pires Pacheco 2015
-% Close all the exchange reactions which are carbon sources except the
-% biomass reaction, the reactions that are supplying the medium or those
-% that are in the functionToKeep input
+% The function constrains a metabolic model based on a defined medium by
+% restricting exchange reactions, while preserving essential functions.
+%
+% USAGE:
+%
+%   [model] = constrainModelRFASTCORMICS(model, mediumMets, notMediumConstrained, biomassReaction, functionToKeep)
+%
+% INPUTS:
+%   model:                  (the following fields are required - others can be supplied)
+%                           * S   - m x n Stoichiometric matrix
+%                           * lb  - n x 1 Lower bounds
+%                           * ub  - n x 1 Upper bounds
+%                           * rxns - n x 1 cell array of reaction identifiers
+%   mediumMets:             cell array of metabolites defining the growth medium
+%   notMediumConstrained:   optional list of reactions/metabolites that should not be constrained
+%   biomassReaction:        string specifying the biomass reaction to preserve
+%   functionToKeep:         list of reactions that must remain active
+%
+% OUTPUT:
+%   model:                  constrained metabolic model
+%
+% .. Authors:
+%       - Maria Pires Pacheco, University of Luxembourg, 2015
 
-%identification of the exchange reactions ExRxns
+% Handle reactions that should not be constrained
 if ~isempty(notMediumConstrained)
-    notMediumConstrained = find(ismember(model.rxns,notMediumConstrained)); %exchange reactions that we don't want to constrain
-    %keeping into memory the bound values of the reaction that we do not
-    %want to constrain
+    % Identify indices of reactions to keep unconstrained
+    notMediumConstrained = find(ismember(model.rxns, notMediumConstrained)); % exchange reactions that we don't want to constrain
+    
+    % Store their original bounds to restore later
     lb = model.lb(notMediumConstrained);
     ub = model.ub(notMediumConstrained);
 end
-[exRxns, ExOrgaInd] = findEXRxnsRFASTCORMICS(model, biomassReaction, functionToKeep); % Retrieves the exchange reactions to be closed (excluding biomassReaction and functionToKeep), as well as the carbon sources
-notConstrained = intersect(findRxnsFromMets(model,mediumMets),exRxns); % Exchange reactions supplied by the medium
-notConstrained = find(ismember(model.rxns,notConstrained)); % Exchange reactions not to be constrained because they are supplied by the medium --> all others will be closed
+
+% Identify exchange reactions and carbon sources to potentially constrain
+[exRxns, ExOrgaInd] = findEXRxnsRFASTCORMICS(model, biomassReaction, functionToKeep);
+
+% Identify exchange reactions associated with medium metabolites (to keep open)
+notConstrained = intersect(findRxnsFromMets(model, mediumMets), exRxns);
+notConstrained = find(ismember(model.rxns, notConstrained));
+
+% Store their original bounds
 lb2 = model.lb(notConstrained);
 ub2 = model.ub(notConstrained);
-[~,match]= find(model.S(:,ExOrgaInd)<0);
+
+% Close uptake of carbon sources
+[~, match] = find(model.S(:, ExOrgaInd) < 0);
 if ~isempty(match)
-    model.lb(ExOrgaInd(match)) = 0; % close the uptake of all carbon sources
+    model.lb(ExOrgaInd(match)) = 0;
 end
-[~,match]= find(model.S(:,ExOrgaInd)>0);
+
+% Close secretion of carbon sources
+[~, match]= find(model.S(:, ExOrgaInd) > 0);
 if ~isempty(match)
-    model.ub(ExOrgaInd(match)) = 0; % close the secretion of all the carbon sources
+    model.ub(ExOrgaInd(match)) = 0;
 end
+
+% Restore bounds for reactions explicitly excluded from constraints
 if ~isempty(notMediumConstrained)
-    % Restore the bounds of the reactions that we do not want to constrain
     model.lb(notMediumConstrained) = lb;
     model.ub(notMediumConstrained) = ub;
 end
+
+% Restore bounds for reactions supplied by the medium
 if  ~isempty(notConstrained)
     model.lb(notConstrained) = lb2;
     model.ub(notConstrained) = ub2;
