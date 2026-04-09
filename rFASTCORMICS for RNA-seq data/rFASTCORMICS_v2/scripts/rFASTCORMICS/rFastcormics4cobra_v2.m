@@ -53,7 +53,7 @@ function [contextSpecificModel, retainedRxns, indicesCompletedCoreOrig] = rFastc
 %       - Maria Pires Pacheco, Thomas Sauter, 2016, University of Luxembourg
 %       - Maria Pires Pacheco, Thomas Sauter, 2023, adaptation of the code to the Cobra toolbox
 %       - Vanille Lejal, 2025, University of Luxembourg, removing the transporters from the core, switching to one fastcore,
-%       integration of an option to fill a missing medium, adaptation of the code for a use with gurobi and Matlab 2024
+%       integration of an option to fill a missing medium
 
 %% Initializing the arguments
 if nargin < 10

@@ -12,6 +12,9 @@ function [res] = GPRrulesMapperRFASTCORMICS(exp, x)
 %
 % OUTPUT:
 %   res:  the numeric corresponding to the result of the calculation
+%
+% .. Authors:
+%       - Maria Pires Pacheco, 2016, University of Luxembourg
 
 if (~( strcmp (exp , '')) && ~isempty(exp))% verifies if there is an association rule for each gene of the gene ID association list (no association is displayed with '' and if there is an expression value  
     res = eval(exp); % the association rules are stored like ‘x(25)’ meaning that the object res will take the expression value in the 25th row    
