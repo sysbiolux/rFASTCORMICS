@@ -24,6 +24,8 @@ function [Supp, basis] = findSparseMode(J, P, singleton, model, LPproblem, epsil
 %    basis:       Basis
 %
 % .. Authors: - Nikos Vlassis, Maria Pires Pacheco, Thomas Sauter, 2013 LCSB / LSRU, University of Luxembourg
+%             - Maria Pires Pacheco and Thomas Sauter, 2024, University of Luxembourg, addition of an unpenalized set nonPen
+%             - Vanille Lejal, 2025, University of Luxembourg, addind adaptive scaling flag
 
 Supp = [];
 if isempty(J)

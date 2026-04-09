@@ -8,12 +8,11 @@ function V = LP10(K, P, v, LPproblem, epsilon, adaptiveScalingFlag, nonPen)
 %    V = LP10(K, P, v, epsilon, adaptiveScalingFlag, nonPen)
 %
 
-% .. Authors: -  Nikos Vlassis, Maria Pires Pacheco, Thomas Sauter, 2013
-%             LCSB / LSRU, University of Luxembourg
-%   2019/04/08: Agnieszka Wegrzyn - updated the function to work with models with coupling constraints
-% 2020 Ronan Fleming - adaptive scaling prototype
-% 2024 Maria Pires Pacheco and Thomas Sauter - addition of an unpenalized set nonPen
-% 2024 Vanille Lejal - turning adaptive scaling into optional parameter
+% .. Authors: -  Nikos Vlassis, Maria Pires Pacheco, Thomas Sauter, 2013, LCSB / LSRU, University of Luxembourg
+%             - 2019/04/08: Agnieszka Wegrzyn - updated the function to work with models with coupling constraints
+%             - 2020 Ronan Fleming - adaptive scaling prototype
+%             - 2024 Maria Pires Pacheco and Thomas Sauter - addition of an unpenalized set nonPen
+%             - 2025 Vanille Lejal - turning adaptive scaling into optional parameter
 
 V = [];
 if isempty(P) || isempty(K)

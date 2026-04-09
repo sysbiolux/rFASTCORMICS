@@ -1,4 +1,4 @@
-function [tissueModel,coreRxnBool,coreMetBool,coreCtrsBool] = fastcore(model, coreRxnInd, epsilon, printLevel, adaptiveScalingFlag, nonPen)
+function [tissueModel, coreRxnBool, coreMetBool, coreCtrsBool] = fastcore(model, coreRxnInd, epsilon, printLevel, adaptiveScalingFlag, nonPen)
 % Use the FASTCORE algorithm ('Vlassis et al, 2014') to extract a context
 % specific model. FASTCORE algorithm defines one set of core
 % reactions that is guaranteed to be active in the extracted model and find
@@ -42,6 +42,8 @@ function [tissueModel,coreRxnBool,coreMetBool,coreCtrsBool] = fastcore(model, co
 %       - Nikos Vlassis, Maria Pires Pacheco, Thomas Sauter, 2013 LCSB / LSRU, University of Luxembourg
 %       - Ronan Fleming, commenting of code and inputs/outputs
 %       - Anne Richelle, code adaptation to fit with createTissueSpecificModel
+%       - Maria Pires Pacheco and Thomas Sauter, addition of an unpenalized set nonPen
+%       - Vanille Lejal, addind adaptive scaling flag
 
 if nargin < 6 || ~exist('nonPen','var')
     nonPen = [];
