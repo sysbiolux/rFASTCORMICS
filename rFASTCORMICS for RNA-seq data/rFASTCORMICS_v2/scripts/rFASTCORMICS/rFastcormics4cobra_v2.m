@@ -55,26 +55,35 @@ function [contextSpecificModel, retainedRxns, indicesCompletedCoreOrig] = rFastc
 %       - Vanille Lejal, 2025, University of Luxembourg, removing the transporters from the core, switching to one fastcore,
 %       integration of an option to fill a missing medium
 
-%% Initializing the arguments
-if nargin < 10
-    adaptiveScalingFlag = 0;
+arguments
+    model (1,1) struct {mustBeCobraModel(model)}
+    discretized (:,:) double {mustBeMember(discretized, [-1 0 1])}
+    rownames string
+    dico
+    consensusProportion (1,1) double {mustBeGreaterThan(consensusProportion,0), mustBeLessThanOrEqual(consensusProportion,1)} = 0.9
+    epsilon  (1,1) double = []
+    optionalSettings (1,1) struct = []
+    biomassReactionName string = "biomass_reaction"
+    fillingMediumFlag (1,1) double {mustBeMember(fillingMediumFlag, [0 1])} = 1
+    adaptiveScalingFlag (1,1) double {mustBeMember(adaptiveScalingFlag, [0 1])} = 0
 end
-if nargin < 9
-    fillingMediumFlag = 1;
-end
-if nargin < 8
-    biomassReactionName = 'biomass_reaction';
-end
-if nargin < 7
-    optionalSettings = [];
-end
+
+% function validates that number of genes in rownames is the same number as
+% the rows in the discretized data + check that some of the gene names can
+% be found in any of the columns in the dico, if not that means that you
+% dont have that type of gene id in your dico that is used in the dataset!!
+% checks that the biomass reaction defined is in the input model!
+validateInputs(model,biomassReactionName,discretized, rownames,dico);
+
 if nargin < 6 || isempty(epsilon)
     epsilon = getCobraSolverParams('LP', 'feasTol')*100;
 end
-if nargin < 5
-    consensusProportion = 0.9;
-end
 
+% optionalSettings.func needs to be a column vector 1xn and not a row
+% vector - turn it around otherwise!!!
+if size(optionalSettings.func,2) == 1 & size(optionalSettings.func,1) > 1
+    optionalSettings.func = optionalSettings.func';
+end
 if isfield(optionalSettings, 'func')
     functionKeep = optionalSettings.func;
 else
@@ -302,4 +311,65 @@ if isfield(optionalSettings, 'medium')
 end
 %%
 disp('rFastcormics is done.');    
+end
+
+
+
+
+function mustBeCobraModel(model)
+    required = {'S','rxns','mets','lb','ub'};
+    missing = required(~isfield(model, required));
+    if ~isempty(missing)
+        error("Your model is not a valid Cobra model. Missing fields: " + strjoin(missing, ", "));
+    end
+end
+
+function validateInputs(model,biomassReactionName,discretized, rownames, dico, minMatches)
+arguments
+    model 
+    biomassReactionName 
+    discretized 
+    rownames 
+    dico 
+    minMatches = 50
+end
+
+    % 1. size check - check that the number of genes is the same in the
+    % rownames and discretized
+    if size(discretized,1) ~= numel(rownames)
+        error('Row mismatch: discretized (%d) vs rownames (%d).', ...
+              size(discretized,1), numel(rownames));
+    end
+
+    rownames = string(rownames);
+    dicoVars = dico.Properties.VariableNames;
+
+    % 2. compute best column coverage
+    bestMatch = 0;
+    bestCol = "";
+    
+    % check if any of the columns in the dico entails matches for the genes
+    % specified in the rownames
+    for i = 1:numel(dicoVars)
+        col = string(dico.(dicoVars{i}));
+
+        nMatch = sum(ismember(rownames, col));
+
+        if nMatch > bestMatch
+            bestMatch = nMatch;
+            bestCol = dicoVars{i};
+        end
+    end
+
+    % 3. enforce threshold
+    if bestMatch < minMatches
+        error('Insufficient gene mapping: best column "%s" only matches %d genes (minimum required: %d). Are you sure that one of the columns in your dico entails the gene ids used in the model.genes slot ?', ...
+              bestCol, bestMatch, minMatches);
+    end
+
+
+    if ~ismember(biomassReactionName,model.rxns)
+        error('The objective function that you defined (%s) is not part of your input model, choose a different objective function!',biomassReactionName)
+    end
+
 end
