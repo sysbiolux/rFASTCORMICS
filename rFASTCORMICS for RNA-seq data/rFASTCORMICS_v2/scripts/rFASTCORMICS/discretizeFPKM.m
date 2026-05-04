@@ -163,8 +163,8 @@ for j = 1:size(fpkm, 2) % for each sample
     rest_curve_g = probability_estimate - hybrid_curve_g';
     rest_curve_g(rest_curve_g<0.0001)=0;
 
-    [fit_r_g, ~] = createFit_r(xi, hybrid_curve_g);
-    [fit_l_g, ~] = createFit_l(xi, rest_curve_g);
+    [fit_r_g, ~] = createFitR(xi, hybrid_curve_g);
+    [fit_l_g, ~] = createFitL(xi, rest_curve_g);
 
     sigma1_g = fit_r_g.c1/sqrt(2);
     mu1_g = fit_r_g.b1;
