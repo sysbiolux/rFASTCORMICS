@@ -57,7 +57,7 @@ function [contextSpecificModel, retainedRxns, indicesCompletedCoreOrig] = rFastc
 
 arguments
     model (1,1) struct {mustBeCobraModel(model)}
-    discretized (:,:) double {mustBeMember(discretized, [-1 0 1])}
+    discretized (:,:) double
     rownames string
     dico
     consensusProportion (1,1) double {mustBeGreaterThan(consensusProportion,0), mustBeLessThanOrEqual(consensusProportion,1)} = 0.9
