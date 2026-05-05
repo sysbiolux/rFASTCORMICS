@@ -35,7 +35,7 @@ Here is the workflow of rFastcormics_v2:
 | **Optional inputs** | 
 | `consensusProportion` | the rate of samples that have to express or not to express a gene for the gene to be considered expressed or not (default 0.9) |
 | `epsilon` | smallest flux that is considered nonzero (default getCobraSolverParams('LP', 'feasTol')*100 = 1e-4) |
-| `optionalSettings.func` | cell array of reaction abbreviations that should carry a flux <br> It is recommended to put the objective function of your model to ensure its preservation in the context-specific model.<br>Any reaction included in the .func will necessarily appear in the final model.|
+| `optionalSettings.func` | cell array of reaction abbreviations that should carry a flux <br>Any reaction included in the .func will necessarily appear in the final model. <br> It is recommended to put the objective function of your model to ensure its preservation in the context-specific model. If empty, it contains by default `biomassReactionName` (see below).|
 | `optionalSettings.medium` | cell array of metabolite abbreviations that are present in the growth medium of the cells and that will be used to constrain the model |
 | `optionalSettings.notMediumConstrained` | reactions not included in the medium that must be retained |
 | `biomassReactionName` | string or character array with the name of the objective/biomass reaction (default 'biomass_reaction') |
