@@ -68,26 +68,26 @@ arguments
     adaptiveScalingFlag (1,1) double {mustBeMember(adaptiveScalingFlag, [0 1])} = 0
 end
 
-% function validates that number of genes in rownames is the same number as
-% the rows in the discretized data + check that some of the gene names can
-% be found in any of the columns in the dico, if not that means that you
-% dont have that type of gene id in your dico that is used in the dataset!!
-% checks that the biomass reaction defined is in the input model!
-validateInputs(model,biomassReactionName,discretized, rownames,dico);
+% Function validates that number of genes in rownames is the same number as
+% the rows in the discretized data, and checks that some of the gene names can
+% be found in any of the columns in the dico. If not, that means that you
+% don't have that type of gene id in your dico that is used in the dataset.
+% Checks that the biomass reaction defined is in the input model.
+validateInputs(model, biomassReactionName, discretized, rownames, dico);
 
 if nargin < 6 || isempty(epsilon)
     epsilon = getCobraSolverParams('LP', 'feasTol')*100;
 end
 
 % optionalSettings.func needs to be a column vector 1xn and not a row
-% vector - turn it around otherwise!!!
-if size(optionalSettings.func,2) == 1 & size(optionalSettings.func,1) > 1
-    optionalSettings.func = optionalSettings.func';
-end
+% vector - turn it around otherwise
 if isfield(optionalSettings, 'func')
+    if size(optionalSettings.func, 2) == 1 & size(optionalSettings.func, 1) > 1
+        optionalSettings.func = optionalSettings.func';
+    end
     functionKeep = optionalSettings.func;
 else
-    functionKeep = '';
+    functionKeep = biomassReactionName;
 end
 
 %% Saving the original model
