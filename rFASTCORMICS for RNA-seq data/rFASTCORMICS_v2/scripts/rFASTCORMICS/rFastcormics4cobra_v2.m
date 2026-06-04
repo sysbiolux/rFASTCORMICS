@@ -1,4 +1,4 @@
-function [contextSpecificModel, retainedRxns, indicesCompletedCoreOrig] = rFastcormics4cobra_v2(model, discretized, rownames, dico, consensusProportion, epsilon, optionalSettings, biomassReactionName, fillingMediumFlag, adaptiveScalingFlag)
+function [contextSpecificModel, retainedRxns, indicesCompletedCoreOrig] = rFastcormics4cobra_v2(model, discretized, rownames, dico, biomassReactionName, consensusProportion, epsilon, optionalSettings, fillingMediumFlag, adaptiveScalingFlag)
 % The rFASTCORMICS is a context-specific building algorithm for
 % reconstructing a tissue, a cell-specific, or any context-specific model from RNAseq data
 % and a generic reconstruction (Pacheco et al. 2019)
@@ -25,6 +25,7 @@ function [contextSpecificModel, retainedRxns, indicesCompletedCoreOrig] = rFastc
 %                          to map the rownames to the genes in the model.
 %
 % OPTIONAL INPUTS:
+%   biomassReactionName:   string or character array with the name of the objective (default 'biomass_reaction')  
 %   consensusProportion:   the rate of samples that have to express or not to express a gene for the
 %                          gene to be considered expressed or not in the
 %                          context of interest (default 0.9)
@@ -34,7 +35,6 @@ function [contextSpecificModel, retainedRxns, indicesCompletedCoreOrig] = rFastc
 %                          * .medium - cell array of metabolites abbreviations that defines metabolites
 %                          in the growth medium of cells to constrain the model
 %                          * .notMediumConstrained - reaction abbreviations not included in the medium that must be retained
-%   biomassReactionName:   string or character array with the name of the objective (default 'biomass_reaction')
 %   fillingMediumFlag:     fill the medium with supplementary reactions in case the provided medium is not sufficient to fulfill the objective function. 
 %                          1 for active (default), 0 for inactive
 %   adaptiveScalingFlag:   adaptive scaling of the flux values (see LP10).
@@ -54,16 +54,18 @@ function [contextSpecificModel, retainedRxns, indicesCompletedCoreOrig] = rFastc
 %       - Maria Pires Pacheco, Thomas Sauter, 2023, adaptation of the code to the Cobra toolbox
 %       - Vanille Lejal, 2025, University of Luxembourg, removing the transporters from the core, switching to one fastcore,
 %       integration of an option to fill a missing medium
+%       - Leonie Thomas, 2026, University of Luxembourg, including
+%       arguments block and validateInputs check
 
 arguments
     model (1,1) struct {mustBeCobraModel(model)}
     discretized (:,:) double
     rownames string
     dico
+    biomassReactionName char
     consensusProportion (1,1) double {mustBeGreaterThan(consensusProportion,0), mustBeLessThanOrEqual(consensusProportion,1)} = 0.9
-    epsilon  (1,1) double = []
-    optionalSettings (1,1) struct = []
-    biomassReactionName string = "biomass_reaction"
+    epsilon (1,1) double = 1e-4
+    optionalSettings (1,1) struct = struct()
     fillingMediumFlag (1,1) double {mustBeMember(fillingMediumFlag, [0 1])} = 1
     adaptiveScalingFlag (1,1) double {mustBeMember(adaptiveScalingFlag, [0 1])} = 0
 end
@@ -216,16 +218,16 @@ if any(strcmp(consistentMediumConstrainedModel.rxns, biomassReactionName))
 
     % If FBA returns a valid value, the medium supports growth
     if ~isempty(fbaResults.f) && ~isnan(fbaResults.f)
-        disp(['The model still contains ' biomassReactionName ' after the application of medium constraints, and FBA result is not null.' newline 'Medium is sufficient. Continuing with fastcore.']);
+        disp(['Model still contains ' biomassReactionName ' after the application of medium constraints, and FBA result is not null.' newline 'Medium is sufficient. Continuing with fastcore.']);
         needMediumFilling = false;
     else
         % Biomass present but no flux, medium is insufficient
-        disp(['The model still contains ' biomassReactionName ' after the application of medium constraints, but FBA result is ' num2str(fbaResults.f) '. Medium is not sufficient.']);
+        disp(['Model still contains ' biomassReactionName ' after the application of medium constraints, but FBA result is ' num2str(fbaResults.f) '. Medium is not sufficient.']);
         needMediumFilling = true;
     end
 else
     % Biomass reaction missing, model cannot grow
-    disp(['The model lost ' biomassReactionName ' after the application of medium constraints.']);
+    disp(['Model lost ' biomassReactionName ' after the application of medium constraints.']);
     needMediumFilling = true;
 end
 
@@ -314,8 +316,6 @@ disp('rFastcormics is done.');
 end
 
 
-
-
 function mustBeCobraModel(model)
     required = {'S','rxns','mets','lb','ub'};
     missing = required(~isfield(model, required));
@@ -324,21 +324,21 @@ function mustBeCobraModel(model)
     end
 end
 
-function validateInputs(model,biomassReactionName,discretized, rownames, dico, minMatches)
+function validateInputs(model, biomassReactionName, discretized, rownames, dico, minMatches)
 arguments
     model 
     biomassReactionName 
     discretized 
     rownames 
     dico 
-    minMatches = 50
+    minMatches = 3
 end
 
     % 1. size check - check that the number of genes is the same in the
     % rownames and discretized
-    if size(discretized,1) ~= numel(rownames)
+    if size(discretized, 1) ~= numel(rownames)
         error('Row mismatch: discretized (%d) vs rownames (%d).', ...
-              size(discretized,1), numel(rownames));
+              size(discretized, 1), numel(rownames));
     end
 
     rownames = string(rownames);
@@ -368,7 +368,7 @@ end
     end
 
 
-    if ~ismember(biomassReactionName,model.rxns)
+    if ~ismember(biomassReactionName, model.rxns)
         error('The objective function that you defined (%s) is not part of your input model, choose a different objective function!',biomassReactionName)
     end
 
