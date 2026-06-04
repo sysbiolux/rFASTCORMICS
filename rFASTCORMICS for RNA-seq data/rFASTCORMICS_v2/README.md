@@ -24,7 +24,7 @@ Here is the workflow of rFastcormics_v2:
 
 **Usage**
 
-`[contextSpecificModel, retainedRxns] = rFastcormics4cobra_v2(model, discretized, rownames, dico, consensusProportion, epsilon, optionalSettings, biomassReactionName, fillingMediumFlag, adaptiveScalingFlag)`
+`[contextSpecificModel, retainedRxns] = rFastcormics4cobra_v2(model, discretized, rownames, dico, biomassReactionName, consensusProportion, epsilon, optionalSettings, fillingMediumFlag, adaptiveScalingFlag)`
 
 | **Inputs** | **Description** |
 |--------------|-----------------|
@@ -32,13 +32,13 @@ Here is the workflow of rFastcormics_v2:
 | `discretized` | matrix with the discretized value (1, 0, or -1) for each gene and sample (as many rows as the number of genes, as many columns as the number of samples) |
 | `rownames` | cell array with the gene IDs (as many rows as the number of genes in `discretized`) |
 | `dico` | table with two columns, first for gene IDs in the `model` format, second for gene IDs in the `discretized` format |
+| `biomassReactionName` | character array with the name of the objective/biomass reaction |
 | **Optional inputs** | 
 | `consensusProportion` | the rate of samples that have to express or not to express a gene for the gene to be considered expressed or not (default 0.9) |
-| `epsilon` | smallest flux that is considered nonzero (default getCobraSolverParams('LP', 'feasTol')*100 = 1e-4) |
+| `epsilon` | smallest flux that is considered nonzero (default 1e-4) |
 | `optionalSettings.func` | cell array of reaction abbreviations that should carry a flux <br>Any reaction included in the .func will necessarily appear in the final model. <br> It is recommended to put the objective function of your model to ensure its preservation in the context-specific model. If empty, it contains by default `biomassReactionName` (see below).|
 | `optionalSettings.medium` | cell array of metabolite abbreviations that are present in the growth medium of the cells and that will be used to constrain the model |
 | `optionalSettings.notMediumConstrained` | reactions not included in the medium that must be retained |
-| `biomassReactionName` | string or character array with the name of the objective/biomass reaction (default 'biomass_reaction') |
 | `fillingMediumFlag` | fill the medium with supplementary reactions in case the provided medium is not sufficient to fulfill the objective function<br> 1 for active (default), 0 for inactive |
 | `adaptiveScalingFlag` | adaptive scaling of the flux values (see LP10)<br>0 for inactive (default), 1 for active |
 | **Outputs** |
