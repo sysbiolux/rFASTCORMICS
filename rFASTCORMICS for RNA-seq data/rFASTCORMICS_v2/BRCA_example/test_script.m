@@ -19,19 +19,20 @@ consistent_model = changeObjective(consistent_model, "biomass_reaction");
 fpkm = table2array(fpkm); % transform table to array
 discretized = discretizeFPKM(fpkm, colnames);
 
-%% Optional settings
+
+%% Settings
 load optionalSettings.mat
 biomassRxn = 'biomass_reaction';
 consensusProportion = 0.9;
 epsilon = 1e-4;
 
 %% Running rFASTCORMICS_v2
-[BCRAmodel, retainedRxns] = rFastcormics4cobra_v2(consistent_model, discretized, rownames, dico, ...
-    consensusProportion, epsilon, optionalSettings, biomassRxn);
+[BCRAmodel, retainedRxns] = rFastcormics4cobra_v2(consistent_model, discretized, rownames, dico, biomassRxn, ...
+    consensusProportion, epsilon, optionalSettings);
 
 %% FBA
 fba_control = optimizeCbModel(consistent_model, 'max', 'zero');
-fba_BCRA = optimizeCbModel(BCRAmodel, 'max', 'zero');
+fba_BCRA = optimizeCbModel(BCRAmodel, 'max', 'one');
 
 %% In _silico_ gene deletions
 
@@ -49,6 +50,6 @@ to_remove = {'glc_D[e]', 'o2[e]', 'ala_L[e]', 'arg_L[e]', 'asn_L[e]', 'asp_L[e]'
 mask = ~ismember(optionalSettingsBis.medium, to_remove);
 optionalSettingsBis.medium = optionalSettingsBis.medium(mask);
 
-[BCRAmodelBis, retainedRxnsBis] = rFastcormics4cobra_v2(consistent_model, discretized, rownames, dico, ...
-    consensusProportion, epsilon, optionalSettingsBis, biomassRxn); %filling the medium is activated by default
+[BCRAmodelBis, retainedRxnsBis] = rFastcormics4cobra_v2(consistent_model, discretized, rownames, dico, biomassRxn, ...
+    consensusProportion, epsilon, optionalSettingsBis); %filling the medium is activated by default
 
