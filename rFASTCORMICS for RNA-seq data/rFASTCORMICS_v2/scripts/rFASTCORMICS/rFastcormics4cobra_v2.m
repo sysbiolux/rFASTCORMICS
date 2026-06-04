@@ -23,9 +23,9 @@ function [contextSpecificModel, retainedRxns, indicesCompletedCoreOrig] = rFastc
 %   rownames:              cell array with the gene IDs
 %   dico:                  table which contains corresponding gene identifier information. Needed
 %                          to map the rownames to the genes in the model.
+%   biomassReactionName:   character array with the name of the objective  
 %
-% OPTIONAL INPUTS:
-%   biomassReactionName:   string or character array with the name of the objective (default 'biomass_reaction')  
+% OPTIONAL INPUTS: 
 %   consensusProportion:   the rate of samples that have to express or not to express a gene for the
 %                          gene to be considered expressed or not in the
 %                          context of interest (default 0.9)
