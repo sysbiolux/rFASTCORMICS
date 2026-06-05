@@ -1,1 +1,0 @@
-Folder copied from \\atlas.uni.lux\FSTC_SYSBIO\6-EXCHANGE\H_For_Maria\Test_fastcormics_Maria_Update\cobratoolbox_rFASTCORMICS\src\dataIntegration\transcriptomics\rFASTCORMICS
