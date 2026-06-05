@@ -32,7 +32,7 @@ function [mapping] = mapExpressionToModel(model, data, dico, rownames, processTr
 %       - Maria Pires Pacheco, Thomas Sauter, 2016, University of Luxembourg, modified by Tamara Bintener
 %       - Maria Pires Pacheco, Thomas Sauter, 2022, University of Luxembourg, adaptation of the code to the Cobra toolbox
 %       - Leonie Thomas, 2024, University of Luxembourg, upgrade of the mapping loop to make it faster
-%       - Vanille Lejal, 2024, University of Luxembourg, addition of the optional parameter for handling transcripts
+%       - Vanille Lejal, 2024, University of Luxembourg, addition of an optional parameter for handling transcripts
                          
 %% 
 if nargin < 5
@@ -113,5 +113,5 @@ rules = regexprep(model.rules, 'x\(([0-9]*)\)','x($1,:)');
 match = find(~strcmp(rules, ''));
 % loop over all rules
 for k = 1:numel(rules(match))       
-    mapping(match(k),:) = GPRrulesMapperRFASTCORMICS(cell2mat(rules(match(k))), mappedToGenes);
+    mapping(match(k),:) = GPRrulesMapper(cell2mat(rules(match(k))), mappedToGenes);
 end
