@@ -1,7 +1,7 @@
 % The COBRA Toolbox: testrFastcormics.m
 %
 % Purpose:
-%     - test the rFastcormics function
+%     - test rFastcormics function
 %
 % Authors:
 %     - Vanille Lejal, University of Luxembourg, June 2026
