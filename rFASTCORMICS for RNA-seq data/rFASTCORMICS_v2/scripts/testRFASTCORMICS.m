@@ -1,4 +1,4 @@
-% The COBRA Toolbox: testRFASTCORMICS.m
+% The COBRA Toolbox: testrFastcormics.m
 %
 % Purpose:
 %     - test the rFastcormics function
@@ -48,7 +48,7 @@ for k = 1:length(solvers.LP)
     solverLPOK = changeCobraSolver(solvers.LP{k}, 'LP', 0);
 
     % run rFastcormics
-    [~, retainedReactions] = rFastcormics4cobra_v2(model, discretized, rownames, dico, biomass);
+    [~, retainedReactions] = rFastcormics(model, discretized, rownames, dico, biomass);
 
     % compare output with expected model
     assert(isequal(model.rxns(retainedReactions), expectedReactionNames'));
