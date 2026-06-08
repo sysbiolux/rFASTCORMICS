@@ -47,7 +47,7 @@ function [contextSpecificModel, retainedRxns, indicesCompletedCoreOrig] = rFastc
 %
 % EXAMPLE:
 %
-%   [contextSpecificModel, retainedRxns, indicesCompletedCoreOrig] = rFastcormics4cobra(model, discretized, rownames, dico, biomassReactionName)
+%   [contextSpecificModel, retainedRxns, indicesCompletedCoreOrig] = rFastcormics(model, discretized, rownames, dico, biomassReactionName)
 %   
 % .. Authors:
 %       - Maria Pires Pacheco, Thomas Sauter, 2016, University of Luxembourg
