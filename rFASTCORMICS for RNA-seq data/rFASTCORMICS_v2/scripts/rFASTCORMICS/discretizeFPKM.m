@@ -23,6 +23,7 @@ function [discretized, scaledExpression] = discretizeFPKM(fpkm, colnames, figfla
 %
 % .. Authors:
 %       - Maria Pires Pacheco, 2016, University of Luxembourg
+%       - Leonie Thomas, 2026, University of Luxembourg, fixing thresholding when the data is left skewed
 
 %% Discretize_Data
 % script adapted from (c) Dr. Maria Pires Pacheco 2016
@@ -183,9 +184,6 @@ for j = 1:size(fpkm, 2) % for each sample
         sigma1 = sigma1_g;
         ue = ue_g;
     end
-
-
-
     
     zFPKM = (signal_sample - mu1)/sigma1;
     [yFPKM, xFPKM] = ksdensity(zFPKM);
@@ -222,7 +220,7 @@ for j = 1:size(fpkm, 2) % for each sample
     end
 
     if ue_g > 0 
-        disp("Your distribution was left skewed!")
+        disp("Your distribution was left skewed.")
     end
     
     zFPKM = reshape(zFPKM, size(data_keep, 1), size(data_keep, 2));
