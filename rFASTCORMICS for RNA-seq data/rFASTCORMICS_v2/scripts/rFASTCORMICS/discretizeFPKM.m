@@ -1,4 +1,4 @@
-function [discretized, scaledExpression] = discretizeFPKM(fpkm, colnames, figflag, pathFigures,fileFormat)
+function [discretized, scaledExpression] = discretizeFPKM(fpkm, colnames, figflag, pathFigures, fileFormat)
 %   The function discretizes gene expression data (FPKM values) into three categories:
 %   expressed, not expressed, and unknown, based on a zFPKM transformation and
 %   half-Gaussian density fitting.
