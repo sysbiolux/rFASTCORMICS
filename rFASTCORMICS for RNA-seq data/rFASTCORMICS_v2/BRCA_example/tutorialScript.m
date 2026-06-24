@@ -52,3 +52,7 @@ optionalSettingsBis.medium = optionalSettingsBis.medium(mask);
 [BCRAmodelBis, retainedRxnsBis] = rFastcormics(consistentModel, discretized, rownames, dico, biomassRxn, ...
     consensusProportion, epsilon, optionalSettingsBis); %filling the medium is activated by default
 
+%% Example without optionalSettings
+[BCRAmodelTer, retainedRxnsTer] = rFastcormics(consistentModel, discretized, rownames, dico, biomassRxn, ...
+    consensusProportion, epsilon);
+
