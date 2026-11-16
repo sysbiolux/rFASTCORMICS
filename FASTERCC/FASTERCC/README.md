@@ -2,7 +2,7 @@
 
 FasterCC returns the flux-consistent part of a constraint-based metabolic model: the reactions that can carry a flux of at
 least ε at steady state. Before any linear program (LP), it removes reactions that cannot carry flux (dead ends, and
-reactions blocked by the stoichiometry alone, proven by an exact Poolman test), then solves far fewer LPs than FASTCC.
+reactions blocked by the stoichiometry alone, proven by an exact Null space test (Poolman )), then solves far fewer LPs than FASTCC.
 
 This folder holds the results of the November 2026 benchmark of the new FasterCC against FASTCC and SPECTRA:
 - 1,140 cluster tasks (CPLEX and Gurobi), 250 FASTCORE tasks and 58 real models;
