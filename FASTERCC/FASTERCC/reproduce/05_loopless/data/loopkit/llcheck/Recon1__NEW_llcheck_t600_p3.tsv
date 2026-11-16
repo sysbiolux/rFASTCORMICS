@@ -1,0 +1,9 @@
+rxn	direction	kind	verdict	flux	seconds	diagnostics
+DNDPt36m	1	candidate	UNDECIDED_time_limit		600.0	tries=0 
+DURItn	-1	candidate	UNDECIDED_time_limit		600.6	tries=0 
+G6PDH1rer	-1	candidate	UNDECIDED_time_limit		600.7	tries=0 
+HSD11B2r	-1	candidate	UNDECIDED_time_limit		601.0	tries=0 
+ITCOALm	-1	candidate	UNDECIDED_time_limit		600.2	tries=0 
+ITPtn	-1	candidate	UNDECIDED_time_limit		600.1	tries=0 
+NDPK10n	1	candidate	UNDECIDED_time_limit		600.0	tries=0 
+NDPK1n	1	candidate	UNDECIDED_time_limit		600.1	tries=0 

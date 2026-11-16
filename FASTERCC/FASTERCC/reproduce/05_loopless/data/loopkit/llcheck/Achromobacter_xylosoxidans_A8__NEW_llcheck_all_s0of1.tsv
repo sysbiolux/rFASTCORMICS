@@ -1,0 +1,46 @@
+rxn	direction	kind	verdict	flux	seconds	diagnostics
+23DHMPO	1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+23DHMPO	-1	candidate	REFUTED_loop_free_flux	-1	4.2	tries=0 res=0.0e+00 active=21 signviol=0 ming=1
+2AHBUTI	1	candidate	REFUTED_loop_free_flux	1	0.0	tries=0 res=0.0e+00 active=21 signviol=0 ming=1
+2AHBUTI	-1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+3HBCOAE	1	candidate	REFUTED_loop_free_flux	1	0.0	tries=0 res=1.1e-16 active=19 signviol=0 ming=1
+3HBCOAE	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+3HBCOAOX	1	candidate	REFUTED_loop_free_flux	1	0.0	tries=0 res=1.1e-16 active=19 signviol=0 ming=1
+3HBCOAOX	-1	candidate	REFUTED_loop_free_flux	-1	4.6	tries=0 res=3.7e-17 active=26 signviol=0 ming=1
+A5PISO	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+A5PISO	-1	candidate	REFUTED_loop_free_flux	-1	2.5	tries=0 res=0.0e+00 active=42 signviol=0 ming=1
+ABUTD	1	candidate	REFUTED_loop_free_flux	1	2.5	tries=0 res=4.1e-17 active=16 signviol=0 ming=1
+ALACI	1	candidate	REFUTED_loop_free_flux	1	7.1	tries=0 res=0.0e+00 active=38 signviol=0 ming=1
+ALACI	-1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+ARABDPT	1	candidate	REFUTED_loop_free_flux	1	2.5	tries=0 res=0.0e+00 active=32 signviol=0 ming=1
+ARABDPT	-1	candidate	REFUTED_loop_free_flux	-1	2.2	tries=0 res=1.3e-16 active=27 signviol=0 ming=1
+DMPPS	1	candidate	REFUTED_loop_free_flux	1	2.6	tries=0 res=1.7e-16 active=67 signviol=0 ming=1
+DMPPS2r	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+DMPPS2r	-1	candidate	REFUTED_loop_free_flux	-1	0.0	tries=0 res=1.7e-16 active=67 signviol=0 ming=1
+ECOAH1	1	candidate	REFUTED_loop_free_flux	1	5.3	tries=0 res=0.0e+00 active=38 signviol=0 ming=1
+ECOAH1	-1	candidate	REFUTED_loop_free_flux	-1	2.2	tries=0 res=0.0e+00 active=9 signviol=0 ming=1
+ECOAH1R	1	candidate	REFUTED_loop_free_flux	1	0.0	tries=0 res=0.0e+00 active=9 signviol=0 ming=1
+ECOAH1R	-1	candidate	REFUTED_loop_free_flux	-1	5.1	tries=0 res=1.0e-16 active=19 signviol=0 ming=1
+G3PAT140	1	candidate	REFUTED_loop_free_flux	1	4.5	tries=0 res=0.0e+00 active=32 signviol=0 ming=1
+GGGABADr	1	candidate	REFUTED_loop_free_flux	1	2.4	tries=0 res=1.9e-16 active=12 signviol=0 ming=1
+GGGABADr	-1	candidate	REFUTED_loop_free_flux	-1	1.8	tries=0 res=4.4e-16 active=10 signviol=0 ming=1
+GGGABARr	1	candidate	REFUTED_loop_free_flux	1	0.0	tries=0 res=4.4e-16 active=10 signviol=0 ming=1
+GGGABARr	-1	candidate	REFUTED_loop_free_flux	-1	2.4	tries=0 res=1.9e-16 active=12 signviol=0 ming=1
+GK1	1	candidate	REFUTED_loop_free_flux	1	2.3	tries=0 res=8.0e-16 active=33 signviol=0 ming=1
+GK1	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+GK2	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+GK2	-1	candidate	REFUTED_loop_free_flux	-1	0.0	tries=0 res=8.0e-16 active=33 signviol=0 ming=1
+HACD1	1	candidate	REFUTED_loop_free_flux	1	2.6	tries=0 res=0.0e+00 active=11 signviol=0 ming=1
+HACD1	-1	candidate	REFUTED_loop_free_flux	-1	2.5	tries=0 res=0.0e+00 active=25 signviol=0 ming=1
+KARA3	1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+KARA3	-1	candidate	REFUTED_loop_free_flux	-1	5.0	tries=0 res=2.1e-16 active=50 signviol=0 ming=1
+PHPB2i	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+TDCOATA	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+TDCOATA	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+URDGLYCD	1	candidate	REFUTED_loop_free_flux	1	2.6	tries=0 res=0.0e+00 active=11 signviol=0 ming=1
+3HBCOAE	1	control	REFUTED_loop_free_flux	1	2.3	tries=0 res=0.0e+00 active=13 signviol=0 ming=1
+3HBCOAE	-1	control	UNDECIDED_time_limit		60.0	tries=0 
+3HBCOAOX	1	control	REFUTED_loop_free_flux	1	0.0	tries=0 res=0.0e+00 active=13 signviol=0 ming=1
+3HBCOAOX	-1	control	REFUTED_loop_free_flux	-1	4.6	tries=0 res=3.7e-17 active=26 signviol=0 ming=1
+ABUTD	1	control	REFUTED_loop_free_flux	1	0.0	tries=0 res=3.7e-17 active=25 signviol=0 ming=1
+ABUTD	-1	control	CONFIRMED_loop_only		0.0	tries=0 

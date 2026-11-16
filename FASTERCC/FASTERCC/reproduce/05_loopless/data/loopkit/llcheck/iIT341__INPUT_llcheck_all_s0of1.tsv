@@ -1,0 +1,30 @@
+rxn	direction	kind	verdict	flux	seconds	diagnostics
+4HGLSD	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+4HGLSD	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+AHSERL2	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+ACKr	1	candidate	REFUTED_loop_free_flux	0.0119	0.7	tries=0 res=1.4e-15 active=296 signviol=0 ming=1
+ACKr	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+HPROa	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+METB1	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+METB1	-1	candidate	REFUTED_loop_free_flux	-0.0332	0.0	tries=0 res=2.6e-16 active=291 signviol=0 ming=1
+HPROx	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+HSERTA	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+HSERTA	-1	candidate	REFUTED_loop_free_flux	-0.0332	0.0	tries=0 res=2.6e-16 active=291 signviol=0 ming=1
+PHCD	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+SHSL1	1	candidate	REFUTED_loop_free_flux	0.0332	0.0	tries=0 res=2.6e-16 active=291 signviol=0 ming=1
+SHSL1	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+PHCHGS	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+PHCHGS	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+SHSL2r	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+SHSL2r	-1	candidate	REFUTED_loop_free_flux	-0.0332	0.0	tries=0 res=2.6e-16 active=291 signviol=0 ming=1
+SHSL4r	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+SHSL4r	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+THRD_L	1	candidate	REFUTED_loop_free_flux	0.0119	0.0	tries=0 res=1.4e-15 active=296 signviol=0 ming=1
+PTAr	1	candidate	REFUTED_loop_free_flux	1	0.5	tries=0 res=4.0e-16 active=59 signviol=0 ming=1
+PTAr	-1	candidate	REFUTED_loop_free_flux	-0.00955	0.5	tries=0 res=5.5e-16 active=300 signviol=0 ming=1
+H2CO3D	1	control	REFUTED_loop_free_flux	0.99	0.0	tries=0 res=3.1e-16 active=295 signviol=0 ming=1
+H2CO3D	-1	control	CONFIRMED_loop_only		0.0	tries=0 
+H2CO3D2	1	control	REFUTED_loop_free_flux	1	0.0	tries=0 res=2.6e-16 active=82 signviol=0 ming=1
+H2CO3D2	-1	control	REFUTED_loop_free_flux	-1	0.0	tries=0 res=4.4e-16 active=39 signviol=0 ming=1
+HCO3E	1	control	REFUTED_loop_free_flux	1	0.0	tries=0 res=4.4e-16 active=38 signviol=0 ming=1
+HCO3E	-1	control	CONFIRMED_loop_only		0.0	tries=0 

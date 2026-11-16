@@ -1,0 +1,175 @@
+model,group,reactions,method,time_s
+subDas,Small test,10,FasterCC,1.1564
+DAS,Small test,11,FasterCC,1.64085
+ecoli_core_model,Small test,95,FasterCC,2.27331
+cardiac_mit_glcuptake_atpmax,Small test,220,FasterCC,4.23962
+Acidaminococcus_sp_D21,AGORA microbes,860,FasterCC,4.65792
+Acidaminococcus_intestini_RyC_MR95,AGORA microbes,1001,FasterCC,5.01757
+Abiotrophia_defectiva_ATCC_49176,AGORA microbes,1073,FasterCC,3.9749
+Acidaminococcus_fermentans_DSM_20731,AGORA microbes,1102,FasterCC,3.30303
+Acinetobacter_junii_SH205,AGORA microbes,1295,FasterCC,4.59046
+Acinetobacter_lwoffii_WJ10621,AGORA microbes,1356,FasterCC,4.54201
+Acinetobacter_haemolyticus_NIPH_261,AGORA microbes,1382,FasterCC,4.95474
+Acinetobacter_radioresistens_NIPH_2130,AGORA microbes,1425,FasterCC,4.54203
+Acinetobacter_johnsonii_SH046,AGORA microbes,1446,FasterCC,4.7759
+Acinetobacter_pittii_ANC_4052,AGORA microbes,1582,FasterCC,5.04105
+Acinetobacter_calcoaceticus_PHEA_2,AGORA microbes,1586,FasterCC,4.86503
+Acinetobacter_baumannii_AB0057,AGORA microbes,1593,FasterCC,4.77363
+Achromobacter_xylosoxidans_A8,AGORA microbes,1668,FasterCC,3.075
+Achromobacter_xylosoxidans_NBRC_15126,AGORA microbes,1674,FasterCC,2.91278
+iIT341,Curated microbial,554,FasterCC,28.1158
+Sc_iND750_flux1,Curated microbial,1266,FasterCC,6.8012
+iMM904,Curated microbial,1577,FasterCC,4.78856
+Ec_iAF1260_flux1,Curated microbial,2382,FasterCC,9.65123
+STM_v1_0,Curated microbial,2546,FasterCC,40.6189
+iJO1366,Curated microbial,2583,FasterCC,58.6181
+iML1515,Curated microbial,2712,FasterCC,56.924
+Recon1,Human generic,3742,FasterCC,4.72058
+Recon2,Human generic,7440,FasterCC,5.54494
+Recon3D_mat,Human generic,10600,FasterCC,140.164
+Recon3Model,Human generic,10600,FasterCC,6.75392
+Human2,Human generic,12931,FasterCC,16.7915
+HumanGEM12971,Human generic,12971,FasterCC,20.9043
+HumanGEM,Human generic,13026,FasterCC,24.2791
+Human1,Human generic,13417,FasterCC,25.3193
+Recon3D,Human generic,13543,FasterCC,19.1532
+Fetus_RBC,Fetal tissues,6519,FasterCC,108.814
+Fetus_Scord,Fetal tissues,7786,FasterCC,152.355
+Fetus_Muscle,Fetal tissues,7919,FasterCC,155.628
+Fetus_Agland,Fetal tissues,7924,FasterCC,136.151
+Fetus_Adipocytes,Fetal tissues,7972,FasterCC,130.268
+Fetus_Brain,Fetal tissues,7986,FasterCC,165.611
+Fetus_Urinarybladder,Fetal tissues,7990,FasterCC,138.331
+Fetus_Thyroidgland,Fetal tissues,7992,FasterCC,142.977
+Fetus_Skin,Fetal tissues,7999,FasterCC,152.312
+Fetus_Heart,Fetal tissues,8012,FasterCC,164.752
+Fetus_Pancreas,Fetal tissues,8024,FasterCC,129.73
+Fetus_Colon,Fetal tissues,8062,FasterCC,171.116
+Fetus_Lung,Fetal tissues,8068,FasterCC,15.5003
+Fetus_Spleen,Fetal tissues,8096,FasterCC,162.217
+Fetus_Kidney,Fetal tissues,8136,FasterCC,164.545
+Fetus_Stomach,Fetal tissues,8177,FasterCC,148.521
+Fetus_sINE,Fetal tissues,8302,FasterCC,163.088
+Fetus_Liver,Fetal tissues,8615,FasterCC,163.417
+Harvey_1_03c,Whole-body,81094,FasterCC,83233.0
+Harvey_aafix_E6,Whole-body,81094,FasterCC,2787.77
+Harvetta_1_03c,Whole-body,83521,FasterCC,85913.6
+Harvetta_aafix_E6,Whole-body,83521,FasterCC,3176.73
+Microbiota,Microbiota,173353,FasterCC,9084.44
+ME_dbl_E0_L1_00e_2,ME model,76664,FasterCC,nan
+subDas,Small test,10,FASTCC,0.091847
+DAS,Small test,11,FASTCC,0.080969
+ecoli_core_model,Small test,95,FASTCC,0.101804
+cardiac_mit_glcuptake_atpmax,Small test,220,FASTCC,0.227807
+Acidaminococcus_sp_D21,AGORA microbes,860,FASTCC,1.22729
+Acidaminococcus_intestini_RyC_MR95,AGORA microbes,1001,FASTCC,1.40351
+Abiotrophia_defectiva_ATCC_49176,AGORA microbes,1073,FASTCC,1.28164
+Acidaminococcus_fermentans_DSM_20731,AGORA microbes,1102,FASTCC,1.28653
+Acinetobacter_junii_SH205,AGORA microbes,1295,FASTCC,1.46596
+Acinetobacter_lwoffii_WJ10621,AGORA microbes,1356,FASTCC,1.79507
+Acinetobacter_haemolyticus_NIPH_261,AGORA microbes,1382,FASTCC,2.49728
+Acinetobacter_radioresistens_NIPH_2130,AGORA microbes,1425,FASTCC,2.37845
+Acinetobacter_johnsonii_SH046,AGORA microbes,1446,FASTCC,2.18557
+Acinetobacter_pittii_ANC_4052,AGORA microbes,1582,FASTCC,3.63094
+Acinetobacter_calcoaceticus_PHEA_2,AGORA microbes,1586,FASTCC,3.20036
+Acinetobacter_baumannii_AB0057,AGORA microbes,1593,FASTCC,3.50774
+Achromobacter_xylosoxidans_A8,AGORA microbes,1668,FASTCC,3.63936
+Achromobacter_xylosoxidans_NBRC_15126,AGORA microbes,1674,FASTCC,3.30888
+iIT341,Curated microbial,554,FASTCC,0.437198
+Sc_iND750_flux1,Curated microbial,1266,FASTCC,4.9893
+iMM904,Curated microbial,1577,FASTCC,7.15625
+Ec_iAF1260_flux1,Curated microbial,2382,FASTCC,13.3416
+STM_v1_0,Curated microbial,2546,FASTCC,16.9205
+iJO1366,Curated microbial,2583,FASTCC,18.6478
+iML1515,Curated microbial,2712,FASTCC,23.1763
+Recon1,Human generic,3742,FASTCC,74.9988
+Recon2,Human generic,7440,FASTCC,224.338
+Recon3D_mat,Human generic,10600,FASTCC,6.08202
+Recon3Model,Human generic,10600,FASTCC,3.88271
+Human2,Human generic,12931,FASTCC,1163.77
+HumanGEM12971,Human generic,12971,FASTCC,1083.87
+HumanGEM,Human generic,13026,FASTCC,1165.14
+Human1,Human generic,13417,FASTCC,1497.54
+Recon3D,Human generic,13543,FASTCC,1523.29
+Fetus_RBC,Fetal tissues,6519,FASTCC,208.155
+Fetus_Scord,Fetal tissues,7786,FASTCC,116.373
+Fetus_Muscle,Fetal tissues,7919,FASTCC,1297.63
+Fetus_Agland,Fetal tissues,7924,FASTCC,310.615
+Fetus_Adipocytes,Fetal tissues,7972,FASTCC,316.083
+Fetus_Brain,Fetal tissues,7986,FASTCC,261.022
+Fetus_Urinarybladder,Fetal tissues,7990,FASTCC,457.626
+Fetus_Thyroidgland,Fetal tissues,7992,FASTCC,695.524
+Fetus_Skin,Fetal tissues,7999,FASTCC,828.232
+Fetus_Heart,Fetal tissues,8012,FASTCC,1099.54
+Fetus_Pancreas,Fetal tissues,8024,FASTCC,480.065
+Fetus_Colon,Fetal tissues,8062,FASTCC,916.453
+Fetus_Lung,Fetal tissues,8068,FASTCC,201.018
+Fetus_Spleen,Fetal tissues,8096,FASTCC,947.291
+Fetus_Kidney,Fetal tissues,8136,FASTCC,784.95
+Fetus_Stomach,Fetal tissues,8177,FASTCC,380.252
+Fetus_sINE,Fetal tissues,8302,FASTCC,1578.52
+Fetus_Liver,Fetal tissues,8615,FASTCC,960.976
+Harvey_1_03c,Whole-body,81094,FASTCC,111253.0
+Harvey_aafix_E6,Whole-body,81094,FASTCC,115845.0
+Harvetta_1_03c,Whole-body,83521,FASTCC,93429.0
+Harvetta_aafix_E6,Whole-body,83521,FASTCC,118778.0
+Microbiota,Microbiota,173353,FASTCC,342660.0
+ME_dbl_E0_L1_00e_2,ME model,76664,FASTCC,14728.2
+subDas,Small test,10,SPECTRA,0.727195
+DAS,Small test,11,SPECTRA,0.364995
+ecoli_core_model,Small test,95,SPECTRA,2.41138
+cardiac_mit_glcuptake_atpmax,Small test,220,SPECTRA,0.649135
+Acidaminococcus_sp_D21,AGORA microbes,860,SPECTRA,1.3747
+Acidaminococcus_intestini_RyC_MR95,AGORA microbes,1001,SPECTRA,0.772089
+Abiotrophia_defectiva_ATCC_49176,AGORA microbes,1073,SPECTRA,1.12133
+Acidaminococcus_fermentans_DSM_20731,AGORA microbes,1102,SPECTRA,1.2419
+Acinetobacter_junii_SH205,AGORA microbes,1295,SPECTRA,0.815229
+Acinetobacter_lwoffii_WJ10621,AGORA microbes,1356,SPECTRA,0.891862
+Acinetobacter_haemolyticus_NIPH_261,AGORA microbes,1382,SPECTRA,3.23816
+Acinetobacter_radioresistens_NIPH_2130,AGORA microbes,1425,SPECTRA,0.824702
+Acinetobacter_johnsonii_SH046,AGORA microbes,1446,SPECTRA,1.40846
+Acinetobacter_pittii_ANC_4052,AGORA microbes,1582,SPECTRA,1.33767
+Acinetobacter_calcoaceticus_PHEA_2,AGORA microbes,1586,SPECTRA,0.856882
+Acinetobacter_baumannii_AB0057,AGORA microbes,1593,SPECTRA,0.993542
+Achromobacter_xylosoxidans_A8,AGORA microbes,1668,SPECTRA,1.26788
+Achromobacter_xylosoxidans_NBRC_15126,AGORA microbes,1674,SPECTRA,1.34197
+iIT341,Curated microbial,554,SPECTRA,1.08502
+Sc_iND750_flux1,Curated microbial,1266,SPECTRA,1.85155
+iMM904,Curated microbial,1577,SPECTRA,1.98989
+Ec_iAF1260_flux1,Curated microbial,2382,SPECTRA,5.14106
+STM_v1_0,Curated microbial,2546,SPECTRA,3.49991
+iJO1366,Curated microbial,2583,SPECTRA,2.13202
+iML1515,Curated microbial,2712,SPECTRA,2.55932
+Recon1,Human generic,3742,SPECTRA,1.45719
+Recon2,Human generic,7440,SPECTRA,2.23477
+Recon3D_mat,Human generic,10600,SPECTRA,7.60605
+Recon3Model,Human generic,10600,SPECTRA,5.83308
+Human2,Human generic,12931,SPECTRA,20.6726
+HumanGEM12971,Human generic,12971,SPECTRA,18.2293
+HumanGEM,Human generic,13026,SPECTRA,21.4298
+Human1,Human generic,13417,SPECTRA,24.9875
+Recon3D,Human generic,13543,SPECTRA,6.61958
+Fetus_RBC,Fetal tissues,6519,SPECTRA,2.82009
+Fetus_Scord,Fetal tissues,7786,SPECTRA,13.0435
+Fetus_Muscle,Fetal tissues,7919,SPECTRA,9.28574
+Fetus_Agland,Fetal tissues,7924,SPECTRA,14.8132
+Fetus_Adipocytes,Fetal tissues,7972,SPECTRA,10.4863
+Fetus_Brain,Fetal tissues,7986,SPECTRA,5.73582
+Fetus_Urinarybladder,Fetal tissues,7990,SPECTRA,16.9859
+Fetus_Thyroidgland,Fetal tissues,7992,SPECTRA,14.5929
+Fetus_Skin,Fetal tissues,7999,SPECTRA,15.7124
+Fetus_Heart,Fetal tissues,8012,SPECTRA,12.59
+Fetus_Pancreas,Fetal tissues,8024,SPECTRA,16.7399
+Fetus_Colon,Fetal tissues,8062,SPECTRA,27.7179
+Fetus_Lung,Fetal tissues,8068,SPECTRA,10.8685
+Fetus_Spleen,Fetal tissues,8096,SPECTRA,14.731
+Fetus_Kidney,Fetal tissues,8136,SPECTRA,18.7422
+Fetus_Stomach,Fetal tissues,8177,SPECTRA,17.7642
+Fetus_sINE,Fetal tissues,8302,SPECTRA,19.7071
+Fetus_Liver,Fetal tissues,8615,SPECTRA,17.887
+Harvey_1_03c,Whole-body,81094,SPECTRA,292.012
+Harvey_aafix_E6,Whole-body,81094,SPECTRA,348.58
+Harvetta_1_03c,Whole-body,83521,SPECTRA,444.485
+Harvetta_aafix_E6,Whole-body,83521,SPECTRA,357.708
+Microbiota,Microbiota,173353,SPECTRA,1406.13
+ME_dbl_E0_L1_00e_2,ME model,76664,SPECTRA,221.554

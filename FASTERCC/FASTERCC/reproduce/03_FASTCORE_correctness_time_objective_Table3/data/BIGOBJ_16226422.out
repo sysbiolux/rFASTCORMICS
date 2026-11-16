@@ -1,0 +1,33 @@
+start Wed Nov 11 00:57:39 CET 2026 | host aion-0048
+Opening log file:  /home/users/egonzalez/java.log.52739
+
+######## Harvey_aafix_E6: 81094 reactions, objective Whole_body_objective_rxn (bounds 1 .. 1)
+== FULL     kept  81094 | objective kept 1 | FEASIBLE with the model bounds: yes | largest objective flux (bounds opened): 2.657
+== NEW      kept  68072 | objective kept 1 | FEASIBLE with the model bounds: yes | largest objective flux (bounds opened): 2.657
+== FASTCC   kept  68080 | objective kept 1 | FEASIBLE with the model bounds: yes | largest objective flux (bounds opened): 2.657
+== SPECTRA  kept  68185 | objective kept 1 | FEASIBLE with the model bounds: yes | largest objective flux (bounds opened): 2.657
+
+######## Harvetta_aafix_E6: 83521 reactions, objective Whole_body_objective_rxn (bounds 1 .. 1)
+== FULL     kept  83521 | objective kept 1 | FEASIBLE with the model bounds: yes | largest objective flux (bounds opened): 1.275
+== NEW      kept  70189 | objective kept 1 | FEASIBLE with the model bounds: yes | largest objective flux (bounds opened): 1.275
+== FASTCC   kept  70197 | objective kept 1 | FEASIBLE with the model bounds: yes | largest objective flux (bounds opened): 1.275
+== SPECTRA  kept  70389 | objective kept 1 | FEASIBLE with the model bounds: yes | largest objective flux (bounds opened): 1.275
+
+######## Microbiota: 173353 reactions, objective communityBiomass (bounds 0 .. 1000)
+== FULL     kept 173353 | objective kept 1 | FEASIBLE with the model bounds: yes | largest objective flux (bounds opened): 459.2
+== NEW      kept 110779 | objective kept 1 | FEASIBLE with the model bounds: yes | largest objective flux (bounds opened): 459.2
+== FASTCC   kept 110846 | objective kept 1 | FEASIBLE with the model bounds: yes | largest objective flux (bounds opened): 0
+== SPECTRA  kept 111704 | objective kept 1 | FEASIBLE with the model bounds: yes | largest objective flux (bounds opened): 0
+
+######## Harvey_1_03c: 81094 reactions, objective Whole_body_objective_rxn (bounds 1 .. 1)
+== FULL     kept  81094 | objective kept 1 | FEASIBLE with the model bounds: NO | largest objective flux (bounds opened): 2.333
+== NEW      kept  68233 | objective kept 1 | FEASIBLE with the model bounds: NO | largest objective flux (bounds opened): 0
+== FASTCC   kept  68199 | objective kept 1 | FEASIBLE with the model bounds: NO | largest objective flux (bounds opened): 0
+== SPECTRA  kept  68293 | objective kept 1 | FEASIBLE with the model bounds: NO | largest objective flux (bounds opened): 0
+
+######## Harvetta_1_03c: 83521 reactions, objective Whole_body_objective_rxn (bounds 1 .. 1)
+== FULL     kept  83521 | objective kept 1 | FEASIBLE with the model bounds: NO | largest objective flux (bounds opened): 1.275
+== NEW      kept  70355 | objective kept 1 | FEASIBLE with the model bounds: NO | largest objective flux (bounds opened): 0
+== FASTCC   kept  70325 | objective kept 1 | FEASIBLE with the model bounds: NO | largest objective flux (bounds opened): 0
+== SPECTRA  kept  70358 | objective kept 1 | FEASIBLE with the model bounds: NO | largest objective flux (bounds opened): 0
+end Wed Nov 11 03:33:21 CET 2026 | exit 0

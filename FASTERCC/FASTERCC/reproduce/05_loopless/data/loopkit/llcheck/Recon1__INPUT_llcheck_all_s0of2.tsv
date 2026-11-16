@@ -1,0 +1,169 @@
+rxn	direction	kind	verdict	flux	seconds	diagnostics
+25HVITD2t	1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+25HVITD2tin_m	1	candidate	REFUTED_loop_free_flux	1	53.7	tries=0 res=4.4e-17 active=31 signviol=0 ming=1
+25HVITD3t	1	candidate	REFUTED_loop_free_flux	1	25.8	tries=0 res=0.0e+00 active=56 signviol=0 ming=1
+25HVITD3tin_m	1	candidate	REFUTED_loop_free_flux	1	25.3	tries=0 res=0.0e+00 active=32 signviol=0 ming=1
+34DHPLACOX	1	candidate	REFUTED_loop_free_flux	1	21.6	tries=0 res=0.0e+00 active=6 signviol=0 ming=1
+35CGMPtn	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+3MOX4HOXPGALDOX	1	candidate	REFUTED_loop_free_flux	1	23.0	tries=0 res=6.2e-17 active=23 signviol=0 ming=1
+4HGLSDm	-1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+ACACtx	-1	candidate	REFUTED_loop_free_flux	-1	53.1	tries=0 res=0.0e+00 active=47 signviol=0 ming=1
+ACCOAtn	-1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+ACHtn	-1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+ALAGLNNaEx	1	candidate	REFUTED_loop_free_flux	1	27.0	tries=0 res=0.0e+00 active=47 signviol=0 ming=1
+ALATHRNaEx	1	candidate	REFUTED_loop_free_flux	1	0.1	tries=0 res=0.0e+00 active=48 signviol=0 ming=1
+ALCD22_D	1	candidate	REFUTED_loop_free_flux	1	23.3	tries=0 res=0.0e+00 active=12 signviol=0 ming=1
+ALR2	1	candidate	REFUTED_loop_free_flux	1	0.1	tries=0 res=0.0e+00 active=14 signviol=0 ming=1
+ARACHt	-1	candidate	REFUTED_loop_free_flux	-1	25.4	tries=0 res=5.6e-17 active=18 signviol=0 ming=1
+ATPtn	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+BIOCYTtn	1	candidate	REFUTED_loop_free_flux	1	49.9	tries=0 res=0.0e+00 active=55 signviol=0 ming=1
+BTND1n	1	candidate	REFUTED_loop_free_flux	1	0.1	tries=0 res=0.0e+00 active=55 signviol=0 ming=1
+BTNtn	-1	candidate	REFUTED_loop_free_flux	-1	0.1	tries=0 res=0.0e+00 active=55 signviol=0 ming=1
+CERT1rt	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+CERT2rt	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+CHATn	-1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+CHOLtn	-1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+CHOLtr	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+CK	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+CKc	-1	candidate	REFUTED_loop_free_flux	-1	52.9	tries=0 res=1.5e-16 active=49 signviol=0 ming=1
+CLI2tex	1	candidate	REFUTED_loop_free_flux	1	0.1	tries=0 res=9.7e-17 active=45 signviol=0 ming=1
+COAtn	1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+COAtp	1	candidate	CONFIRMED_loop_only		1.2	tries=0 
+CREATtmdiffir	1	candidate	REFUTED_loop_free_flux	1	0.1	tries=0 res=1.5e-16 active=51 signviol=0 ming=1
+CRNt	-1	candidate	REFUTED_loop_free_flux	-1	43.4	tries=0 res=0.0e+00 active=17 signviol=0 ming=1
+CRNtuIR	1	candidate	REFUTED_loop_free_flux	1	23.2	tries=0 res=6.7e-17 active=12 signviol=0 ming=1
+CYSASNNaEx	1	candidate	REFUTED_loop_free_flux	1	0.1	tries=0 res=0.0e+00 active=12 signviol=0 ming=1
+CYSSERNaEx	1	candidate	REFUTED_loop_free_flux	1	0.1	tries=0 res=2.5e-16 active=13 signviol=0 ming=1
+CYTDn	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+CYTDtn	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+CYTK10n	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+CYTK11n	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+CYTK12n	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+CYTK13n	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+CYTK14n	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+CYTK1n	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+CYTK2n	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+CYTK3n	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+CYTK4n	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+CYTK5n	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+CYTK6n	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+CYTK7n	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+CYTK8n	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+CYTK9n	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+DAGKn_hs	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+DCK1n	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+DCK2n	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+DIDPtn	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+DITPtn	1	candidate	REFUTED_loop_free_flux	1	51.5	tries=0 res=9.5e-17 active=67 signviol=0 ming=1
+DNADtn	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+DNDPt33m	1	candidate	REFUTED_loop_free_flux	1	30.3	tries=0 res=0.0e+00 active=96 signviol=0 ming=1
+DTDPtn	1	candidate	REFUTED_loop_free_flux	1	53.4	tries=0 res=4.6e-17 active=47 signviol=0 ming=1
+DURItn	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+ESTRADIOLtr	1	candidate	REFUTED_loop_free_flux	1	36.8	tries=0 res=2.8e-16 active=79 signviol=0 ming=1
+FACOAL191	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+FATP3t	-1	candidate	REFUTED_loop_free_flux	-1	0.1	tries=0 res=2.2e-16 active=9 signviol=0 ming=1
+FATP4t	-1	candidate	REFUTED_loop_free_flux	-1	46.0	tries=0 res=1.4e-17 active=20 signviol=0 ming=1
+FATP7t	-1	candidate	REFUTED_loop_free_flux	-1	22.8	tries=0 res=0.0e+00 active=13 signviol=0 ming=1
+FORt2m	-1	candidate	REFUTED_loop_free_flux	-1	52.4	tries=0 res=9.5e-17 active=106 signviol=0 ming=1
+FTHFLm	-1	candidate	REFUTED_loop_free_flux	-1	54.2	tries=0 res=1.6e-16 active=68 signviol=0 ming=1
+FUMSO4tm	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+G6PDH1rer	-1	candidate	REFUTED_loop_free_flux	-1	20.1	tries=0 res=0.0e+00 active=39 signviol=0 ming=1
+GLACter	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+GLNALANaEx	1	candidate	REFUTED_loop_free_flux	1	27.5	tries=0 res=0.0e+00 active=4 signviol=0 ming=1
+GLNLASEer	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+GLNSERNaEx	1	candidate	REFUTED_loop_free_flux	1	51.6	tries=0 res=9.1e-17 active=34 signviol=0 ming=1
+GLRASE	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+GMPtn	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+GULLACter	1	candidate	REFUTED_loop_free_flux	1	53.3	tries=0 res=0.0e+00 active=21 signviol=0 ming=1
+H2CO3D	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+H2CO3D2	-1	candidate	REFUTED_loop_free_flux	-1	53.7	tries=0 res=0.0e+00 active=16 signviol=0 ming=1
+H2CO3D2m	-1	candidate	REFUTED_loop_free_flux	-1	21.0	tries=0 res=0.0e+00 active=67 signviol=0 ming=1
+H2CO3Dm	-1	candidate	CONFIRMED_loop_only		0.2	tries=0 
+H2Otn	-1	candidate	REFUTED_loop_free_flux	-1	50.7	tries=0 res=6.8e-17 active=32 signviol=0 ming=1
+HCO3_NAt	-1	candidate	REFUTED_loop_free_flux	-1	0.1	tries=0 res=0.0e+00 active=31 signviol=0 ming=1
+HMGCOAtx	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+HSD11B1r	1	candidate	REFUTED_loop_free_flux	1	25.1	tries=0 res=0.0e+00 active=57 signviol=0 ming=1
+HSD11B2r	1	candidate	REFUTED_loop_free_flux	1	54.2	tries=0 res=0.0e+00 active=23 signviol=0 ming=1
+HSD17B1	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+IDPtn	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+ITCOAL1m	1	candidate	REFUTED_loop_free_flux	1	20.9	tries=0 res=1.5e-16 active=79 signviol=0 ming=1
+ITCOALm	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+ITPtn	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+LALDO2	1	candidate	REFUTED_loop_free_flux	1	23.6	tries=0 res=0.0e+00 active=26 signviol=0 ming=1
+LYStn	-1	candidate	REFUTED_loop_free_flux	-1	39.9	tries=0 res=1.3e-16 active=28 signviol=0 ming=1
+MALSO4tm	-1	candidate	REFUTED_loop_free_flux	-1	29.3	tries=0 res=9.0e-17 active=107 signviol=0 ming=1
+MECOALm	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+MECOAS1m	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+MI14Ptn	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+MI1P_Dtn	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+NADtn	1	candidate	REFUTED_loop_free_flux	1	27.1	tries=0 res=1.9e-16 active=46 signviol=0 ming=1
+NADtpu	1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+NDPK10	1	candidate	REFUTED_loop_free_flux	1	51.9	tries=0 res=0.0e+00 active=42 signviol=0 ming=1
+NDPK10n	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+NDPK1n	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+NDPK2n	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+NDPK3n	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+NDPK4n	1	candidate	REFUTED_loop_free_flux	1	0.1	tries=0 res=0.0e+00 active=42 signviol=0 ming=1
+NDPK5n	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+NDPK7n	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+NDPK8n	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+NDPK9	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+NDPK9n	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+NH4tn	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+NICRNTtn	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+NMNATn	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+NMNtn	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+OCDCAtr	1	candidate	REFUTED_loop_free_flux	1	25.3	tries=0 res=5.3e-16 active=84 signviol=0 ming=1
+P5CR	1	candidate	REFUTED_loop_free_flux	1	0.1	tries=0 res=3.0e-16 active=84 signviol=0 ming=1
+PAIL45P_HStn	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+PAIL4P_HStn	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+PAIL_HStn	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+PA_HSter	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+PA_HStn	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+PCHOLPr_hs	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+PDE4n	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+PHCHGSm	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+PI345P3Pn	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+PI34P3Pn	1	candidate	REFUTED_loop_free_flux	1	26.9	tries=0 res=9.6e-17 active=33 signviol=0 ming=1
+PI34P5Kn	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+PI3P4Kn	1	candidate	REFUTED_loop_free_flux	1	0.1	tries=0 res=9.6e-17 active=35 signviol=0 ming=1
+PI45P5Pn	1	candidate	REFUTED_loop_free_flux	1	51.5	tries=0 res=3.7e-17 active=23 signviol=0 ming=1
+PI4P4Pn	1	candidate	REFUTED_loop_free_flux	1	0.1	tries=0 res=2.8e-17 active=19 signviol=0 ming=1
+PI4PLCn	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+PIK3n	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+PIK5n	1	candidate	REFUTED_loop_free_flux	1	56.8	tries=0 res=0.0e+00 active=128 signviol=0 ming=1
+PItn	1	candidate	REFUTED_loop_free_flux	1	53.7	tries=0 res=0.0e+00 active=58 signviol=0 ming=1
+PPAn	1	candidate	REFUTED_loop_free_flux	1	0.1	tries=0 res=0.0e+00 active=58 signviol=0 ming=1
+PPDOy	1	candidate	REFUTED_loop_free_flux	1	24.1	tries=0 res=0.0e+00 active=18 signviol=0 ming=1
+PRISTCOAtx	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+PRISTtx	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+PTE3x	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+RAI1	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+RAI2	-1	candidate	REFUTED_loop_free_flux	-1	38.7	tries=0 res=0.0e+00 active=15 signviol=0 ming=1
+RDH2	-1	candidate	REFUTED_loop_free_flux	-1	0.1	tries=0 res=0.0e+00 active=15 signviol=0 ming=1
+RDH2a	-1	candidate	REFUTED_loop_free_flux	-1	48.8	tries=0 res=5.2e-17 active=30 signviol=0 ming=1
+RDH3	-1	candidate	REFUTED_loop_free_flux	-1	46.8	tries=0 res=1.1e-16 active=22 signviol=0 ming=1
+RDH3a	-1	candidate	REFUTED_loop_free_flux	-1	24.5	tries=0 res=0.0e+00 active=16 signviol=0 ming=1
+SERDGLNexR	1	candidate	REFUTED_loop_free_flux	1	22.5	tries=0 res=2.8e-17 active=29 signviol=0 ming=1
+SERDGLYexR	1	candidate	REFUTED_loop_free_flux	1	24.3	tries=0 res=0.0e+00 active=46 signviol=0 ming=1
+THRALANaEx	1	candidate	REFUTED_loop_free_flux	1	29.7	tries=0 res=0.0e+00 active=8 signviol=0 ming=1
+THRCYSNaEx	1	candidate	REFUTED_loop_free_flux	1	0.1	tries=0 res=0.0e+00 active=10 signviol=0 ming=1
+THRSERNaEx	1	candidate	REFUTED_loop_free_flux	1	0.1	tries=0 res=0.0e+00 active=10 signviol=0 ming=1
+UDPGLCter	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+UMPK2n	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+UMPK3n	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+UMPK4n	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+UMPK5n	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+UMPK6n	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+UMPK7n	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+UMPKn	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+UROLACer	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+Uritn	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+VITD3t	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+VITD3tm3	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+10FTHF5GLUtl	1	control	REFUTED_loop_free_flux	1	25.9	tries=0 res=0.0e+00 active=92 signviol=0 ming=1
+10FTHF5GLUtl	-1	control	CONFIRMED_loop_only		0.0	tries=0 
+10FTHF5GLUtm	1	control	REFUTED_loop_free_flux	1	58.0	tries=0 res=1.5e-16 active=74 signviol=0 ming=1
+10FTHF5GLUtm	-1	control	CONFIRMED_loop_only		0.0	tries=0 
+10FTHF6GLUtl	1	control	REFUTED_loop_free_flux	1	45.2	tries=0 res=0.0e+00 active=39 signviol=0 ming=1
+10FTHF6GLUtl	-1	control	CONFIRMED_loop_only		0.0	tries=0 

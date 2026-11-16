@@ -1,0 +1,7 @@
+rxn	direction	kind	verdict	flux	seconds	diagnostics
+CITRtm	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+CITRtm	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+ORNt3m	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+ORNt3m	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+ORNt4m	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+ORNt4m	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 

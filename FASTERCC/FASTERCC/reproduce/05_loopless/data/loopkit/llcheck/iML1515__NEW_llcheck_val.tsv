@@ -1,0 +1,19 @@
+rxn	direction	kind	verdict	flux	seconds	diagnostics
+THMDt2pp_copy1	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+URIt2pp_copy1	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+ACt4pp	1	candidate	REFUTED_loop_free_flux	1	31.7	tries=0 res=0.0e+00 active=19 signviol=0 ming=1
+ADNt2pp_copy1	1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+CYTDt2pp_copy1	1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+PROt4pp	1	candidate	REFUTED_loop_free_flux	1	0.0	tries=0 res=0.0e+00 active=19 signviol=0 ming=1
+GLYCLTt4pp	1	candidate	UNDECIDED_time_limit		601.3	tries=0 
+CA2t3pp	1	candidate	REFUTED_loop_free_flux	1	22.7	tries=0 res=0.0e+00 active=36 signviol=0 ming=1
+GLDBRAN2	1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+THFAT	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+FOMETRi	1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+INDOLEt2rpp	1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+ALATA_L	1	control	UNDECIDED_time_limit		601.6	tries=0 
+ALATA_L	-1	control	REFUTED_loop_free_flux	-1	10.3	tries=0 res=0.0e+00 active=21 signviol=0 ming=1
+PPM	1	control	UNDECIDED_time_limit		601.6	tries=0 
+PPM	-1	control	REFUTED_loop_free_flux	-1	0.4	tries=0 res=0.0e+00 active=13 signviol=0 ming=1
+VALTA	1	control	CONFIRMED_loop_only		9.6	tries=0 
+VALTA	-1	control	UNDECIDED_time_limit		601.0	tries=0 

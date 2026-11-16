@@ -1,0 +1,6 @@
+input reactions,core reactions,"time, no preprocessing (s)",time with FasterCC preprocessing (s),speed-up
+12160,500,11.4,4.8,2.37
+39280,500,152.3,70.1,2.17
+84480,500,784.9,420.1,1.87
+39280,200,145.0,81.8,1.77
+39280,100,147.1,83.6,1.76

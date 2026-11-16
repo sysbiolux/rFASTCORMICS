@@ -1,0 +1,9 @@
+rxn	direction	kind	verdict	flux	seconds	diagnostics
+CYTK3n	-1	candidate	UNDECIDED_time_limit		600.0	tries=0 
+CYTK5n	-1	candidate	UNDECIDED_time_limit		600.6	tries=0 
+CYTK6n	-1	candidate	UNDECIDED_time_limit		600.7	tries=0 
+CYTK8n	-1	candidate	UNDECIDED_time_limit		601.0	tries=0 
+CYTK9n	-1	candidate	UNDECIDED_time_limit		600.2	tries=0 
+DIDPtn	1	candidate	UNDECIDED_time_limit		600.1	tries=0 
+DNDPt22m	1	candidate	UNDECIDED_time_limit		600.0	tries=0 
+DNDPt34m	1	candidate	UNDECIDED_time_limit		600.1	tries=0 

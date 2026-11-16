@@ -1,0 +1,11 @@
+model           eps    mode         rxns    Crows  inOK  SPECTRA  LPs  fail      sec      FVA  missd  extra  outOK    rerun  rLPs  rfail
+Harvetta_aafix  0.0001 published   83521   107351     1    69520   20     0    309.8    69520      0      0      1    69504    24      0
+Harvetta_aafix  1e-06  published   83521   107351     1    70262   30     0    488.0    70192      0     70      1    70203    30      0
+Harvetta_aafix  1e-06  withC       83521   107351     1    70622   58     1    958.8    70192      0    430      1    70272    32      0
+Harvey_aafix    0.0001 published   81094   103600     1    67436   20     0    215.9    67436      0      0      1    67427    22      0
+Harvey_aafix    1e-06  published   81094   103600     1    68134   20     1    247.4    68072      0     62      1    68079    22      0
+Harvey_aafix    1e-06  withC       81094   103600     1    68627   38     1    650.4    68072      3    558      1    68178    20      1
+
+missd = FVA-consistent but SPECTRA-blocked; extra = SPECTRA-consistent but FVA-blocked (|v| >= 0.99 eps on the FVA ranges);
+inOK/outOK = a steady state exists in the input / in SPECTRA's output; fail = LPs with solver stat ~= 1;
+rerun = SPECTRA on its own output (a stable result gives rerun = SPECTRA). Lists: *_missed.txt, *_extra.txt in /mnt/scratch/users/egonzalez/fastbox2copy/bench2026/spectrawb_out

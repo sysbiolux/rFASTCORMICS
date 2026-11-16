@@ -1,0 +1,6 @@
+network,objective (bounds),full input network,FasterCC,FASTCC,SPECTRA
+Harvey_aafix_E6,Whole_body_objective_rxn (1 .. 1),"81,094; feasible yes; max 2.657","68,072; feasible yes; max 2.657","68,080; feasible yes; max 2.657","68,185; feasible yes; max 2.657"
+Harvetta_aafix_E6,Whole_body_objective_rxn (1 .. 1),"83,521; feasible yes; max 1.275","70,189; feasible yes; max 1.275","70,197; feasible yes; max 1.275","70,389; feasible yes; max 1.275"
+Microbiota,communityBiomass (0 .. 1000),"173,353; feasible yes; max 459.2","110,779; feasible yes; max 459.2","110,846; feasible yes; max 0","111,704; feasible yes; max 0"
+Harvey_1_03c,Whole_body_objective_rxn (1 .. 1),"81,094; feasible NO; max 2.333","68,233; feasible NO; max 0","68,199; feasible NO; max 0","68,293; feasible NO; max 0"
+Harvetta_1_03c,Whole_body_objective_rxn (1 .. 1),"83,521; feasible NO; max 1.275","70,355; feasible NO; max 0","70,325; feasible NO; max 0","70,358; feasible NO; max 0"

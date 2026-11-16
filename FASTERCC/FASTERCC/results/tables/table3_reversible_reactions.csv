@@ -1,0 +1,5 @@
+model,reactions,reversible (bounds),reversible after FasterCC preprocessing (no optional check),preprocessing reorientations confirmed by FVA,reversible (FVA)
+iMM1415,3726,1185,not run with the current version,,363
+iMM1865,10612,5244,not run with the current version,,3531
+"Recon3D (10,600)",10600,5234,3677,1557 of 1557,3520
+"Human-GEM (12,971)",12971,5975,3796,1596 of 1596,3594

@@ -1,0 +1,39 @@
+rxn	direction	kind	verdict	flux	seconds	diagnostics
+23DHMPO	1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+23DHMPO	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+2AHBUTI	1	candidate	REFUTED_loop_free_flux	1	5.3	tries=0 res=7.4e-17 active=41 signviol=0 ming=1
+2AHBUTI	-1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+ABUTD	1	candidate	REFUTED_loop_free_flux	1	4.9	tries=0 res=0.0e+00 active=9 signviol=0 ming=1
+ABUTR	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+ABUTR	-1	candidate	REFUTED_loop_free_flux	-1	0.0	tries=0 res=0.0e+00 active=9 signviol=0 ming=1
+ALACI	1	candidate	REFUTED_loop_free_flux	1	4.5	tries=0 res=0.0e+00 active=36 signviol=0 ming=1
+ALACI	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+FRD2	1	candidate	REFUTED_loop_free_flux	1	4.9	tries=0 res=0.0e+00 active=22 signviol=0 ming=1
+GGGABADr	1	candidate	REFUTED_loop_free_flux	1	4.7	tries=0 res=0.0e+00 active=16 signviol=0 ming=1
+GGGABADr	-1	candidate	REFUTED_loop_free_flux	-1	2.6	tries=0 res=4.4e-16 active=15 signviol=0 ming=1
+GGGABARr	1	candidate	REFUTED_loop_free_flux	1	0.0	tries=0 res=4.4e-16 active=15 signviol=0 ming=1
+GGGABARr	-1	candidate	REFUTED_loop_free_flux	-1	4.7	tries=0 res=0.0e+00 active=15 signviol=0 ming=1
+GLUFORT	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+GLUFORT	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+GLUSy	1	candidate	REFUTED_loop_free_flux	1	2.2	tries=0 res=0.0e+00 active=32 signviol=0 ming=1
+GLYOX	1	candidate	REFUTED_loop_free_flux	1	0.0	tries=0 res=0.0e+00 active=14 signviol=0 ming=1
+GNOXmq	1	candidate	REFUTED_loop_free_flux	1	2.2	tries=0 res=0.0e+00 active=22 signviol=0 ming=1
+GNOXmq	-1	candidate	REFUTED_loop_free_flux	-1	2.4	tries=0 res=0.0e+00 active=10 signviol=0 ming=1
+GNOXuq	1	candidate	REFUTED_loop_free_flux	1	0.0	tries=0 res=0.0e+00 active=10 signviol=0 ming=1
+GNOXuq	-1	candidate	REFUTED_loop_free_flux	-1	2.2	tries=0 res=0.0e+00 active=25 signviol=0 ming=1
+GluForTx	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+KARA3	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+KARA3	-1	candidate	REFUTED_loop_free_flux	-1	2.3	tries=0 res=0.0e+00 active=20 signviol=0 ming=1
+LARGNAT	1	candidate	REFUTED_loop_free_flux	1	2.3	tries=0 res=2.2e-16 active=16 signviol=0 ming=1
+LARGNAT	-1	candidate	REFUTED_loop_free_flux	-1	4.6	tries=0 res=6.0e-16 active=44 signviol=0 ming=1
+LGTHL	1	candidate	REFUTED_loop_free_flux	1	2.4	tries=0 res=0.0e+00 active=7 signviol=0 ming=1
+L_AROND	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+L_AROND	-1	candidate	REFUTED_loop_free_flux	-1	4.2	tries=0 res=2.1e-16 active=24 signviol=0 ming=1
+PHPB2i	1	candidate	REFUTED_loop_free_flux	1	2.3	tries=0 res=0.0e+00 active=20 signviol=0 ming=1
+SUCDimq	1	candidate	REFUTED_loop_free_flux	1	0.0	tries=0 res=0.0e+00 active=23 signviol=0 ming=1
+AACPS6	1	control	REFUTED_loop_free_flux	1	2.1	tries=0 res=2.8e-16 active=29 signviol=0 ming=1
+AACPS6	-1	control	CONFIRMED_loop_only		0.0	tries=0 
+ABUTR	1	control	CONFIRMED_loop_only		0.0	tries=0 
+ABUTR	-1	control	REFUTED_loop_free_flux	-1	0.0	tries=0 res=0.0e+00 active=26 signviol=0 ming=1
+ACCOAL	1	control	UNDECIDED_time_limit		60.0	tries=0 
+ACCOAL	-1	control	CONFIRMED_loop_only		0.0	tries=0 

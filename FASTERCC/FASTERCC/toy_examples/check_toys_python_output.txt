@@ -1,0 +1,34 @@
+====================================================================================================
+Toy 1 (SPECTRA / FASTCC toy): uptake v1 <= 1e-4, B leaves as 0.1 B[e]
+====================================================================================================
+reaction       min flux     max flux  can carry flux  reaches eps  exact Poolman
+v1            0.000e+00    1.000e-04             yes          yes              -
+v2            0.000e+00    1.000e-04             yes          yes              -
+v3            0.000e+00    1.000e-04             yes          yes              -
+v4            0.000e+00    1.000e-04             yes          yes              -
+v5            0.000e+00    1.000e-05             yes           NO              -
+v6            0.000e+00    1.000e-04             yes          yes              -
+v7            0.000e+00    1.000e-04             yes          yes              -
+v8            0.000e+00    1.000e-04             yes          yes              -
+epsilon = 0.0001; 'reaches eps' uses max |v| >= epsilon
+  closure pass 1: below epsilon ['v5']
+  closure pass 2: below epsilon ['v3', 'v4']
+  closure pass 3: below epsilon none
+  consistent set at epsilon (closed): ['v1', 'v2', 'v6', 'v7', 'v8']
+
+====================================================================================================
+Toy 2 (Poolman toy): R4 feeds the closed pool C + D, R7 ends in E, R5-R6 is a free loop
+====================================================================================================
+reaction       min flux     max flux  can carry flux  reaches eps  exact Poolman
+R1            0.000e+00    1.000e+01             yes          yes              -
+R2            0.000e+00    1.000e+01             yes          yes              -
+R3            0.000e+00    1.000e+01             yes          yes              -
+R4            0.000e+00   -0.000e+00              NO           NO        BLOCKED
+R5            0.000e+00    1.000e+01             yes          yes              -
+R6            0.000e+00    1.000e+01             yes          yes              -
+R7            0.000e+00   -0.000e+00              NO           NO        BLOCKED
+epsilon = 0.0001; 'reaches eps' uses max |v| >= epsilon
+  closure pass 1: below epsilon ['R4', 'R7']
+  closure pass 2: below epsilon none
+  consistent set at epsilon (closed): ['R1', 'R2', 'R3', 'R5', 'R6']
+

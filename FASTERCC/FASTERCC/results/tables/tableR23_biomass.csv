@@ -1,0 +1,8 @@
+method,solver,"tasks with a result (of 1,140)",blocked biomass kept (rows),working biomass removed (rows),blocked biomass removed,working biomass kept
+FasterCC,CPLEX,1140,1,0,96,37523
+FASTCC,CPLEX,1140,2,0,95,37523
+SPECTRA,CPLEX,1140,15,0,82,37523
+FasterCC (preprint),CPLEX,527,1,0,46,15874
+FasterCC,Gurobi,1140,0,0,97,37523
+FASTCC,Gurobi,1140,0,0,97,37523
+SPECTRA,Gurobi,1140,2,0,95,37523

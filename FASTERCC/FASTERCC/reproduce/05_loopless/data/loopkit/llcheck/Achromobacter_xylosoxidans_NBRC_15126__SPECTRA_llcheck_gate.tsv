@@ -1,0 +1,15 @@
+rxn	direction	kind	verdict	flux	seconds	diagnostics
+ALACI	1	candidate	REFUTED_loop_free_flux	1	14.6	tries=0 res=0.0e+00 active=32 signviol=0 ming=1
+ALACI	-1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+GGGABADr	1	candidate	REFUTED_loop_free_flux	1	2.7	tries=0 res=0.0e+00 active=12 signviol=0 ming=1
+GGGABADr	-1	candidate	REFUTED_loop_free_flux	-1	3.0	tries=0 res=0.0e+00 active=7 signviol=0 ming=1
+GGGABARr	1	candidate	REFUTED_loop_free_flux	1	0.0	tries=0 res=0.0e+00 active=7 signviol=0 ming=1
+GGGABARr	-1	candidate	REFUTED_loop_free_flux	-1	2.7	tries=0 res=1.7e-16 active=11 signviol=0 ming=1
+KARA3	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+KARA3	-1	candidate	REFUTED_loop_free_flux	-1	13.0	tries=0 res=0.0e+00 active=32 signviol=0 ming=1
+3HBCOAE	1	control	REFUTED_loop_free_flux	1	6.7	tries=0 res=2.2e-16 active=42 signviol=0 ming=1
+3HBCOAE	-1	control	REFUTED_loop_free_flux	-1	2.7	tries=0 res=0.0e+00 active=9 signviol=0 ming=1
+3HBCOAOX	1	control	REFUTED_loop_free_flux	1	6.3	tries=0 res=2.2e-16 active=13 signviol=0 ming=1
+3HBCOAOX	-1	control	REFUTED_loop_free_flux	-1	5.7	tries=0 res=0.0e+00 active=16 signviol=0 ming=1
+A5PISO	1	control	UNDECIDED_time_limit		601.0	tries=0 
+A5PISO	-1	control	REFUTED_loop_free_flux	-1	6.6	tries=0 res=0.0e+00 active=37 signviol=0 ming=1

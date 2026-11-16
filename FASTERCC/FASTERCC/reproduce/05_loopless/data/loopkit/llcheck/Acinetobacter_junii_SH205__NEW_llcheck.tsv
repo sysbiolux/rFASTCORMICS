@@ -1,0 +1,32 @@
+rxn	direction	kind	verdict	flux	seconds
+23DHMPO	1	candidate	CONFIRMED_loop_only		0.0
+23DHMPO	-1	candidate	REFUTED_but_recheck_failed	-1e-06	0.7
+2AHBUTI	1	candidate	REFUTED_loop_free_flux	1e-06	0.7
+2AHBUTI	-1	candidate	CONFIRMED_loop_only		0.1
+ALACI	1	candidate	REFUTED_loop_free_flux	1e-06	0.0
+ALACI	-1	candidate	CONFIRMED_loop_only		0.2
+G6PI	1	candidate	CONFIRMED_loop_only		0.0
+G6PI	-1	candidate	CONFIRMED_loop_only		0.0
+G6PI3	1	candidate	CONFIRMED_loop_only		0.0
+G6PI3	-1	candidate	CONFIRMED_loop_only		0.0
+GLYCLTDx	1	candidate	CONFIRMED_loop_only		0.1
+GLYD	1	candidate	REFUTED_loop_free_flux	1e-06	0.0
+GLYD	-1	candidate	REFUTED_loop_free_flux	0	2.9
+GLYDy	1	candidate	REFUTED_loop_free_flux	1e-06	2.0
+GLYDy	-1	candidate	REFUTED_loop_free_flux	-1e-06	1.9
+HPYRI	1	candidate	REFUTED_loop_free_flux	1e-06	0.0
+HPYRI	-1	candidate	REFUTED_loop_free_flux	-1e-06	2.0
+KARA3	1	candidate	CONFIRMED_loop_only		0.2
+KARA3	-1	candidate	REFUTED_loop_free_flux	-167	0.6
+LARGNAT	1	candidate	REFUTED_loop_free_flux	1e+03	0.0
+LARGNAT	-1	candidate	REFUTED_but_recheck_failed	-1e-06	2.2
+L_AROND	1	candidate	REFUTED_but_recheck_failed	1e-06	0.7
+L_AROND	-1	candidate	REFUTED_loop_free_flux	-1e-06	0.7
+PGI	1	candidate	CONFIRMED_loop_only		0.0
+PGI	-1	candidate	CONFIRMED_loop_only		0.0
+ABUTD	1	control	REFUTED_loop_free_flux	1e-06	2.7
+ABUTD	-1	control	CONFIRMED_loop_only		0.0
+ABUTR	1	control	CONFIRMED_loop_only		0.0
+ABUTR	-1	control	REFUTED_loop_free_flux	-1e-06	0.0
+ACCOAL	1	control	REFUTED_but_recheck_failed	1e-06	0.6
+ACCOAL	-1	control	CONFIRMED_loop_only		0.0

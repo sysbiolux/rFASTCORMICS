@@ -1,0 +1,21 @@
+rxn	direction	kind	verdict	flux	seconds	diagnostics
+ADNt2pp	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+CA2t3pp	1	candidate	UNDECIDED_time_limit		601.3	tries=0 
+CYTDt2pp	1	candidate	CONFIRMED_loop_only		0.2	tries=0 
+GLDBRAN2	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+GLYBtex	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+GLYBtex	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+GLYCLTt4pp	1	candidate	REFUTED_loop_free_flux	1	9.1	tries=0 res=0.0e+00 active=29 signviol=0 ming=1
+HPYRRx	1	candidate	REFUTED_loop_free_flux	0.455	19.1	tries=0 res=2.0e-16 active=50 signviol=0 ming=1
+INSt2pp	1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+SERt4pp	1	candidate	REFUTED_loop_free_flux	1	8.1	tries=0 res=0.0e+00 active=14 signviol=0 ming=1
+THMDt2pp	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+URIt2pp	1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+GLYBt6ex	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+GLYBt6ex	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+ACCOAL	1	control	REFUTED_loop_free_flux	1	17.8	tries=0 res=0.0e+00 active=18 signviol=0 ming=1
+ACCOAL	-1	control	CONFIRMED_loop_only		0.0	tries=0 
+ACt2rpp	1	control	CONFIRMED_loop_only		0.0	tries=0 
+ACt2rpp	-1	control	REFUTED_loop_free_flux	-1	27.3	tries=0 res=0.0e+00 active=33 signviol=0 ming=1
+ACt4pp	1	control	REFUTED_loop_free_flux	1	26.1	tries=0 res=1.0e-16 active=36 signviol=0 ming=1
+ACt4pp	-1	control	CONFIRMED_loop_only		0.0	tries=0 

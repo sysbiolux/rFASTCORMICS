@@ -1,0 +1,48 @@
+start Sun Nov  8 22:50:09 CET 2026 | host aion-0025
+Opening log file:  /home/users/egonzalez/java.log.1670
+
+######## Microbiota: 173353 reactions, 0 coupling rows, objective communityBiomass (model bounds 0 .. 1000)
+== NEW      primal  objective max 459.2      [exit 1 optimal] | min 0          [exit 1 optimal]
+== NEW      dual    objective max 459.2      [exit 1 optimal] | min 0          [exit 1 optimal]
+== NEW      barrier objective max 459.2      [exit 1 optimal] | min 0          [exit 1 optimal]
+== FASTCC   primal  objective max 0          [exit 1 optimal] | min 0          [exit 1 optimal]
+== FASTCC   dual    objective max 0          [exit 1 optimal] | min 0          [exit 1 optimal]
+== FASTCC   barrier objective max 0          [exit 1 optimal] | min 0          [exit 1 optimal]
+== SPECTRA  primal  objective max 0          [exit 1 optimal] | min 0          [exit 1 optimal]
+== SPECTRA  dual    objective max 0          [exit 1 optimal] | min 0          [exit 1 optimal]
+== SPECTRA  barrier objective max 0          [exit 1 optimal] | min 0          [exit 1 optimal]
+
+######## Harvey_1_03c: 81094 reactions, 103600 coupling rows, objective Whole_body_objective_rxn (model bounds 1 .. 1)
+== FULL     primal  objective max 2.333      [exit -2 infeasible] | min 2.606      [exit -2 infeasible]
+== FULL     dual    objective max 0          [exit -2 infeasible] | min 0          [exit -2 infeasible]
+== FULL     barrier objective max 2.333      [exit -2 infeasible] | min 0.6344     [exit -2 infeasible]
+== FULL     fixed at 1, dual, feasibility tol 1e-09: [exit -2 infeasible]
+== FULL     fixed at 1, dual, feasibility tol 1e-06: [exit 1 optimal]
+== FASTCC   primal  objective max none       [exit -2 infeasible] | min none       [exit -2 infeasible]
+== FASTCC   dual    objective max none       [exit -2 infeasible] | min none       [exit -2 infeasible]
+== FASTCC   barrier objective max none       [exit -2 infeasible] | min none       [exit -2 infeasible]
+== FASTCC   fixed at 1, dual, feasibility tol 1e-09: [exit -2 infeasible]
+== FASTCC   fixed at 1, dual, feasibility tol 1e-06: [exit 1 optimal]
+== SPECTRA  primal  objective max none       [exit -2 infeasible] | min none       [exit -2 infeasible]
+== SPECTRA  dual    objective max none       [exit -2 infeasible] | min none       [exit -2 infeasible]
+== SPECTRA  barrier objective max none       [exit -2 infeasible] | min none       [exit -2 infeasible]
+== SPECTRA  fixed at 1, dual, feasibility tol 1e-09: [exit -2 infeasible]
+== SPECTRA  fixed at 1, dual, feasibility tol 1e-06: [exit 1 optimal]
+
+######## Harvetta_1_03c: 83521 reactions, 107351 coupling rows, objective Whole_body_objective_rxn (model bounds 1 .. 1)
+== FULL     primal  objective max 1.275      [exit 5 optimal with unscaled infeasibilities] | min 0.6877     [exit -2 infeasible]
+== FULL     dual    objective max 1.275      [exit 5 optimal with unscaled infeasibilities] | min 0.6877     [exit -2 infeasible]
+== FULL     barrier objective max 1.275      [exit 5 optimal with unscaled infeasibilities] | min 0.6877     [exit -2 infeasible]
+== FULL     fixed at 1, dual, feasibility tol 1e-09: [exit -2 infeasible]
+== FULL     fixed at 1, dual, feasibility tol 1e-06: [exit 1 optimal]
+== FASTCC   primal  objective max none       [exit -2 infeasible] | min none       [exit -2 infeasible]
+== FASTCC   dual    objective max none       [exit -2 infeasible] | min none       [exit -2 infeasible]
+== FASTCC   barrier objective max none       [exit -2 infeasible] | min none       [exit -2 infeasible]
+== FASTCC   fixed at 1, dual, feasibility tol 1e-09: [exit -2 infeasible]
+== FASTCC   fixed at 1, dual, feasibility tol 1e-06: [exit 1 optimal]
+== SPECTRA  primal  objective max none       [exit -2 infeasible] | min none       [exit -2 infeasible]
+== SPECTRA  dual    objective max none       [exit -2 infeasible] | min none       [exit -2 infeasible]
+== SPECTRA  barrier objective max none       [exit -2 infeasible] | min none       [exit -2 infeasible]
+== SPECTRA  fixed at 1, dual, feasibility tol 1e-09: [exit -2 infeasible]
+== SPECTRA  fixed at 1, dual, feasibility tol 1e-06: [exit 1 optimal]
+end Mon Nov  9 00:29:57 CET 2026 | matlab exit 0

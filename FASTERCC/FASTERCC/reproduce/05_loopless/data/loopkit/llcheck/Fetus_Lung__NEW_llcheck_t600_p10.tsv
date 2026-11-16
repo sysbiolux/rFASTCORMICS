@@ -1,0 +1,9 @@
+rxn	direction	kind	verdict	flux	seconds	diagnostics
+MAR02890	-1	candidate	REFUTED_loop_free_flux	-1	367.7	tries=0 res=0.0e+00 active=37 signviol=0 ming=1
+MAR01605	1	candidate	REFUTED_loop_free_flux	1	320.0	tries=0 res=0.0e+00 active=150 signviol=0 ming=1
+MAR01620	1	candidate	REFUTED_loop_free_flux	1	0.2	tries=0 res=0.0e+00 active=148 signviol=0 ming=1
+MAR01620	-1	candidate	UNDECIDED_time_limit		600.0	tries=0 
+MAR01772	1	candidate	UNDECIDED_time_limit		600.0	tries=0 
+MAR01772	-1	candidate	REFUTED_loop_free_flux	-1	0.2	tries=0 res=0.0e+00 active=148 signviol=0 ming=1
+MAR06394	1	candidate	REFUTED_loop_free_flux	1	0.3	tries=0 res=2.4e-16 active=146 signviol=0 ming=1
+MAR06394	-1	candidate	UNDECIDED_time_limit		600.0	tries=0 

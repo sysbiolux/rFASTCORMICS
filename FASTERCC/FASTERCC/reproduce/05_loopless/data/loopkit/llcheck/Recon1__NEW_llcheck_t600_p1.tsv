@@ -1,0 +1,9 @@
+rxn	direction	kind	verdict	flux	seconds	diagnostics
+COAtp	-1	candidate	UNDECIDED_time_limit		600.0	tries=0 
+CYTK10n	-1	candidate	UNDECIDED_time_limit		600.6	tries=0 
+CYTK11n	-1	candidate	UNDECIDED_time_limit		600.7	tries=0 
+CYTK12n	-1	candidate	UNDECIDED_time_limit		601.0	tries=0 
+CYTK13n	-1	candidate	UNDECIDED_time_limit		600.2	tries=0 
+CYTK14n	-1	candidate	UNDECIDED_time_limit		600.1	tries=0 
+CYTK1n	-1	candidate	UNDECIDED_time_limit		600.1	tries=0 
+CYTK2n	-1	candidate	UNDECIDED_time_limit		600.1	tries=0 

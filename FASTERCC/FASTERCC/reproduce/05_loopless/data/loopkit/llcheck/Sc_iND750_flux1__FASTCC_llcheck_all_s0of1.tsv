@@ -1,0 +1,31 @@
+rxn	direction	kind	verdict	flux	seconds	diagnostics
+34HPPt2m	1	candidate	REFUTED_loop_free_flux	0.00322	1.1	tries=0 res=1.8e-16 active=104 signviol=0 ming=1
+34HPPt2m	-1	candidate	REFUTED_loop_free_flux	-0.125	1.2	tries=0 res=1.1e-16 active=53 signviol=0 ming=1
+4HGLSDm	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+4HGLSDm	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+CSNATirm	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+CYSTGL	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+DCTPD	1	candidate	REFUTED_loop_free_flux	1	1.2	tries=0 res=0.0e+00 active=42 signviol=0 ming=1
+FRDm	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+GALT	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+GALT	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+GLUt5m	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+PHCDm	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+PHCHGSm	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+PHCHGSm	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+SHSL1	1	candidate	REFUTED_loop_free_flux	0.0377	2.6	tries=0 res=0.0e+00 active=56 signviol=0 ming=1
+SHSL4r	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+SHSL4r	-1	candidate	REFUTED_loop_free_flux	-0.0377	0.0	tries=0 res=0.0e+00 active=56 signviol=0 ming=1
+TYRTAi	1	candidate	REFUTED_loop_free_flux	0.75	1.2	tries=0 res=5.0e-16 active=49 signviol=0 ming=1
+TYRTAm	1	candidate	REFUTED_loop_free_flux	0.75	0.0	tries=0 res=5.0e-16 active=49 signviol=0 ming=1
+TYRTAm	-1	candidate	REFUTED_loop_free_flux	-0.0146	1.2	tries=0 res=3.7e-16 active=80 signviol=0 ming=1
+TYRt2m	1	candidate	REFUTED_loop_free_flux	0.286	4.7	tries=0 res=0.0e+00 active=36 signviol=0 ming=1
+TYRt2m	-1	candidate	REFUTED_loop_free_flux	-0.364	3.1	tries=0 res=0.0e+00 active=53 signviol=0 ming=1
+UGLT	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+UGLT	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+ACONT	1	control	REFUTED_loop_free_flux	0.364	0.0	tries=0 res=0.0e+00 active=53 signviol=0 ming=1
+ACONT	-1	control	CONFIRMED_loop_only		0.1	tries=0 
+ACONTm	1	control	REFUTED_loop_free_flux	0.364	0.0	tries=0 res=0.0e+00 active=54 signviol=0 ming=1
+ACONTm	-1	control	CONFIRMED_loop_only		0.1	tries=0 
+ADK1	1	control	UNDECIDED_time_limit		60.0	tries=0 
+ADK1	-1	control	UNDECIDED_time_limit		60.0	tries=0 

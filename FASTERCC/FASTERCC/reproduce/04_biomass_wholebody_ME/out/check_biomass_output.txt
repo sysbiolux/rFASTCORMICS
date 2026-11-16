@@ -1,0 +1,44 @@
+rows: 37,620  tasks: 1,140  working (CONSISTENT): 37,523  blocked: 97  other verdict or status not ok: 0
+biomass reactions per type: biomassmaintenance 12,540, biomassmaintenancenoTrTr 12,540, biomassreaction 12,540
+largest flux of the working biomass reactions (exact LP): min 11.2669, max 755.003
+
+1. Why the blocked biomass reactions are blocked
+   closed by its own bounds in the task (lb = ub = 0, one of the reactions the task removed): 58
+   bounds open (0..1000) but blocked by the reactions removed around it:                    39
+   by number of reactions removed in the task (level): 050: 6, 100: 7, 200: 25, 500: 59
+   (no blocked biomass reaction at levels 000 and 010)
+
+2. Table R23 re-counted (rows; tasks with a result = tasks where the method column is 0 or 1)
+   method               solver   tasks  blocked kept  working removed  blocked removed  working kept
+   FasterCC             CPLEX    1,140             1                0               96        37,523
+   FASTCC               CPLEX    1,140             2                0               95        37,523
+   SPECTRA              CPLEX    1,140            15                0               82        37,523
+   FasterCC (preprint)  CPLEX      527             1                0               46        15,874
+   FasterCC             Gurobi   1,140             0                0               97        37,523
+   FASTCC               Gurobi   1,140             0                0               97        37,523
+   SPECTRA              Gurobi   1,140             2                0               95        37,523
+
+3. Every blocked biomass reaction a method kept (task, reaction, bounds, why blocked)
+   FasterCC CPLEX: CC_c02_l050_r09 biomassreaction_2 [0, 1000] bounds open, blocked by the network
+   FASTCC CPLEX: CC_c02_l050_r09 biomassreaction_2 [0, 1000] bounds open, blocked by the network
+   FASTCC CPLEX: CC_c03_l500_r07 biomassreaction_2 [0, 1000] bounds open, blocked by the network
+   SPECTRA CPLEX: CC_c02_l050_r09 biomassreaction_2 [0, 1000] bounds open, blocked by the network
+   SPECTRA CPLEX: CC_c03_l500_r07 biomassreaction_2 [0, 1000] bounds open, blocked by the network
+   SPECTRA CPLEX: CC_c04_l050_r05 biomassreaction_3 [0, 1000] bounds open, blocked by the network
+   SPECTRA CPLEX: CC_c06_l200_r07 biomassreaction_1 [0, 1000] bounds open, blocked by the network
+   SPECTRA CPLEX: CC_c06_l500_r07 biomassreaction_4 [0, 1000] bounds open, blocked by the network
+   SPECTRA CPLEX: CC_c07_l500_r10 biomassreaction_4 [0, 1000] bounds open, blocked by the network
+   SPECTRA CPLEX: CC_c08_l200_r07 biomassreaction_7 [0, 1000] bounds open, blocked by the network
+   SPECTRA CPLEX: CC_c08_l500_r10 biomassreaction_2 [0, 1000] bounds open, blocked by the network
+   SPECTRA CPLEX: CC_c09_l500_r06 biomassreaction_1 [0, 1000] bounds open, blocked by the network
+   SPECTRA CPLEX: CC_c10_l050_r06 biomassreaction_7 [0, 1000] bounds open, blocked by the network
+   SPECTRA CPLEX: CC_c11_l500_r01 biomassreaction_8 [0, 1000] bounds open, blocked by the network
+   SPECTRA CPLEX: CC_c14_l200_r01 biomassreaction_5 [0, 1000] bounds open, blocked by the network
+   SPECTRA CPLEX: CC_c16_l500_r10 biomassreaction_15 [0, 1000] bounds open, blocked by the network
+   SPECTRA CPLEX: CC_c19_l500_r01 biomassreaction_12 [0, 1000] bounds open, blocked by the network
+   SPECTRA CPLEX: CC_c19_l500_r10 biomassreaction_19 [0, 1000] bounds open, blocked by the network
+   FasterCC (preprint) CPLEX: CC_c02_l050_r09 biomassreaction_2 [0, 1000] bounds open, blocked by the network
+   SPECTRA Gurobi: CC_c02_l050_r09 biomassreaction_2 [0, 1000] bounds open, blocked by the network
+   SPECTRA Gurobi: CC_c03_l500_r07 biomassreaction_2 [0, 1000] bounds open, blocked by the network
+
+re-count equals out/tableR23_biomass.csv: yes

@@ -1,0 +1,29 @@
+rxn	direction	kind	verdict	flux	seconds	diagnostics
+23DHMPO	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+23DHMPO	-1	candidate	REFUTED_loop_free_flux	-1	3.4	tries=0 res=0.0e+00 active=18 signviol=0 ming=1
+2AHBUTI	1	candidate	REFUTED_loop_free_flux	1	0.0	tries=0 res=0.0e+00 active=18 signviol=0 ming=1
+2AHBUTI	-1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+ABUTD	1	candidate	REFUTED_loop_free_flux	1	1.4	tries=0 res=0.0e+00 active=8 signviol=0 ming=1
+ALACI	1	candidate	REFUTED_loop_free_flux	1	1.8	tries=0 res=0.0e+00 active=30 signviol=0 ming=1
+ALACI	-1	candidate	CONFIRMED_loop_only		0.1	tries=0 
+GGGABADr	1	candidate	REFUTED_loop_free_flux	1	4.4	tries=0 res=0.0e+00 active=14 signviol=0 ming=1
+GGGABADr	-1	candidate	REFUTED_loop_free_flux	-1	1.9	tries=0 res=1.1e-16 active=13 signviol=0 ming=1
+GGGABARr	1	candidate	REFUTED_loop_free_flux	1	0.0	tries=0 res=1.1e-16 active=13 signviol=0 ming=1
+GGGABARr	-1	candidate	REFUTED_loop_free_flux	-1	3.6	tries=0 res=0.0e+00 active=11 signviol=0 ming=1
+GLUSy	1	candidate	REFUTED_loop_free_flux	1	3.9	tries=0 res=0.0e+00 active=41 signviol=0 ming=1
+GNOXmq	1	candidate	REFUTED_loop_free_flux	1	1.8	tries=0 res=2.2e-16 active=15 signviol=0 ming=1
+GNOXmq	-1	candidate	REFUTED_loop_free_flux	-1	1.8	tries=0 res=1.7e-16 active=15 signviol=0 ming=1
+GNOXuq	1	candidate	REFUTED_loop_free_flux	1	0.0	tries=0 res=1.7e-16 active=15 signviol=0 ming=1
+GNOXuq	-1	candidate	REFUTED_loop_free_flux	-1	5.9	tries=0 res=0.0e+00 active=28 signviol=0 ming=1
+KARA3	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+KARA3	-1	candidate	REFUTED_loop_free_flux	-1	0.0	tries=0 res=0.0e+00 active=29 signviol=0 ming=1
+LARGNAT	1	candidate	REFUTED_loop_free_flux	1	3.5	tries=0 res=0.0e+00 active=44 signviol=0 ming=1
+LARGNAT	-1	candidate	REFUTED_loop_free_flux	-1	1.9	tries=0 res=5.6e-17 active=70 signviol=0 ming=1
+L_AROND	1	candidate	REFUTED_loop_free_flux	1	0.0	tries=0 res=5.6e-17 active=70 signviol=0 ming=1
+L_AROND	-1	candidate	REFUTED_loop_free_flux	-1	3.7	tries=0 res=1.9e-16 active=43 signviol=0 ming=1
+AACPS6	1	control	REFUTED_loop_free_flux	1	4.7	tries=0 res=0.0e+00 active=13 signviol=0 ming=1
+AACPS6	-1	control	CONFIRMED_loop_only		0.0	tries=0 
+ABUTD	1	control	REFUTED_loop_free_flux	1	1.4	tries=0 res=0.0e+00 active=8 signviol=0 ming=1
+ABUTD	-1	control	CONFIRMED_loop_only		0.0	tries=0 
+ABUTR	1	control	CONFIRMED_loop_only		0.0	tries=0 
+ABUTR	-1	control	REFUTED_loop_free_flux	-1	0.0	tries=0 res=0.0e+00 active=8 signviol=0 ming=1
