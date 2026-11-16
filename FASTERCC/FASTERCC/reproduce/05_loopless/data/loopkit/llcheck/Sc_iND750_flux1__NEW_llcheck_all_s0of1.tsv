@@ -1,0 +1,31 @@
+rxn	direction	kind	verdict	flux	seconds	diagnostics
+34HPPt2m	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+34HPPt2m	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+4HGLSDm	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+4HGLSDm	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+CSNATirm	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+CYSTGL	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+DCTPD	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+FRDm	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+GALT	1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+GALT	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+GLUt5m	1	candidate	REFUTED_loop_free_flux	0.0333	3.1	tries=0 res=0.0e+00 active=53 signviol=0 ming=1
+PHCDm	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+PHCHGSm	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+PHCHGSm	-1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+SHSL1	1	candidate	REFUTED_loop_free_flux	0.121	3.9	tries=0 res=0.0e+00 active=61 signviol=0 ming=1
+SHSL4r	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+SHSL4r	-1	candidate	REFUTED_loop_free_flux	-0.121	0.0	tries=0 res=0.0e+00 active=61 signviol=0 ming=1
+TYRTAi	1	candidate	REFUTED_loop_free_flux	0.231	4.0	tries=0 res=1.5e-16 active=46 signviol=0 ming=1
+TYRTAm	1	candidate	REFUTED_loop_free_flux	0.583	1.7	tries=0 res=1.3e-15 active=48 signviol=0 ming=1
+TYRTAm	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+TYRt2m	1	candidate	REFUTED_loop_free_flux	0.583	0.0	tries=0 res=1.3e-15 active=48 signviol=0 ming=1
+TYRt2m	-1	candidate	REFUTED_loop_free_flux	-1	1.8	tries=0 res=4.6e-17 active=53 signviol=0 ming=1
+UGLT	1	candidate	CONFIRMED_loop_only		0.0	tries=0 
+UGLT	-1	candidate	UNDECIDED_time_limit		60.0	tries=0 
+ACONT	1	control	REFUTED_loop_free_flux	1	0.0	tries=0 res=4.6e-17 active=47 signviol=0 ming=1
+ACONT	-1	control	CONFIRMED_loop_only		0.1	tries=0 
+ACONTm	1	control	REFUTED_loop_free_flux	1	0.0	tries=0 res=4.6e-17 active=48 signviol=0 ming=1
+ACONTm	-1	control	CONFIRMED_loop_only		0.1	tries=0 
+ADK1	1	control	UNDECIDED_time_limit		60.0	tries=0 
+ADK1	-1	control	UNDECIDED_time_limit		60.0	tries=0 

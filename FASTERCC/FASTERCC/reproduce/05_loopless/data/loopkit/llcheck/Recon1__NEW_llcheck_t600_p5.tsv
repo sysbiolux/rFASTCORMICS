@@ -1,0 +1,9 @@
+rxn	direction	kind	verdict	flux	seconds	diagnostics
+ALCD22_D	1	candidate	UNDECIDED_time_limit		601.2	tries=0 
+CERT1rt	1	candidate	UNDECIDED_time_limit		600.3	tries=0 
+CYTK10n	1	candidate	UNDECIDED_time_limit		600.1	tries=0 
+UMPK4n	-1	candidate	UNDECIDED_time_limit		600.5	tries=0 
+UMPK5n	-1	candidate	UNDECIDED_time_limit		600.2	tries=0 
+UMPK6n	-1	candidate	UNDECIDED_time_limit		600.2	tries=0 
+UMPK7n	-1	candidate	UNDECIDED_time_limit		600.1	tries=0 
+UMPKn	-1	candidate	UNDECIDED_time_limit		600.5	tries=0 

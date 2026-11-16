@@ -1,0 +1,4 @@
+rxn	direction	kind	verdict	flux	seconds	diagnostics
+METB1	-1	candidate	UNDECIDED_time_limit		3601.4	tries=0 
+HSERTA	-1	candidate	UNDECIDED_time_limit		3601.5	tries=0 
+SHSL1	1	candidate	UNDECIDED_time_limit		3601.5	tries=0 

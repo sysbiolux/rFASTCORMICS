@@ -1,0 +1,82 @@
+**Table PM | Results per real model (58 models, all three methods).**
+
+*What is in it.* One row per model, grouped by model type and sorted by size. For each method (FasterCC, FASTCC, SPECTRA):
+
+- **kept**: reactions in the method's consistent network;
+- **removed although FVA-consistent**: reactions that FVA shows can carry flux but the method removed (an error: the network loses a working reaction);
+- **kept although FVA-blocked**: reactions FVA says cannot carry flux but the method kept;
+- **time (s)**: run time from the method's own timer (results_real; the Slurm elapsed times of Table R6 differ by a few seconds to minutes);
+- **reversible %**: reversible reactions as % of reactions kept (FasterCC after its reorientation; FASTCC and SPECTRA keep the input directions).
+
+The FVA-consistent column is the reference (single-pass FVA of the input model). "no result" = the run did not finish (FasterCC on ME).
+
+*Message.*
+
+- Removing a reaction that can carry flux: FasterCC in 2 models (Harvetta_1_03c and Harvetta_aafix_E6, 3 each, the same 3 FASTCC removes); FASTCC in 10 models (Ec_iAF1260 2, STM_v1_0 6, iML1515, Human1, Human2 1 each, the 4 whole-body models 2–3 each, ME 20); SPECTRA in none.
+- Keeping FVA-blocked reactions: SPECTRA in 7 models, all large ones (ME 2,453, Microbiota 954, Harvetta_aafix 197, Harvey_aafix 113, Harvey_1_03c 103, Harvetta_1_03c 45, Fetus_RBC 2); FASTCC in 6; FasterCC in 27, mostly 73 per fetal tissue — the guard-kept reactions described with Figure SP4.
+- Exactly equal to FVA: SPECTRA 51 of 58 models, FASTCC 47 of 58, FasterCC 29 of 57.
+- Time (57 models with all three results): SPECTRA fastest on 47, FASTCC on 9 (small models and Recon3D_mat, Recon3Model, iIT341), FasterCC on 1 (Human2); FasterCC faster than FASTCC on 33.
+- Reversible reactions: FasterCC's output has a lower share than FASTCC's and SPECTRA's on 55 of the 57 models where it finished; on subDas and DAS all three are 0 %.
+
+*Validation.* Counts are read from each method's saved output model and the benchmark's stored FVA check; data: 06_method_comparison_tables/methods_real_16Nov_models.csv (raw, 41 columns) and table_per_model.csv (this table). Reaction-by-reaction differences: methods_real_16Nov_diff_ids.csv.
+
+| Model | Type | Reactions | FVA-consistent | Kept: FasterCC | Kept: FASTCC | Kept: SPECTRA | Removed although FVA-consistent: FasterCC | … FASTCC | … SPECTRA | Kept although FVA-blocked: FasterCC | … FASTCC | … SPECTRA | Time (s): FasterCC | … FASTCC | … SPECTRA | Reversible %: FasterCC | … FASTCC | … SPECTRA | Notes |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| subDas | Small test | 10 | 10 | 10 | 10 | 10 | 0 | 0 | 0 | 0 | 0 | 0 | 1.2 | 0.1 | 0.7 | 0.0 | 0.0 | 0.0 |  |
+| DAS | Small test | 11 | 11 | 11 | 11 | 11 | 0 | 0 | 0 | 0 | 0 | 0 | 1.6 | 0.1 | 0.4 | 0.0 | 0.0 | 0.0 |  |
+| ecoli_core_model | Small test | 95 | 87 | 87 | 87 | 87 | 0 | 0 | 0 | 0 | 0 | 0 | 2.3 | 0.1 | 2.4 | 29.9 | 52.9 | 52.9 |  |
+| cardiac_mit_glcuptake_atpmax | Small test | 220 | 76 | 76 | 76 | 76 | 0 | 0 | 0 | 0 | 0 | 0 | 4.2 | 0.2 | 0.6 | 31.6 | 60.5 | 60.5 |  |
+| Acidaminococcus_sp_D21 | AGORA microbes | 860 | 444 | 444 | 444 | 444 | 0 | 0 | 0 | 0 | 0 | 0 | 4.7 | 1.2 | 1.4 | 29.5 | 54.5 | 54.5 |  |
+| Acidaminococcus_intestini_RyC_MR95 | AGORA microbes | 1,001 | 698 | 698 | 698 | 698 | 0 | 0 | 0 | 0 | 0 | 0 | 5.0 | 1.4 | 0.8 | 22.3 | 43.6 | 43.6 |  |
+| Abiotrophia_defectiva_ATCC_49176 | AGORA microbes | 1,073 | 766 | 767 | 766 | 766 | 0 | 0 | 0 | 1 | 0 | 0 | 4.0 | 1.3 | 1.1 | 22.0 | 47.5 | 47.5 |  |
+| Acidaminococcus_fermentans_DSM_20731 | AGORA microbes | 1,102 | 719 | 719 | 719 | 719 | 0 | 0 | 0 | 0 | 0 | 0 | 3.3 | 1.3 | 1.2 | 26.7 | 46.3 | 46.3 |  |
+| Acinetobacter_junii_SH205 | AGORA microbes | 1,295 | 882 | 882 | 882 | 882 | 0 | 0 | 0 | 0 | 0 | 0 | 4.6 | 1.5 | 0.8 | 23.5 | 45.6 | 45.6 |  |
+| Acinetobacter_lwoffii_WJ10621 | AGORA microbes | 1,356 | 918 | 918 | 918 | 918 | 0 | 0 | 0 | 0 | 0 | 0 | 4.5 | 1.8 | 0.9 | 24.4 | 45.2 | 45.2 |  |
+| Acinetobacter_haemolyticus_NIPH_261 | AGORA microbes | 1,382 | 920 | 920 | 920 | 920 | 0 | 0 | 0 | 0 | 0 | 0 | 5.0 | 2.5 | 3.2 | 21.8 | 42.9 | 42.9 |  |
+| Acinetobacter_radioresistens_NIPH_2130 | AGORA microbes | 1,425 | 967 | 967 | 967 | 967 | 0 | 0 | 0 | 0 | 0 | 0 | 4.5 | 2.4 | 0.8 | 25.4 | 46.4 | 46.4 |  |
+| Acinetobacter_johnsonii_SH046 | AGORA microbes | 1,446 | 1,024 | 1,024 | 1,024 | 1,024 | 0 | 0 | 0 | 0 | 0 | 0 | 4.8 | 2.2 | 1.4 | 24.1 | 44.0 | 44.0 |  |
+| Acinetobacter_pittii_ANC_4052 | AGORA microbes | 1,582 | 1,100 | 1,100 | 1,100 | 1,100 | 0 | 0 | 0 | 0 | 0 | 0 | 5.0 | 3.6 | 1.3 | 23.8 | 43.5 | 43.5 |  |
+| Acinetobacter_calcoaceticus_PHEA_2 | AGORA microbes | 1,586 | 1,119 | 1,119 | 1,119 | 1,119 | 0 | 0 | 0 | 0 | 0 | 0 | 4.9 | 3.2 | 0.9 | 23.4 | 43.0 | 43.0 |  |
+| Acinetobacter_baumannii_AB0057 | AGORA microbes | 1,593 | 1,104 | 1,104 | 1,104 | 1,104 | 0 | 0 | 0 | 0 | 0 | 0 | 4.8 | 3.5 | 1.0 | 24.0 | 44.5 | 44.5 |  |
+| Achromobacter_xylosoxidans_A8 | AGORA microbes | 1,668 | 1,073 | 1,073 | 1,073 | 1,073 | 0 | 0 | 0 | 0 | 0 | 0 | 3.1 | 3.6 | 1.3 | 23.3 | 43.6 | 43.6 |  |
+| Achromobacter_xylosoxidans_NBRC_15126 | AGORA microbes | 1,674 | 1,191 | 1,191 | 1,191 | 1,191 | 0 | 0 | 0 | 0 | 0 | 0 | 2.9 | 3.3 | 1.3 | 18.7 | 39.5 | 39.5 |  |
+| iIT341 | Curated microbial | 554 | 377 | 434 | 377 | 377 | 0 | 0 | 0 | 57 | 0 | 0 | 28.1 | 0.4 | 1.1 | 11.5 | 39.0 | 39.0 |  |
+| Sc_iND750_flux1 | Curated microbial | 1,266 | 627 | 631 | 627 | 627 | 0 | 0 | 0 | 4 | 0 | 0 | 6.8 | 5.0 | 1.9 | 15.4 | 38.8 | 38.8 |  |
+| iMM904 | Curated microbial | 1,577 | 885 | 885 | 885 | 885 | 0 | 0 | 0 | 0 | 0 | 0 | 4.8 | 7.2 | 2.0 | 12.0 | 33.6 | 33.6 |  |
+| Ec_iAF1260_flux1 | Curated microbial | 2,382 | 1,531 | 1,532 | 1,529 | 1,531 | 0 | 2 | 0 | 1 | 0 | 0 | 9.7 | 13.3 | 5.1 | 8.0 | 22.3 | 22.3 |  |
+| STM_v1_0 | Curated microbial | 2,546 | 1,574 | 1,597 | 1,568 | 1,574 | 0 | 6 | 0 | 23 | 0 | 0 | 40.6 | 16.9 | 3.5 | 7.6 | 21.7 | 21.6 |  |
+| iJO1366 | Curated microbial | 2,583 | 1,675 | 1,702 | 1,675 | 1,675 | 0 | 0 | 0 | 27 | 0 | 0 | 58.6 | 18.6 | 2.1 | 9.4 | 23.2 | 23.2 |  |
+| iML1515 | Curated microbial | 2,712 | 1,716 | 1,742 | 1,715 | 1,716 | 0 | 1 | 0 | 26 | 0 | 0 | 56.9 | 23.2 | 2.6 | 9.7 | 22.6 | 22.6 |  |
+| Recon1 | Human generic | 3,742 | 2,469 | 2,469 | 2,469 | 2,469 | 0 | 0 | 0 | 0 | 0 | 0 | 4.7 | 75.0 | 1.5 | 27.4 | 46.5 | 46.5 |  |
+| Recon2 | Human generic | 7,440 | 5,317 | 5,317 | 5,317 | 5,317 | 0 | 0 | 0 | 0 | 0 | 0 | 5.5 | 224 | 2.2 | 28.8 | 44.4 | 44.4 |  |
+| Recon3D_mat | Human generic | 10,600 | 10,600 | 10,600 | 10,600 | 10,600 | 0 | 0 | 0 | 0 | 0 | 0 | 140 | 6.1 | 7.6 | 34.7 | 49.4 | 49.4 |  |
+| Recon3Model | Human generic | 10,600 | 10,600 | 10,600 | 10,600 | 10,600 | 0 | 0 | 0 | 0 | 0 | 0 | 6.8 | 3.9 | 5.8 | 34.7 | 49.4 | 49.4 |  |
+| Human2 | Human generic | 12,931 | 11,641 | 11,641 | 11,640 | 11,641 | 0 | 1 | 0 | 0 | 0 | 0 | 16.8 | 1,164 | 20.7 | 26.3 | 44.1 | 44.1 |  |
+| HumanGEM12971 | Human generic | 12,971 | 11,694 | 11,694 | 11,694 | 11,694 | 0 | 0 | 0 | 0 | 0 | 0 | 20.9 | 1,084 | 18.2 | 32.4 | 46.1 | 46.1 |  |
+| HumanGEM | Human generic | 13,026 | 11,835 | 11,835 | 11,835 | 11,835 | 0 | 0 | 0 | 0 | 0 | 0 | 24.3 | 1,165 | 21.4 | 33.1 | 46.7 | 46.7 |  |
+| Human1 | Human generic | 13,417 | 11,903 | 11,903 | 11,902 | 11,903 | 0 | 1 | 0 | 0 | 0 | 0 | 25.3 | 1,498 | 25.0 | 33.2 | 46.6 | 46.6 |  |
+| Recon3D | Human generic | 13,543 | 11,961 | 11,961 | 11,961 | 11,961 | 0 | 0 | 0 | 0 | 0 | 0 | 19.2 | 1,523 | 6.6 | 35.6 | 48.8 | 48.8 |  |
+| Fetus_RBC | Fetal tissues | 6,519 | 5,888 | 5,984 | 5,888 | 5,890 | 0 | 0 | 0 | 96 | 0 | 2 | 109 | 208 | 2.8 | 23.5 | 42.4 | 42.4 |  |
+| Fetus_Scord | Fetal tissues | 7,786 | 7,270 | 7,343 | 7,270 | 7,270 | 0 | 0 | 0 | 73 | 0 | 0 | 152 | 116 | 13.0 | 19.4 | 37.7 | 37.7 |  |
+| Fetus_Muscle | Fetal tissues | 7,919 | 7,440 | 7,513 | 7,440 | 7,440 | 0 | 0 | 0 | 73 | 0 | 0 | 156 | 1,298 | 9.3 | 19.2 | 37.6 | 37.6 |  |
+| Fetus_Agland | Fetal tissues | 7,924 | 7,470 | 7,543 | 7,470 | 7,470 | 0 | 0 | 0 | 73 | 0 | 0 | 136 | 311 | 14.8 | 19.2 | 37.6 | 37.6 |  |
+| Fetus_Adipocytes | Fetal tissues | 7,972 | 7,512 | 7,585 | 7,512 | 7,512 | 0 | 0 | 0 | 73 | 0 | 0 | 130 | 316 | 10.5 | 19.4 | 37.6 | 37.6 |  |
+| Fetus_Brain | Fetal tissues | 7,986 | 7,522 | 7,595 | 7,522 | 7,522 | 0 | 0 | 0 | 73 | 0 | 0 | 166 | 261 | 5.7 | 19.2 | 37.4 | 37.4 |  |
+| Fetus_Urinarybladder | Fetal tissues | 7,990 | 7,538 | 7,611 | 7,538 | 7,538 | 0 | 0 | 0 | 73 | 0 | 0 | 138 | 458 | 17.0 | 19.1 | 37.3 | 37.3 |  |
+| Fetus_Thyroidgland | Fetal tissues | 7,992 | 7,543 | 7,616 | 7,543 | 7,543 | 0 | 0 | 0 | 73 | 0 | 0 | 143 | 696 | 14.6 | 19.6 | 37.7 | 37.7 |  |
+| Fetus_Skin | Fetal tissues | 7,999 | 7,529 | 7,602 | 7,529 | 7,529 | 0 | 0 | 0 | 73 | 0 | 0 | 152 | 828 | 15.7 | 19.4 | 37.3 | 37.3 |  |
+| Fetus_Heart | Fetal tissues | 8,012 | 7,566 | 7,639 | 7,566 | 7,566 | 0 | 0 | 0 | 73 | 0 | 0 | 165 | 1,100 | 12.6 | 19.6 | 37.8 | 37.8 |  |
+| Fetus_Pancreas | Fetal tissues | 8,024 | 7,579 | 7,652 | 7,579 | 7,579 | 0 | 0 | 0 | 73 | 0 | 0 | 130 | 480 | 16.7 | 19.3 | 37.6 | 37.6 |  |
+| Fetus_Colon | Fetal tissues | 8,062 | 7,637 | 7,710 | 7,637 | 7,637 | 0 | 0 | 0 | 73 | 0 | 0 | 171 | 916 | 27.7 | 19.6 | 37.7 | 37.7 |  |
+| Fetus_Lung | Fetal tissues | 8,068 | 7,700 | 7,700 | 7,700 | 7,700 | 0 | 0 | 0 | 0 | 0 | 0 | 15.5 | 201 | 10.9 | 19.4 | 38.0 | 38.0 |  |
+| Fetus_Spleen | Fetal tissues | 8,096 | 7,658 | 7,731 | 7,658 | 7,658 | 0 | 0 | 0 | 73 | 0 | 0 | 162 | 947 | 14.7 | 19.1 | 37.5 | 37.5 |  |
+| Fetus_Kidney | Fetal tissues | 8,136 | 7,692 | 7,765 | 7,692 | 7,692 | 0 | 0 | 0 | 73 | 0 | 0 | 165 | 785 | 18.7 | 19.3 | 37.4 | 37.4 |  |
+| Fetus_Stomach | Fetal tissues | 8,177 | 7,749 | 7,822 | 7,749 | 7,749 | 0 | 0 | 0 | 73 | 0 | 0 | 149 | 380 | 17.8 | 19.5 | 37.8 | 37.8 |  |
+| Fetus_sINE | Fetal tissues | 8,302 | 7,878 | 7,951 | 7,878 | 7,878 | 0 | 0 | 0 | 73 | 0 | 0 | 163 | 1,579 | 19.7 | 19.2 | 37.4 | 37.4 |  |
+| Fetus_Liver | Fetal tissues | 8,615 | 8,195 | 8,268 | 8,195 | 8,195 | 0 | 0 | 0 | 73 | 0 | 0 | 163 | 961 | 17.9 | 21.8 | 38.7 | 38.7 |  |
+| Harvey_1_03c | Whole-body | 81,094 | 68,190 | 68,233 | 68,199 | 68,293 | 0 | 3 | 0 | 43 | 12 | 103 | 83,233 | 111,253 | 292 | 25.9 | 42.9 | 42.9 |  |
+| Harvey_aafix_E6 | Whole-body | 81,094 | 68,072 | 68,072 | 68,080 | 68,185 | 0 | 2 | 0 | 0 | 10 | 113 | 2,788 | 115,845 | 349 | 25.9 | 42.9 | 42.9 |  |
+| Harvetta_1_03c | Whole-body | 83,521 | 70,313 | 70,355 | 70,325 | 70,358 | 3 | 3 | 0 | 45 | 15 | 45 | 85,914 | 93,429 | 444 | 26.1 | 43.5 | 43.5 |  |
+| Harvetta_aafix_E6 | Whole-body | 83,521 | 70,192 | 70,189 | 70,197 | 70,389 | 3 | 3 | 0 | 0 | 8 | 197 | 3,177 | 118,778 | 358 | 26.1 | 43.5 | 43.5 |  |
+| Microbiota | Microbiota | 173,353 | 110,750 | 110,779 | 110,846 | 111,704 | 0 | 0 | 0 | 29 | 96 | 954 | 9,084 | 342,660 | 1,406 | 24.8 | 49.2 | 48.9 | every method’s output has 1 reaction ID that is not in the input model |
+| ME_dbl_E0_L1_00e_2 | ME model | 76,664 | 70,657 | no result | 73,090 | 73,110 | no result | 20 | 0 | no result | 2,453 | 2,453 | no result | 14,728 | 222 | no result | 21.8 | 21.8 | FasterCC run not finished; FASTCC and SPECTRA outputs have 6 reaction IDs that are not in the input model |

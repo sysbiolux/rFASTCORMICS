@@ -1,0 +1,6 @@
+rxn	direction	kind	verdict	flux	seconds	diagnostics
+FRD7	1	candidate	REFUTED_loop_free_flux	1	0.0	tries=0 res=0.0e+00 active=19 signviol=0 ming=1
+FRD7	1	control	REFUTED_loop_free_flux	1	0.0	tries=0 res=0.0e+00 active=19 signviol=0 ming=1
+FRD7	-1	control	CONFIRMED_loop_only		0.0	tries=0 
+SUCDi	1	control	REFUTED_loop_free_flux	1	0.1	tries=0 res=0.0e+00 active=27 signviol=0 ming=1
+SUCDi	-1	control	CONFIRMED_loop_only		0.0	tries=0 

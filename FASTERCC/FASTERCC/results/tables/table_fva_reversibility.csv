@@ -1,0 +1,70 @@
+model,type,reactions,fva_consistent,fva_file,fva_reversible,fva_forward_only,fva_backward_only,fva_blocked,reversible_by_bounds,made_irreversible_by_preprocessing,reversible_in_fasterCC_network,same_direction_in_fva,other_direction_in_fva,ids_not_in_fva,gap_left_reversible_but_one_direction_in_fva,reversible_in_final_benchmark_output,optional_reversibility_check
+subDas,Small test,10,10,FVA file not available,,,,,0,0,0,,,,,0,not run with the final version
+DAS,Small test,11,11,FVA file not available,,,,,0,0,0,,,,,0,not run with the final version
+ecoli_core_model,Small test,95,87,FVA file not available,,,,,46,20,26,,,,,26,not run with the final version
+cardiac_mit_glcuptake_atpmax,Small test,220,76,FVA file not available,,,,,98,22,24,,,,,24,not run with the final version
+Acidaminococcus_sp_D21,AGORA microbes,860,444,FVA file not available,,,,,406,111,131,,,,,131,not run with the final version
+Acidaminococcus_intestini_RyC_MR95,AGORA microbes,1001,698,FVA file not available,,,,,425,149,156,,,,,156,not run with the final version
+Abiotrophia_defectiva_ATCC_49176,AGORA microbes,1073,766,FVA file not available,,,,,475,196,169,,,,,169,not run with the final version
+Acidaminococcus_fermentans_DSM_20731,AGORA microbes,1102,719,FVA file not available,,,,,481,141,192,,,,,192,not run with the final version
+Acinetobacter_junii_SH205,AGORA microbes,1295,882,FVA file not available,,,,,494,195,207,,,,,207,not run with the final version
+Acinetobacter_lwoffii_WJ10621,AGORA microbes,1356,918,FVA file not available,,,,,537,191,224,,,,,224,not run with the final version
+Acinetobacter_haemolyticus_NIPH_261,AGORA microbes,1382,920,FVA file not available,,,,,535,198,201,,,,,201,not run with the final version
+Acinetobacter_radioresistens_NIPH_2130,AGORA microbes,1425,967,FVA file not available,,,,,596,203,246,,,,,246,not run with the final version
+Acinetobacter_johnsonii_SH046,AGORA microbes,1446,1024,FVA file not available,,,,,571,204,247,,,,,247,not run with the final version
+Acinetobacter_pittii_ANC_4052,AGORA microbes,1582,1100,FVA file not available,,,,,634,216,262,,,,,262,not run with the final version
+Acinetobacter_calcoaceticus_PHEA_2,AGORA microbes,1586,1119,FVA file not available,,,,,643,219,262,,,,,262,not run with the final version
+Acinetobacter_baumannii_AB0057,AGORA microbes,1593,1104,FVA file not available,,,,,660,226,265,,,,,265,not run with the final version
+Achromobacter_xylosoxidans_A8,AGORA microbes,1668,1073,FVA file not available,,,,,638,227,250,,,,,250,not run with the final version
+Achromobacter_xylosoxidans_NBRC_15126,AGORA microbes,1674,1191,FVA file not available,,,,,619,248,223,,,,,223,not run with the final version
+iIT341,Curated microbial,554,377,FVA file not available,,,,,183,113,55,,,,,50,not run with the final version
+Sc_iND750_flux1,Curated microbial,1266,627,FVA file not available,,,,,436,162,105,,,,,97,not run with the final version
+iMM904,Curated microbial,1577,885,FVA file not available,,,,,495,188,121,,,,,106,not run with the final version
+Ec_iAF1260_flux1,Curated microbial,2382,1531,FVA file not available,,,,,575,385,134,,,,,122,not run with the final version
+STM_v1_0,Curated microbial,2546,1574,FVA file not available,,,,,606,358,135,,,,,122,not run with the final version
+iJO1366,Curated microbial,2583,1675,FVA file not available,,,,,636,399,172,,,,,160,not run with the final version
+iML1515,Curated microbial,2712,1716,FVA file not available,,,,,663,398,178,,,,,169,not run with the final version
+Recon1,Human generic,3742,2469,FVA file not available,,,,,1550,496,677,,,,,676,not run with the final version
+Recon2,Human generic,7440,5317,FVA file not available,,,,,3270,831,1531,,,,,1531,not run with the final version
+Recon3D_mat,Human generic,10600,10600,Recon3D_mat_FVA_lbub.csv,3520,6595,485,0,5234,1557,3677,1557,0,0,157,3677,not run with the final version
+Recon3Model,Human generic,10600,10600,FVA file not available,,,,,5234,1557,3677,,,,,3677,not run with the final version
+Human2,Human generic,12931,11641,FVA file not available,,,,,5725,2076,3060,,,,,3058,not run with the final version
+HumanGEM12971,Human generic,12971,11694,HumanGEM12971_FVA_lbub.csv,3594,7481,619,1277,5975,1596,3796,1596,0,0,202,3794,not run with the final version
+HumanGEM,Human generic,13026,11835,FVA file not available,,,,,6129,1605,3924,,,,,3921,not run with the final version
+Human1,Human generic,13417,11903,FVA file not available,,,,,6150,1596,3949,,,,,3946,not run with the final version
+Recon3D,Human generic,13543,11961,FVA file not available,,,,,6519,1601,4262,,,,,4253,not run with the final version
+Fetus_RBC,Fetal tissues,6519,5888,FVA file not available,,,,,3113,1179,1404,,,,,1404,not run with the final version
+Fetus_Scord,Fetal tissues,7786,7270,FVA file not available,,,,,3246,1378,1427,,,,,1427,not run with the final version
+Fetus_Muscle,Fetal tissues,7919,7440,FVA file not available,,,,,3269,1420,1445,,,,,1445,not run with the final version
+Fetus_Agland,Fetal tissues,7924,7470,FVA file not available,,,,,3249,1418,1452,,,,,1452,not run with the final version
+Fetus_Adipocytes,Fetal tissues,7972,7512,FVA file not available,,,,,3275,1418,1472,,,,,1472,not run with the final version
+Fetus_Brain,Fetal tissues,7986,7522,FVA file not available,,,,,3268,1419,1460,,,,,1460,not run with the final version
+Fetus_Urinarybladder,Fetal tissues,7990,7538,FVA file not available,,,,,3253,1426,1450,,,,,1450,not run with the final version
+Fetus_Thyroidgland,Fetal tissues,7992,7543,FVA file not available,,,,,3279,1410,1495,,,,,1495,not run with the final version
+Fetus_Skin,Fetal tissues,7999,7529,FVA file not available,,,,,3268,1396,1477,,,,,1477,not run with the final version
+Fetus_Heart,Fetal tissues,8012,7566,FVA file not available,,,,,3298,1430,1497,,,,,1497,not run with the final version
+Fetus_Pancreas,Fetal tissues,8024,7579,FVA file not available,,,,,3286,1442,1474,,,,,1474,not run with the final version
+Fetus_Colon,Fetal tissues,8062,7637,FVA file not available,,,,,3295,1436,1509,,,,,1509,not run with the final version
+Fetus_Lung,Fetal tissues,8068,7700,FVA file not available,,,,,3293,1434,1493,,,,,1493,not run with the final version
+Fetus_Spleen,Fetal tissues,8096,7658,FVA file not available,,,,,3300,1458,1479,,,,,1479,not run with the final version
+Fetus_Kidney,Fetal tissues,8136,7692,FVA file not available,,,,,3313,1445,1499,,,,,1499,not run with the final version
+Fetus_Stomach,Fetal tissues,8177,7749,FVA file not available,,,,,3347,1467,1527,,,,,1527,not run with the final version
+Fetus_sINE,Fetal tissues,8302,7878,FVA file not available,,,,,3362,1487,1526,,,,,1526,not run with the final version
+Fetus_Liver,Fetal tissues,8615,8195,FVA file not available,,,,,3584,1434,1805,,,,,1805,not run with the final version
+Harvey_1_03c,Whole-body,81094,68190,FVA file not available,,,,,31713,no step record,no step record,,,,,17682,not run with the final version
+Harvey_aafix_E6,Whole-body,81094,68072,FVA file not available,,,,,31712,no step record,no step record,,,,,17634,not run with the final version
+Harvetta_1_03c,Whole-body,83521,70313,FVA file not available,,,,,33094,no step record,no step record,,,,,18388,not run with the final version
+Harvetta_aafix_E6,Whole-body,83521,70192,FVA file not available,,,,,33093,no step record,no step record,,,,,18332,not run with the final version
+Microbiota,Microbiota,173353,110750,FVA file not available,,,,,75058,no step record,no step record,,,,,27525,not run with the final version
+ME_dbl_E0_L1_00e_2,ME model,76664,70657,FVA file not available,,,,,17364,no step record,no step record,,,,,run not finished,not run with the final version
+Cluster01,Cluster network (no reaction closed),12160,,FVA file not available,,,,,6794,2074,4720,,,,,,not run with the final version
+Cluster02,Cluster network (no reaction closed),21200,,FVA file not available,,,,,10468,3114,7354,,,,,,not run with the final version
+Cluster03,Cluster network (no reaction closed),30240,,FVA file not available,,,,,14142,4154,9988,,,,,,not run with the final version
+Cluster04,Cluster network (no reaction closed),39280,,FVA file not available,,,,,17816,5194,12622,,,,,,not run with the final version
+Cluster05,Cluster network (no reaction closed),48320,,FVA file not available,,,,,21490,6234,15256,,,,,,not run with the final version
+Cluster06,Cluster network (no reaction closed),57360,,FVA file not available,,,,,25164,7274,17890,,,,,,not run with the final version
+Cluster07,Cluster network (no reaction closed),66400,,FVA file not available,,,,,28838,8314,20524,,,,,,not run with the final version
+Cluster08,Cluster network (no reaction closed),75440,,FVA file not available,,,,,32512,9354,23158,,,,,,not run with the final version
+Cluster09,Cluster network (no reaction closed),84480,,FVA file not available,,,,,36186,10394,25792,,,,,,not run with the final version
+iMM1415,Preprint Table 3 (not in the benchmark),3726,,FVA_iMM1415_fullmodel.xlsx,363,1825,244,1294,1185,not run with the final version,not run with the final version,,,,,,not run with the final version
+iMM1865,Preprint Table 3 (not in the benchmark),10612,,FVA_iMM1865_fullmodel.xlsx,3531,6595,486,0,5244,not run with the final version,not run with the final version,,,,,,not run with the final version

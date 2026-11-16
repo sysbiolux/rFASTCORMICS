@@ -1,0 +1,33 @@
+type,method,models,models_with_loops,stepB_pct_median,undec_pct_median,undec_pct_min,undec_pct_max,tl_pct_median,undec_sum,capable_sum
+AGORA bacterium,FASTCC,14,14,81.256,0.862,0.0,3.774,3.128,12,1403
+AGORA bacterium,FasterCC,14,14,81.256,0.424,0.0,3.774,3.128,11,1403
+AGORA bacterium,INPUT,14,14,83.333,0.0,0.0,3.896,3.28,11,1403
+AGORA bacterium,SPECTRA,14,14,81.256,0.862,0.0,3.774,3.128,12,1403
+BiGG microbe,FASTCC,6,5,52.459,9.091,6.25,16.393,16.667,29,295
+BiGG microbe,FasterCC,6,5,52.459,8.197,6.383,22.727,17.073,28,295
+BiGG microbe,INPUT,6,5,52.459,11.702,4.545,16.667,25.0,38,295
+BiGG microbe,SPECTRA,6,5,52.459,9.091,6.25,18.519,16.667,29,295
+community,FASTCC,1,0,,,,,,0,0
+community,FasterCC,1,0,,,,,,0,0
+community,INPUT,1,0,,,,,,0,0
+community,SPECTRA,1,0,,,,,,0,0
+fetal tissue,FASTCC,18,18,86.891,12.137,8.629,99.334,91.292,3213,19457
+fetal tissue,FasterCC,18,18,87.004,12.057,7.864,99.334,90.728,3348,19457
+fetal tissue,INPUT,18,18,87.24,11.657,8.49,99.334,90.42,3319,19457
+fetal tissue,SPECTRA,18,18,86.891,12.137,8.629,99.334,91.292,3213,19457
+human generic,FASTCC,9,9,87.595,11.141,4.175,13.752,91.014,2683,24132
+human generic,FasterCC,9,9,87.595,10.804,4.175,12.99,91.014,2638,24132
+human generic,INPUT,9,9,87.324,11.096,8.246,14.166,90.722,2743,24132
+human generic,SPECTRA,9,9,87.595,10.804,4.175,12.99,91.014,2638,24132
+mitochondrial,FASTCC,1,1,0.0,0.0,0.0,0.0,0.0,0,3
+mitochondrial,FasterCC,1,1,0.0,0.0,0.0,0.0,0.0,0,3
+mitochondrial,INPUT,1,1,0.0,0.0,0.0,0.0,0.0,0,3
+mitochondrial,SPECTRA,1,1,0.0,0.0,0.0,0.0,0.0,0,3
+other,FASTCC,1,1,50.0,0.0,0.0,0.0,0.0,0,2
+other,FasterCC,1,1,50.0,0.0,0.0,0.0,0.0,0,2
+other,INPUT,1,1,50.0,0.0,0.0,0.0,0.0,0,2
+other,SPECTRA,1,1,50.0,0.0,0.0,0.0,0.0,0,2
+whole-body,FASTCC,1,1,0.585,97.021,97.021,97.021,,24723,25482
+whole-body,FasterCC,1,1,0.585,97.01,97.01,97.01,,24722,25484
+whole-body,INPUT,1,1,0.0,99.824,99.824,99.824,,25549,25594
+whole-body,SPECTRA,1,1,0.585,97.151,97.151,97.151,,24758,25484

@@ -1,0 +1,30 @@
+rxn	direction	kind	verdict	flux	seconds
+4HGLSD	1	candidate	CONFIRMED_loop_only		0.0
+4HGLSD	-1	candidate	CONFIRMED_loop_only		0.0
+AHSERL2	1	candidate	CONFIRMED_loop_only		0.0
+ACKr	1	candidate	CONFIRMED_loop_only		0.0
+ACKr	-1	candidate	REFUTED_but_recheck_failed	-1e-06	0.7
+HPROa	1	candidate	CONFIRMED_loop_only		0.0
+METB1	1	candidate	CONFIRMED_loop_only		0.0
+METB1	-1	candidate	REFUTED_but_recheck_failed	-1e-06	0.1
+HPROx	1	candidate	CONFIRMED_loop_only		0.0
+HSERTA	1	candidate	CONFIRMED_loop_only		0.0
+HSERTA	-1	candidate	REFUTED_but_recheck_failed	-1e-06	0.1
+PHCD	1	candidate	CONFIRMED_loop_only		0.0
+SHSL1	1	candidate	REFUTED_but_recheck_failed	1e-06	0.4
+SHSL1	-1	candidate	CONFIRMED_loop_only		0.0
+PHCHGS	1	candidate	CONFIRMED_loop_only		0.0
+PHCHGS	-1	candidate	REFUTED_loop_free_flux	-0	0.0
+SHSL2r	1	candidate	CONFIRMED_loop_only		0.0
+SHSL2r	-1	candidate	REFUTED_but_recheck_failed	-1e-06	0.4
+SHSL4r	1	candidate	CONFIRMED_loop_only		0.0
+SHSL4r	-1	candidate	REFUTED_but_recheck_failed	-1e-06	0.5
+THRD_L	1	candidate	REFUTED_loop_free_flux	-0	0.0
+PTAr	1	candidate	REFUTED_but_recheck_failed	1e-06	0.7
+PTAr	-1	candidate	CONFIRMED_loop_only		0.0
+H2CO3D	1	control	REFUTED_but_recheck_failed	1e-06	0.2
+H2CO3D	-1	control	REFUTED_but_recheck_failed	-1e-06	0.1
+H2CO3D2	1	control	REFUTED_but_recheck_failed	1e-06	0.1
+H2CO3D2	-1	control	REFUTED_but_recheck_failed	-1e-06	0.1
+HCO3E	1	control	REFUTED_loop_free_flux	0	0.5
+HCO3E	-1	control	CONFIRMED_loop_only		0.3

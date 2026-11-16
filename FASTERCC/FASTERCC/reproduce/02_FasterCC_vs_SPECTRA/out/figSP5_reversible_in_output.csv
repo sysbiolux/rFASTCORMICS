@@ -1,0 +1,223 @@
+model_or_cluster,method,reversible_kept,kept,percent_reversible
+ecoli_core_model,SPECTRA,46,87,52.87
+cardiac_mit_glcuptake_atpmax,SPECTRA,46,76,60.53
+Acidaminococcus_sp_D21,SPECTRA,242,444,54.5
+Acidaminococcus_intestini_RyC_MR95,SPECTRA,304,698,43.55
+Abiotrophia_defectiva_ATCC_49176,SPECTRA,364,766,47.52
+Acidaminococcus_fermentans_DSM_20731,SPECTRA,333,719,46.31
+Acinetobacter_junii_SH205,SPECTRA,402,882,45.58
+Acinetobacter_lwoffii_WJ10621,SPECTRA,415,918,45.21
+Acinetobacter_haemolyticus_NIPH_261,SPECTRA,395,920,42.93
+Acinetobacter_radioresistens_NIPH_2130,SPECTRA,449,967,46.43
+Acinetobacter_johnsonii_SH046,SPECTRA,451,1024,44.04
+Acinetobacter_pittii_ANC_4052,SPECTRA,478,1100,43.45
+Acinetobacter_calcoaceticus_PHEA_2,SPECTRA,481,1119,42.98
+Acinetobacter_baumannii_AB0057,SPECTRA,491,1104,44.47
+Achromobacter_xylosoxidans_A8,SPECTRA,468,1073,43.62
+Achromobacter_xylosoxidans_NBRC_15126,SPECTRA,471,1191,39.55
+iIT341,SPECTRA,147,377,38.99
+Sc_iND750_flux1,SPECTRA,243,627,38.76
+iMM904,SPECTRA,297,885,33.56
+Ec_iAF1260_flux1,SPECTRA,341,1531,22.27
+STM_v1_0,SPECTRA,340,1574,21.6
+iJO1366,SPECTRA,388,1675,23.16
+iML1515,SPECTRA,387,1716,22.55
+Recon1,SPECTRA,1149,2469,46.54
+Recon2,SPECTRA,2359,5317,44.37
+Recon3D_mat,SPECTRA,5234,10600,49.38
+Recon3Model,SPECTRA,5234,10600,49.38
+Human2,SPECTRA,5131,11641,44.08
+HumanGEM12971,SPECTRA,5387,11694,46.07
+HumanGEM,SPECTRA,5525,11835,46.68
+Human1,SPECTRA,5541,11903,46.55
+Recon3D,SPECTRA,5840,11961,48.83
+Fetus_RBC,SPECTRA,2497,5890,42.39
+Fetus_Scord,SPECTRA,2740,7270,37.69
+Fetus_Muscle,SPECTRA,2800,7440,37.63
+Fetus_Agland,SPECTRA,2805,7470,37.55
+Fetus_Adipocytes,SPECTRA,2825,7512,37.61
+Fetus_Brain,SPECTRA,2814,7522,37.41
+Fetus_Urinarybladder,SPECTRA,2811,7538,37.29
+Fetus_Thyroidgland,SPECTRA,2840,7543,37.65
+Fetus_Skin,SPECTRA,2808,7529,37.3
+Fetus_Heart,SPECTRA,2862,7566,37.83
+Fetus_Pancreas,SPECTRA,2851,7579,37.62
+Fetus_Colon,SPECTRA,2880,7637,37.71
+Fetus_Lung,SPECTRA,2927,7700,38.01
+Fetus_Spleen,SPECTRA,2872,7658,37.5
+Fetus_Kidney,SPECTRA,2879,7692,37.43
+Fetus_Stomach,SPECTRA,2929,7749,37.8
+Fetus_sINE,SPECTRA,2948,7878,37.42
+Fetus_Liver,SPECTRA,3174,8195,38.73
+Harvey_1_03c,SPECTRA,29329,68293,42.95
+Harvey_aafix_E6,SPECTRA,29274,68185,42.93
+Harvetta_1_03c,SPECTRA,30619,70358,43.52
+Harvetta_aafix_E6,SPECTRA,30649,70389,43.54
+Microbiota,SPECTRA,54591,111704,48.87
+ecoli_core_model,FASTCC,46,87,52.87
+cardiac_mit_glcuptake_atpmax,FASTCC,46,76,60.53
+Acidaminococcus_sp_D21,FASTCC,242,444,54.5
+Acidaminococcus_intestini_RyC_MR95,FASTCC,304,698,43.55
+Abiotrophia_defectiva_ATCC_49176,FASTCC,364,766,47.52
+Acidaminococcus_fermentans_DSM_20731,FASTCC,333,719,46.31
+Acinetobacter_junii_SH205,FASTCC,402,882,45.58
+Acinetobacter_lwoffii_WJ10621,FASTCC,415,918,45.21
+Acinetobacter_haemolyticus_NIPH_261,FASTCC,395,920,42.93
+Acinetobacter_radioresistens_NIPH_2130,FASTCC,449,967,46.43
+Acinetobacter_johnsonii_SH046,FASTCC,451,1024,44.04
+Acinetobacter_pittii_ANC_4052,FASTCC,478,1100,43.45
+Acinetobacter_calcoaceticus_PHEA_2,FASTCC,481,1119,42.98
+Acinetobacter_baumannii_AB0057,FASTCC,491,1104,44.47
+Achromobacter_xylosoxidans_A8,FASTCC,468,1073,43.62
+Achromobacter_xylosoxidans_NBRC_15126,FASTCC,471,1191,39.55
+iIT341,FASTCC,147,377,38.99
+Sc_iND750_flux1,FASTCC,243,627,38.76
+iMM904,FASTCC,297,885,33.56
+Ec_iAF1260_flux1,FASTCC,341,1529,22.3
+STM_v1_0,FASTCC,340,1568,21.68
+iJO1366,FASTCC,388,1675,23.16
+iML1515,FASTCC,387,1715,22.57
+Recon1,FASTCC,1149,2469,46.54
+Recon2,FASTCC,2359,5317,44.37
+Recon3D_mat,FASTCC,5234,10600,49.38
+Recon3Model,FASTCC,5234,10600,49.38
+Human2,FASTCC,5131,11640,44.08
+HumanGEM12971,FASTCC,5387,11694,46.07
+HumanGEM,FASTCC,5525,11835,46.68
+Human1,FASTCC,5541,11902,46.56
+Recon3D,FASTCC,5840,11961,48.83
+Fetus_RBC,FASTCC,2495,5888,42.37
+Fetus_Scord,FASTCC,2740,7270,37.69
+Fetus_Muscle,FASTCC,2800,7440,37.63
+Fetus_Agland,FASTCC,2805,7470,37.55
+Fetus_Adipocytes,FASTCC,2825,7512,37.61
+Fetus_Brain,FASTCC,2814,7522,37.41
+Fetus_Urinarybladder,FASTCC,2811,7538,37.29
+Fetus_Thyroidgland,FASTCC,2840,7543,37.65
+Fetus_Skin,FASTCC,2808,7529,37.3
+Fetus_Heart,FASTCC,2862,7566,37.83
+Fetus_Pancreas,FASTCC,2851,7579,37.62
+Fetus_Colon,FASTCC,2880,7637,37.71
+Fetus_Lung,FASTCC,2927,7700,38.01
+Fetus_Spleen,FASTCC,2872,7658,37.5
+Fetus_Kidney,FASTCC,2879,7692,37.43
+Fetus_Stomach,FASTCC,2929,7749,37.8
+Fetus_sINE,FASTCC,2948,7878,37.42
+Fetus_Liver,FASTCC,3174,8195,38.73
+Harvey_1_03c,FASTCC,29275,68199,42.93
+Harvey_aafix_E6,FASTCC,29225,68080,42.93
+Harvetta_1_03c,FASTCC,30598,70325,43.51
+Harvetta_aafix_E6,FASTCC,30545,70197,43.51
+Microbiota,FASTCC,54486,110846,49.15
+ecoli_core_model,FasterCC,26,87,29.89
+cardiac_mit_glcuptake_atpmax,FasterCC,24,76,31.58
+Acidaminococcus_sp_D21,FasterCC,131,444,29.5
+Acidaminococcus_intestini_RyC_MR95,FasterCC,156,698,22.35
+Abiotrophia_defectiva_ATCC_49176,FasterCC,169,767,22.03
+Acidaminococcus_fermentans_DSM_20731,FasterCC,192,719,26.7
+Acinetobacter_junii_SH205,FasterCC,207,882,23.47
+Acinetobacter_lwoffii_WJ10621,FasterCC,224,918,24.4
+Acinetobacter_haemolyticus_NIPH_261,FasterCC,201,920,21.85
+Acinetobacter_radioresistens_NIPH_2130,FasterCC,246,967,25.44
+Acinetobacter_johnsonii_SH046,FasterCC,247,1024,24.12
+Acinetobacter_pittii_ANC_4052,FasterCC,262,1100,23.82
+Acinetobacter_calcoaceticus_PHEA_2,FasterCC,262,1119,23.41
+Acinetobacter_baumannii_AB0057,FasterCC,265,1104,24.0
+Achromobacter_xylosoxidans_A8,FasterCC,250,1073,23.3
+Achromobacter_xylosoxidans_NBRC_15126,FasterCC,223,1191,18.72
+iIT341,FasterCC,50,434,11.52
+Sc_iND750_flux1,FasterCC,97,631,15.37
+iMM904,FasterCC,106,885,11.98
+Ec_iAF1260_flux1,FasterCC,122,1532,7.96
+STM_v1_0,FasterCC,122,1597,7.64
+iJO1366,FasterCC,160,1702,9.4
+iML1515,FasterCC,169,1742,9.7
+Recon1,FasterCC,676,2469,27.38
+Recon2,FasterCC,1531,5317,28.79
+Recon3D_mat,FasterCC,3677,10600,34.69
+Recon3Model,FasterCC,3677,10600,34.69
+Human2,FasterCC,3058,11641,26.27
+HumanGEM12971,FasterCC,3794,11694,32.44
+HumanGEM,FasterCC,3921,11835,33.13
+Human1,FasterCC,3946,11903,33.15
+Recon3D,FasterCC,4253,11961,35.56
+Fetus_RBC,FasterCC,1404,5984,23.46
+Fetus_Scord,FasterCC,1427,7343,19.43
+Fetus_Muscle,FasterCC,1445,7513,19.23
+Fetus_Agland,FasterCC,1452,7543,19.25
+Fetus_Adipocytes,FasterCC,1472,7585,19.41
+Fetus_Brain,FasterCC,1460,7595,19.22
+Fetus_Urinarybladder,FasterCC,1450,7611,19.05
+Fetus_Thyroidgland,FasterCC,1495,7616,19.63
+Fetus_Skin,FasterCC,1477,7602,19.43
+Fetus_Heart,FasterCC,1497,7639,19.6
+Fetus_Pancreas,FasterCC,1474,7652,19.26
+Fetus_Colon,FasterCC,1509,7710,19.57
+Fetus_Lung,FasterCC,1493,7700,19.39
+Fetus_Spleen,FasterCC,1479,7731,19.13
+Fetus_Kidney,FasterCC,1499,7765,19.3
+Fetus_Stomach,FasterCC,1527,7822,19.52
+Fetus_sINE,FasterCC,1526,7951,19.19
+Fetus_Liver,FasterCC,1805,8268,21.83
+Harvey_1_03c,FasterCC,17682,68233,25.91
+Harvey_aafix_E6,FasterCC,17634,68072,25.9
+Harvetta_1_03c,FasterCC,18388,70355,26.14
+Harvetta_aafix_E6,FasterCC,18332,70189,26.12
+Microbiota,FasterCC,27525,110779,24.85
+cluster c02,"SPECTRA (median, Gurobi tasks)",,,49.46
+cluster c03,"SPECTRA (median, Gurobi tasks)",,,46.82
+cluster c04,"SPECTRA (median, Gurobi tasks)",,,45.39
+cluster c05,"SPECTRA (median, Gurobi tasks)",,,44.52
+cluster c06,"SPECTRA (median, Gurobi tasks)",,,43.91
+cluster c07,"SPECTRA (median, Gurobi tasks)",,,43.45
+cluster c08,"SPECTRA (median, Gurobi tasks)",,,43.11
+cluster c09,"SPECTRA (median, Gurobi tasks)",,,42.85
+cluster c10,"SPECTRA (median, Gurobi tasks)",,,42.64
+cluster c11,"SPECTRA (median, Gurobi tasks)",,,42.46
+cluster c12,"SPECTRA (median, Gurobi tasks)",,,42.32
+cluster c13,"SPECTRA (median, Gurobi tasks)",,,42.19
+cluster c14,"SPECTRA (median, Gurobi tasks)",,,42.09
+cluster c15,"SPECTRA (median, Gurobi tasks)",,,41.99
+cluster c16,"SPECTRA (median, Gurobi tasks)",,,41.91
+cluster c17,"SPECTRA (median, Gurobi tasks)",,,41.83
+cluster c18,"SPECTRA (median, Gurobi tasks)",,,41.77
+cluster c19,"SPECTRA (median, Gurobi tasks)",,,41.71
+cluster c20,"SPECTRA (median, Gurobi tasks)",,,41.66
+cluster c02,"FASTCC (median, Gurobi tasks)",,,49.46
+cluster c03,"FASTCC (median, Gurobi tasks)",,,46.82
+cluster c04,"FASTCC (median, Gurobi tasks)",,,45.39
+cluster c05,"FASTCC (median, Gurobi tasks)",,,44.52
+cluster c06,"FASTCC (median, Gurobi tasks)",,,43.91
+cluster c07,"FASTCC (median, Gurobi tasks)",,,43.45
+cluster c08,"FASTCC (median, Gurobi tasks)",,,43.11
+cluster c09,"FASTCC (median, Gurobi tasks)",,,42.85
+cluster c10,"FASTCC (median, Gurobi tasks)",,,42.64
+cluster c11,"FASTCC (median, Gurobi tasks)",,,42.46
+cluster c12,"FASTCC (median, Gurobi tasks)",,,42.32
+cluster c13,"FASTCC (median, Gurobi tasks)",,,42.19
+cluster c14,"FASTCC (median, Gurobi tasks)",,,42.08
+cluster c15,"FASTCC (median, Gurobi tasks)",,,41.99
+cluster c16,"FASTCC (median, Gurobi tasks)",,,41.91
+cluster c17,"FASTCC (median, Gurobi tasks)",,,41.83
+cluster c18,"FASTCC (median, Gurobi tasks)",,,41.77
+cluster c19,"FASTCC (median, Gurobi tasks)",,,41.71
+cluster c20,"FASTCC (median, Gurobi tasks)",,,41.66
+cluster c02,"FasterCC (median, Gurobi tasks)",,,34.73
+cluster c03,"FasterCC (median, Gurobi tasks)",,,33.08
+cluster c04,"FasterCC (median, Gurobi tasks)",,,32.18
+cluster c05,"FasterCC (median, Gurobi tasks)",,,31.63
+cluster c06,"FasterCC (median, Gurobi tasks)",,,31.22
+cluster c07,"FasterCC (median, Gurobi tasks)",,,30.94
+cluster c08,"FasterCC (median, Gurobi tasks)",,,30.71
+cluster c09,"FasterCC (median, Gurobi tasks)",,,30.55
+cluster c10,"FasterCC (median, Gurobi tasks)",,,30.42
+cluster c11,"FasterCC (median, Gurobi tasks)",,,30.31
+cluster c12,"FasterCC (median, Gurobi tasks)",,,30.21
+cluster c13,"FasterCC (median, Gurobi tasks)",,,30.13
+cluster c14,"FasterCC (median, Gurobi tasks)",,,30.06
+cluster c15,"FasterCC (median, Gurobi tasks)",,,30.0
+cluster c16,"FasterCC (median, Gurobi tasks)",,,29.95
+cluster c17,"FasterCC (median, Gurobi tasks)",,,29.91
+cluster c18,"FasterCC (median, Gurobi tasks)",,,29.85
+cluster c19,"FasterCC (median, Gurobi tasks)",,,29.82
+cluster c20,"FasterCC (median, Gurobi tasks)",,,29.78

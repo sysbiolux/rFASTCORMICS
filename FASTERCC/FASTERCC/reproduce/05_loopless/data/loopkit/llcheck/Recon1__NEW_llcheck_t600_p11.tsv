@@ -1,0 +1,6 @@
+rxn	direction	kind	verdict	flux	seconds	diagnostics
+UMPK4n	1	candidate	UNDECIDED_time_limit		600.0	tries=0 
+UMPK5n	1	candidate	UNDECIDED_time_limit		600.5	tries=0 
+UMPK6n	1	candidate	UNDECIDED_time_limit		600.7	tries=0 
+UMPK7n	1	candidate	UNDECIDED_time_limit		601.1	tries=0 
+UMPKn	1	candidate	UNDECIDED_time_limit		600.2	tries=0 

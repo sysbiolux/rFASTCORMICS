@@ -1,0 +1,21 @@
+panel,series,core_reactions,median,q1,q3
+time,without preprocessing,10,215.38,81.45,489.9
+time,without preprocessing,50,283.52,98.4,654.83
+time,without preprocessing,100,287.77,98.36,663.52
+time,without preprocessing,200,291.61,110.74,622.5
+time,without preprocessing,500,254.08,94.59,537.39
+time,with FasterCC preprocessing,10,188.89,77.19,488.71
+time,with FasterCC preprocessing,50,212.11,76.1,524.67
+time,with FasterCC preprocessing,100,199.02,74.45,465.04
+time,with FasterCC preprocessing,200,193.21,78.91,473.4
+time,with FasterCC preprocessing,500,151.18,66.23,386.25
+time,cleaning + FASTCORE,10,542.34,,
+time,cleaning + FASTCORE,50,530.59,,
+time,cleaning + FASTCORE,100,547.0,,
+time,cleaning + FASTCORE,200,550.19,,
+time,cleaning + FASTCORE,500,480.44,,
+speedup,per task,10,1.026,0.902,1.267
+speedup,per task,50,1.349,1.015,1.473
+speedup,per task,100,1.476,1.241,1.617
+speedup,per task,200,1.477,1.194,1.745
+speedup,per task,500,1.621,1.382,2.096

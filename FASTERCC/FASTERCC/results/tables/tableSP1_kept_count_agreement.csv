@@ -1,0 +1,7 @@
+solver,comparison,tasks with both results,same number kept,first keeps more,second keeps more,missing
+CPLEX,FasterCC vs FASTCC,1140,1138,1,1,0
+CPLEX,FasterCC vs SPECTRA,1140,1125,1,14,0
+CPLEX,FASTCC vs SPECTRA,1140,1127,0,13,0
+Gurobi,FasterCC vs FASTCC,1140,1140,0,0,0
+Gurobi,FasterCC vs SPECTRA,1140,1138,0,2,0
+Gurobi,FASTCC vs SPECTRA,1140,1138,0,2,0
