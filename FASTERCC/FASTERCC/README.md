@@ -60,7 +60,7 @@ On large real models FasterCC is 37–45× faster than FASTCC in elapsed time:
 SPECTRA's speed comes with errors:
 - it keeps FVA-blocked reactions on 7 large models, e.g. Microbiota 954 and ME 2,453;
 - on Microbiota only FasterCC's network can still produce community biomass;
-- its output can change when SPECTRA is run on it again.
+- the model is not idempotent; its output can change when SPECTRA is run on it again.
 
 **Correct on the real models.** Against FVA:
 - **FasterCC** removes a reaction that can carry flux on only 2 models: the two Harvetta models, 3 reactions each, the same 3 that FASTCC removes.
