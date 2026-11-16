@@ -8,7 +8,7 @@ This folder holds the results of the November 2026 benchmark of the new FasterCC
 - 1,140 cluster tasks (CPLEX and Gurobi), 250 FASTCORE tasks and 58 real models;
 - every table and figure, with the data and scripts that rebuild them;
 - the consistent network each method returned for each real model (as reaction lists);
-- two toy models that show, in a few reactions, why the problem is harder than it looks.
+- two toy models.
 
 **The code.** The FasterCC version of the preprint is in the parent folder (`FASTERCC/`). The code of the new version will
 be added here once its cleaned-up release has passed the regression tests against the benchmarked version.
